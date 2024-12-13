@@ -3,82 +3,88 @@
 //  HybridTrainer
 //
 
+import Foundation
 import HealthKit
-import SwiftData
 
 class HealthKitService {
     static let shared = HealthKitService()
-    private let healthKitManager = HealthKitManager.shared
+    private let healthStore = HKHealthStore()
     
-    func fetchAndProcessWorkouts() async -> [Workout] {
-        return await withCheckedContinuation { continuation in
-            healthKitManager.fetchAllTriathlonWorkouts { result in
-                switch result {
-                case .success(let workoutsByType):
-                    var processedWorkouts: [Workout] = []
-                    for (type, workouts) in workoutsByType {
-                        for hkWorkout in workouts {
-                            let workout = Workout(
-                                date: hkWorkout.startDate,
-                                type: self.mapWorkoutType(type),
-                                duration: hkWorkout.duration
-                            )
-                            
-                            Task {
-                                if let stats = try? await self.fetchWorkoutStats(for: hkWorkout) {
-                                    workout.distance = stats.totalDistance
-                                    workout.calories = stats.totalEnergyBurned
-                                    workout.averageHeartRate = stats.averageHeartRate
-                                    workout.maxHeartRate = stats.maxHeartRate
-                                    workout.strokeCount = Int(stats.strokeCount ?? 0)
-                                    workout.tss = self.calculateTSS(
-                                        duration: workout.duration,
-                                        avgHeartRate: stats.averageHeartRate,
-                                        maxHeartRate: stats.maxHeartRate
-                                    )
-                                }
-                            }
-                            processedWorkouts.append(workout)
-                        }
-                    }
-                    continuation.resume(returning: processedWorkouts)
-                case .failure:
-                    continuation.resume(returning: [])
-                }
-            }
-        }
-    }
+    private init() {}
     
-    private func mapWorkoutType(_ type: String) -> WorkoutType {
-        switch type {
-        case "swim": return .swim
-        case "bike": return .bike
-        case "run": return .run
-        default: return .strength
-        }
-    }
-    
-    private func calculateTSS(duration: TimeInterval, avgHeartRate: Double?, maxHeartRate: Double?) -> Double? {
-        guard let avgHR = avgHeartRate, let maxHR = maxHeartRate else { return nil }
+    func requestAuthorization() async throws {
+        let typesToRead: Set<HKObjectType> = [
+            .workoutType(),
+            HKObjectType.quantityType(forIdentifier: .heartRate)!,
+            HKObjectType.quantityType(forIdentifier: .distanceWalkingRunning)!,
+            HKObjectType.quantityType(forIdentifier: .distanceCycling)!,
+            HKObjectType.quantityType(forIdentifier: .distanceSwimming)!
+        ]
         
-        let hrReserve = maxHR - 60
-        let hrLoad = (avgHR - 60) / hrReserve
-        let intensity = pow(hrLoad, 2)
-        let tss = (duration / 3600.0) * 100.0 * intensity
-        
-        return tss
+        try await healthStore.requestAuthorization(toShare: [], read: typesToRead)
     }
     
-    func fetchWorkoutStats(for workout: HKWorkout) async throws -> WorkoutStats {
-        return try await withCheckedThrowingContinuation { continuation in
-            healthKitManager.fetchWorkoutStats(for: workout) { result in
-                switch result {
-                case .success(let stats):
-                    continuation.resume(returning: stats)
-                case .failure(let error):
-                    continuation.resume(throwing: error)
+    func fetchWorkouts(limit: Int = 0) async throws -> [HKWorkout] {
+        let workoutPredicate = HKQuery.predicateForWorkouts(with: .greaterThan)
+        let sortDescriptor = SortDescriptor(\HKWorkout.startDate, order: .reverse)
+        
+        let query = HKSampleQuery(
+            sampleType: .workoutType(),
+            predicate: workoutPredicate,
+            limit: limit == 0 ? HKObjectQueryNoLimit : limit,
+            sortDescriptors: [sortDescriptor],
+            resultsHandler: { query, samples, error in
+                if let error = error {
+                    print("Error fetching workouts: \(error)")
+                    return
                 }
+                
+                guard let workouts = samples as? [HKWorkout] else {
+                    print("Error: Could not convert samples to workouts")
+                    return
+                }
+                
+                // Process workouts here
             }
+        )
+        
+        healthStore.execute(query)
+        return try await fetchWorkoutsAsync(limit: limit)
+    }
+    
+    private func fetchWorkoutsAsync(limit: Int) async throws -> [HKWorkout] {
+        let workoutPredicate = HKQuery.predicateForWorkouts(with: .greaterThan)
+        let sortDescriptor = SortDescriptor(\HKWorkout.startDate, order: .reverse)
+        
+        let samples = try await healthStore.samples(
+            matching: HKSampleQuery.Parameters(
+                sampleType: .workoutType(),
+                predicate: workoutPredicate,
+                limit: limit == 0 ? HKObjectQueryNoLimit : limit,
+                sortDescriptors: [sortDescriptor]
+            )
+        )
+        
+        return samples.compactMap { $0 as? HKWorkout }
+    }
+    
+    func fetchHeartRateData(for workout: HKWorkout) async throws -> [Double] {
+        let heartRateType = HKObjectType.quantityType(forIdentifier: .heartRate)!
+        let predicate = HKQuery.predicateForSamples(withStart: workout.startDate, end: workout.endDate)
+        let sortDescriptor = SortDescriptor(\HKQuantitySample.startDate, order: .ascending)
+        
+        let samples = try await healthStore.samples(
+            matching: HKSampleQuery.Parameters(
+                sampleType: heartRateType,
+                predicate: predicate,
+                limit: HKObjectQueryNoLimit,
+                sortDescriptors: [sortDescriptor]
+            )
+        )
+        
+        return samples.compactMap { sample in
+            guard let heartRateSample = sample as? HKQuantitySample else { return nil }
+            return heartRateSample.quantity.doubleValue(for: HKUnit.count().unitDivided(by: .minute()))
         }
     }
 }
