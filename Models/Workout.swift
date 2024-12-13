@@ -12,7 +12,7 @@ final class Workout {
     var date: Date
     var type: WorkoutType
     var duration: TimeInterval
-    var distance: Double
+    var distance: Double?
     var calories: Double
     var averageHeartRate: Double?
     var maxHeartRate: Double?
@@ -24,7 +24,7 @@ final class Workout {
         date: Date,
         type: WorkoutType,
         duration: TimeInterval,
-        distance: Double = 0,
+        distance: Double? = nil,
         calories: Double = 0,
         averageHeartRate: Double? = nil,
         maxHeartRate: Double? = nil,
