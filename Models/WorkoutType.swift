@@ -1,7 +1,7 @@
 import Foundation
 import HealthKit
 
-enum WorkoutType: String, Codable, Hashable {
+enum WorkoutType: String, Codable, Hashable, CaseIterable {
     case swim
     case bike
     case run
