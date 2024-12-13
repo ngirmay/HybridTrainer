@@ -6,6 +6,25 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		A3CC4E9A2D08DAD100145F05 /* Goal.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CC4E952D08CA4400145F05 /* Goal.swift */; };
+		A3CC4E9B2D08DAD800145F05 /* Workout.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CC4E992D08D9EF00145F05 /* Workout.swift */; };
+		A3CC4E9C2D08DADE00145F05 /* HealthKitManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CC4E982D08CA7500145F05 /* HealthKitManager.swift */; };
+		A3CC4E9D2D08DAE400145F05 /* DashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CC4E972D08CA5A00145F05 /* DashboardView.swift */; };
+		A3CC4EA12D0A0EEF00145F05 /* MetricCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CC4EA02D0A0EE800145F05 /* MetricCard.swift */; };
+		A3CC4EA32D0A0EFF00145F05 /* TrainingCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CC4EA22D0A0EF600145F05 /* TrainingCard.swift */; };
+		A3CC4EA62D0A0F3F00145F05 /* GoalCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CC4EA52D0A0F3000145F05 /* GoalCard.swift */; };
+		A3CC4EA92D0A0F8D00145F05 /* WorkoutViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CC4EA82D0A0F8700145F05 /* WorkoutViews.swift */; };
+		A3CC4EAC2D0A0F9E00145F05 /* GoalsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CC4EAB2D0A0F9700145F05 /* GoalsView.swift */; };
+		A3CC4EB22D0BB20000145F05 /* TrainingSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CC4EB12D0BB1F900145F05 /* TrainingSession.swift */; };
+		A3CC4EB42D0BB2A000145F05 /* HealthKitService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CC4EB32D0BB29A00145F05 /* HealthKitService.swift */; };
+		A3CC4EB82D0BB2E600145F05 /* WorkoutViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CC4EB72D0BB2DF00145F05 /* WorkoutViewModel.swift */; };
+		A3CC4EBA2D0BB30500145F05 /* ChartSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CC4EB92D0BB2FF00145F05 /* ChartSection.swift */; };
+		A3CC4EBC2D0BB30E00145F05 /* RecentWorkoutsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CC4EBB2D0BB30800145F05 /* RecentWorkoutsList.swift */; };
+		A3CC4EBE2D0BB31600145F05 /* WorkoutRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CC4EBD2D0BB31100145F05 /* WorkoutRow.swift */; };
+		A3CC4EC62D0BBC5700145F05 /* WeeklyVolumeSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CC4EC52D0BBC4E00145F05 /* WeeklyVolumeSection.swift */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		A3CC4E722D08B4E600145F05 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -27,6 +46,22 @@
 		A3CC4E5E2D08B4E200145F05 /* HybridTrainer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HybridTrainer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A3CC4E712D08B4E600145F05 /* HybridTrainerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HybridTrainerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A3CC4E7B2D08B4E600145F05 /* HybridTrainerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HybridTrainerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		A3CC4E952D08CA4400145F05 /* Goal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Goal.swift; sourceTree = "<group>"; };
+		A3CC4E972D08CA5A00145F05 /* DashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardView.swift; sourceTree = "<group>"; };
+		A3CC4E982D08CA7500145F05 /* HealthKitManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthKitManager.swift; sourceTree = "<group>"; };
+		A3CC4E992D08D9EF00145F05 /* Workout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Workout.swift; sourceTree = "<group>"; };
+		A3CC4EA02D0A0EE800145F05 /* MetricCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetricCard.swift; sourceTree = "<group>"; };
+		A3CC4EA22D0A0EF600145F05 /* TrainingCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingCard.swift; sourceTree = "<group>"; };
+		A3CC4EA52D0A0F3000145F05 /* GoalCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalCard.swift; sourceTree = "<group>"; };
+		A3CC4EA82D0A0F8700145F05 /* WorkoutViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutViews.swift; sourceTree = "<group>"; };
+		A3CC4EAB2D0A0F9700145F05 /* GoalsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalsView.swift; sourceTree = "<group>"; };
+		A3CC4EB12D0BB1F900145F05 /* TrainingSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingSession.swift; sourceTree = "<group>"; };
+		A3CC4EB32D0BB29A00145F05 /* HealthKitService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthKitService.swift; sourceTree = "<group>"; };
+		A3CC4EB72D0BB2DF00145F05 /* WorkoutViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutViewModel.swift; sourceTree = "<group>"; };
+		A3CC4EB92D0BB2FF00145F05 /* ChartSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartSection.swift; sourceTree = "<group>"; };
+		A3CC4EBB2D0BB30800145F05 /* RecentWorkoutsList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentWorkoutsList.swift; sourceTree = "<group>"; };
+		A3CC4EBD2D0BB31100145F05 /* WorkoutRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutRow.swift; sourceTree = "<group>"; };
+		A3CC4EC52D0BBC4E00145F05 /* WeeklyVolumeSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeeklyVolumeSection.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -75,6 +110,11 @@
 		A3CC4E552D08B4E200145F05 = {
 			isa = PBXGroup;
 			children = (
+				A3CC4E922D08B67A00145F05 /* Resources */,
+				A3CC4E912D08B67500145F05 /* Utils */,
+				A3CC4E902D08B66F00145F05 /* Services */,
+				A3CC4E8F2D08B66900145F05 /* Views */,
+				A3CC4E8E2D08B66000145F05 /* Models */,
 				A3CC4E602D08B4E200145F05 /* HybridTrainer */,
 				A3CC4E742D08B4E600145F05 /* HybridTrainerTests */,
 				A3CC4E7E2D08B4E600145F05 /* HybridTrainerUITests */,
@@ -90,6 +130,89 @@
 				A3CC4E7B2D08B4E600145F05 /* HybridTrainerUITests.xctest */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		A3CC4E8E2D08B66000145F05 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				A3CC4EB12D0BB1F900145F05 /* TrainingSession.swift */,
+				A3CC4E992D08D9EF00145F05 /* Workout.swift */,
+				A3CC4E952D08CA4400145F05 /* Goal.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		A3CC4E8F2D08B66900145F05 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				A3CC4EB62D0BB2D800145F05 /* ViewModels */,
+				A3CC4EAA2D0A0F9000145F05 /* Goals */,
+				A3CC4EA72D0A0F7100145F05 /* Workouts */,
+				A3CC4E962D08CA5300145F05 /* Dashboard */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		A3CC4E902D08B66F00145F05 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				A3CC4EB32D0BB29A00145F05 /* HealthKitService.swift */,
+				A3CC4E982D08CA7500145F05 /* HealthKitManager.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		A3CC4E912D08B67500145F05 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		A3CC4E922D08B67A00145F05 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		A3CC4E962D08CA5300145F05 /* Dashboard */ = {
+			isa = PBXGroup;
+			children = (
+				A3CC4EC52D0BBC4E00145F05 /* WeeklyVolumeSection.swift */,
+				A3CC4EBD2D0BB31100145F05 /* WorkoutRow.swift */,
+				A3CC4EBB2D0BB30800145F05 /* RecentWorkoutsList.swift */,
+				A3CC4EB92D0BB2FF00145F05 /* ChartSection.swift */,
+				A3CC4EA52D0A0F3000145F05 /* GoalCard.swift */,
+				A3CC4EA22D0A0EF600145F05 /* TrainingCard.swift */,
+				A3CC4EA02D0A0EE800145F05 /* MetricCard.swift */,
+				A3CC4E972D08CA5A00145F05 /* DashboardView.swift */,
+			);
+			path = Dashboard;
+			sourceTree = "<group>";
+		};
+		A3CC4EA72D0A0F7100145F05 /* Workouts */ = {
+			isa = PBXGroup;
+			children = (
+				A3CC4EA82D0A0F8700145F05 /* WorkoutViews.swift */,
+			);
+			path = Workouts;
+			sourceTree = "<group>";
+		};
+		A3CC4EAA2D0A0F9000145F05 /* Goals */ = {
+			isa = PBXGroup;
+			children = (
+				A3CC4EAB2D0A0F9700145F05 /* GoalsView.swift */,
+			);
+			path = Goals;
+			sourceTree = "<group>";
+		};
+		A3CC4EB62D0BB2D800145F05 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				A3CC4EB72D0BB2DF00145F05 /* WorkoutViewModel.swift */,
+			);
+			path = ViewModels;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -236,6 +359,22 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A3CC4E9A2D08DAD100145F05 /* Goal.swift in Sources */,
+				A3CC4EA12D0A0EEF00145F05 /* MetricCard.swift in Sources */,
+				A3CC4EAC2D0A0F9E00145F05 /* GoalsView.swift in Sources */,
+				A3CC4EBA2D0BB30500145F05 /* ChartSection.swift in Sources */,
+				A3CC4EB82D0BB2E600145F05 /* WorkoutViewModel.swift in Sources */,
+				A3CC4EB42D0BB2A000145F05 /* HealthKitService.swift in Sources */,
+				A3CC4E9C2D08DADE00145F05 /* HealthKitManager.swift in Sources */,
+				A3CC4E9D2D08DAE400145F05 /* DashboardView.swift in Sources */,
+				A3CC4EBE2D0BB31600145F05 /* WorkoutRow.swift in Sources */,
+				A3CC4E9B2D08DAD800145F05 /* Workout.swift in Sources */,
+				A3CC4EA62D0A0F3F00145F05 /* GoalCard.swift in Sources */,
+				A3CC4EB22D0BB20000145F05 /* TrainingSession.swift in Sources */,
+				A3CC4EA92D0A0F8D00145F05 /* WorkoutViews.swift in Sources */,
+				A3CC4EBC2D0BB30E00145F05 /* RecentWorkoutsList.swift in Sources */,
+				A3CC4EC62D0BBC5700145F05 /* WeeklyVolumeSection.swift in Sources */,
+				A3CC4EA32D0A0EFF00145F05 /* TrainingCard.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -396,6 +535,9 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "";
+				INFOPLIST_KEY_NSHealthShareUsageDescription = "This app reads your HealthKit data to display your workouts and metrics.\"";
+				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "This app uses HealthKit to track workouts and fitness progress.";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
@@ -435,6 +577,9 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "";
+				INFOPLIST_KEY_NSHealthShareUsageDescription = "This app reads your HealthKit data to display your workouts and metrics.\"";
+				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "This app uses HealthKit to track workouts and fitness progress.";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
@@ -469,6 +614,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 8KADHRJXJV;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 18.1;
 				MACOSX_DEPLOYMENT_TARGET = 15.1;
 				MARKETING_VERSION = 1.0;
@@ -492,6 +638,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 8KADHRJXJV;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 18.1;
 				MACOSX_DEPLOYMENT_TARGET = 15.1;
 				MARKETING_VERSION = 1.0;
@@ -514,6 +661,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 8KADHRJXJV;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 18.1;
 				MACOSX_DEPLOYMENT_TARGET = 15.1;
 				MARKETING_VERSION = 1.0;
@@ -536,6 +684,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 8KADHRJXJV;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 18.1;
 				MACOSX_DEPLOYMENT_TARGET = 15.1;
 				MARKETING_VERSION = 1.0;

@@ -2,65 +2,58 @@
 //  ContentView.swift
 //  HybridTrainer
 //
-//  Created by Nobel Girmay on 12/10/24.
+//  Created by Nobel Girmay on 12/12/24.
 //
-
+// ContentView.swift
 import SwiftUI
-import SwiftData
 
 struct ContentView: View {
-    @Environment(\.modelContext) private var modelContext
-    @Query private var items: [Item]
-
     var body: some View {
-        NavigationSplitView {
-            List {
-                ForEach(items) { item in
-                    NavigationLink {
-                        Text("Item at \(item.timestamp, format: Date.FormatStyle(date: .numeric, time: .standard))")
-                    } label: {
-                        Text(item.timestamp, format: Date.FormatStyle(date: .numeric, time: .standard))
-                    }
+        TabView {
+            DashboardWrapper()
+                .tabItem {
+                    Label("Dashboard", systemImage: "house.fill")
                 }
-                .onDelete(perform: deleteItems)
-            }
-#if os(macOS)
-            .navigationSplitViewColumnWidth(min: 180, ideal: 200)
-#endif
-            .toolbar {
-#if os(iOS)
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    EditButton()
+            
+            WorkoutWrapper()
+                .tabItem {
+                    Label("Train", systemImage: "figure.run")
                 }
-#endif
-                ToolbarItem {
-                    Button(action: addItem) {
-                        Label("Add Item", systemImage: "plus")
-                    }
+            
+            GoalWrapper()
+                .tabItem {
+                    Label("Goals", systemImage: "target")
                 }
-            }
-        } detail: {
-            Text("Select an item")
         }
     }
+}
 
-    private func addItem() {
-        withAnimation {
-            let newItem = Item(timestamp: Date())
-            modelContext.insert(newItem)
+// Wrappers for each section to simplify type inference
+private struct DashboardWrapper: View {
+    var body: some View {
+        NavigationStack {
+            DashboardView()
         }
     }
+}
 
-    private func deleteItems(offsets: IndexSet) {
-        withAnimation {
-            for index in offsets {
-                modelContext.delete(items[index])
-            }
+private struct WorkoutWrapper: View {
+    var body: some View {
+        NavigationStack {
+            WorkoutViews()
+        }
+    }
+}
+
+private struct GoalWrapper: View {
+    var body: some View {
+        NavigationStack {
+            GoalsView()
         }
     }
 }
 
 #Preview {
     ContentView()
-        .modelContainer(for: Item.self, inMemory: true)
 }
+
