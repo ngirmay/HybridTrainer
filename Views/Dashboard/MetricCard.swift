@@ -5,33 +5,33 @@
 // Expected parameters: icon: iconColor: trend: workouts:
 import SwiftUI
 
+enum TrendDirection {
+    case increasing
+    case decreasing
+    case neutral
+    
+    var icon: String {
+        switch self {
+        case .increasing: return "arrow.up"
+        case .decreasing: return "arrow.down"
+        case .neutral: return "arrow.forward"
+        }
+    }
+    
+    var color: Color {
+        switch self {
+        case .increasing: return .green
+        case .decreasing: return .red
+        case .neutral: return .gray
+        }
+    }
+}
+
 struct MetricCard: View {
     let icon: String
     let iconColor: Color
     let trend: TrendDirection
     let workouts: [Workout]
-    
-    enum TrendDirection {
-        case increasing
-        case decreasing
-        case neutral
-        
-        var icon: String {
-            switch self {
-            case .increasing: return "arrow.up"
-            case .decreasing: return "arrow.down"
-            case .neutral: return "arrow.forward"
-            }
-        }
-        
-        var color: Color {
-            switch self {
-            case .increasing: return .green
-            case .decreasing: return .red
-            case .neutral: return .gray
-            }
-        }
-    }
     
     var totalDuration: TimeInterval {
         workouts.reduce(0) { $0 + $1.duration }

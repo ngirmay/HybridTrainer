@@ -13,32 +13,23 @@ struct MetricsSection: View {
             ForEach(WorkoutType.allCases, id: \.self) { type in
                 MetricCard(
                     icon: type.icon,
-                    iconColor: Color(type.iconColor),
-                    trend: .up,  // You can calculate this based on your data
+                    iconColor: Color.accentColor,
+                    trend: calculateTrend(for: type),
                     workouts: workouts.filter { $0.type == type }
                 )
             }
         }
     }
+    
+    private func calculateTrend(for type: WorkoutType) -> TrendDirection {
+        // You can implement your trend calculation logic here
+        // For now, returning a default value
+        return .neutral
+    }
 }
 
-struct MetricCard: View {
-    let icon: String
-    let iconColor: Color
-    let trend: Trend
-    let workouts: [Workout]
-    
-    enum Trend {
-        case up, down, neutral
-    }
-    
-    var body: some View {
-        HStack {
-            Image(systemName: icon)
-                .foregroundColor(iconColor)
-            
-            // Rest of your MetricCard implementation
-        }
-    }
+#Preview {
+    MetricsSection(workouts: [])
+        .padding()
 }
 
