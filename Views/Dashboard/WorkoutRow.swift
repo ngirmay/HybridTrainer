@@ -28,8 +28,8 @@ struct WorkoutRow: View {
             Spacer()
             
             VStack(alignment: .trailing, spacing: 4) {
-                if workout.distance > 0 {
-                    Text(String(format: "%.1f km", workout.distance/1000))
+                if let distance = workout.distance {
+                    Text(String(format: "%.1f km", distance/1000))
                 }
                 Text(String(format: "%.0f min", workout.duration/60))
                     .foregroundColor(.secondary)
@@ -37,4 +37,13 @@ struct WorkoutRow: View {
         }
         .padding(.vertical, 8)
     }
+}
+
+#Preview {
+    WorkoutRow(workout: Workout(
+        date: Date(),
+        type: .run,
+        duration: 1800,
+        distance: 5000
+    ))
 }
