@@ -12,18 +12,35 @@ final class Workout {
     var date: Date
     var type: WorkoutType
     var duration: TimeInterval
-    var distance: Double?
-    var calories: Double?
+    var distance: Double
+    var calories: Double
     var averageHeartRate: Double?
     var maxHeartRate: Double?
     var strokeCount: Int?
     var tss: Double?
     
-    init(date: Date, type: WorkoutType, duration: TimeInterval) {
-        self.id = UUID()
+    init(
+        id: UUID = UUID(),
+        date: Date,
+        type: WorkoutType,
+        duration: TimeInterval,
+        distance: Double = 0,
+        calories: Double = 0,
+        averageHeartRate: Double? = nil,
+        maxHeartRate: Double? = nil,
+        strokeCount: Int? = nil,
+        tss: Double? = nil
+    ) {
+        self.id = id
         self.date = date
         self.type = type
         self.duration = duration
+        self.distance = distance
+        self.calories = calories
+        self.averageHeartRate = averageHeartRate
+        self.maxHeartRate = maxHeartRate
+        self.strokeCount = strokeCount
+        self.tss = tss
     }
     
     var durationFormatted: String {
@@ -40,31 +57,6 @@ final class Workout {
     var intensityScore: Double {
         guard let avgHR = averageHeartRate, let maxHR = maxHeartRate else { return 0 }
         return (avgHR / maxHR) * 100
-    }
-}
-
-enum WorkoutType: String, Codable {
-    case swim
-    case bike
-    case run
-    case strength
-    
-    var icon: String {
-        switch self {
-        case .swim: return "figure.pool.swim"
-        case .bike: return "bicycle"
-        case .run: return "figure.run"
-        case .strength: return "figure.strengthtraining.traditional"
-        }
-    }
-    
-    var color: String {
-        switch self {
-        case .swim: return "blue"
-        case .bike: return "green"
-        case .run: return "orange"
-        case .strength: return "purple"
-        }
     }
 }
 
