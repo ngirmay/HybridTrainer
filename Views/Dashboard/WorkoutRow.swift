@@ -19,6 +19,7 @@ struct WorkoutRow: View {
             VStack(alignment: .leading, spacing: 4) {
                 Text(workout.type.rawValue.capitalized)
                     .font(.headline)
+                
                 Text(dateFormatter.string(from: workout.date))
                     .font(.caption)
                     .foregroundColor(.secondary)
@@ -27,8 +28,8 @@ struct WorkoutRow: View {
             Spacer()
             
             VStack(alignment: .trailing, spacing: 4) {
-                if let distance = workout.distance {
-                    Text(String(format: "%.1f km", distance/1000))
+                if workout.distance > 0 {
+                    Text(String(format: "%.1f km", workout.distance/1000))
                 }
                 Text(String(format: "%.0f min", workout.duration/60))
                     .foregroundColor(.secondary)

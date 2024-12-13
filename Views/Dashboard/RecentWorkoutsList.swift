@@ -27,48 +27,6 @@ struct RecentWorkoutsList: View {
     }
 }
 
-struct WorkoutRow: View {
-    let workout: Workout
-    
-    var body: some View {
-        HStack {
-            Image(systemName: workout.type.icon)
-                .foregroundColor(.accentColor)
-            
-            VStack(alignment: .leading) {
-                Text(workout.type.rawValue.capitalized)
-                    .font(.headline)
-                
-                Text(workout.date.formatted(date: .abbreviated, time: .shortened))
-                    .font(.caption)
-                    .foregroundColor(.secondary)
-            }
-            
-            Spacer()
-            
-            Text(formatDuration(workout.duration))
-                .font(.callout)
-                .foregroundColor(.secondary)
-        }
-        .padding()
-        .background(Color(.systemBackground))
-        .cornerRadius(8)
-        .shadow(radius: 1)
-    }
-    
-    private func formatDuration(_ duration: TimeInterval) -> String {
-        let hours = Int(duration / 3600)
-        let minutes = Int((duration.truncatingRemainder(dividingBy: 3600)) / 60)
-        
-        if hours > 0 {
-            return "\(hours)h \(minutes)m"
-        } else {
-            return "\(minutes)m"
-        }
-    }
-}
-
 #Preview {
     RecentWorkoutsList(workouts: [])
-        .padding()
 }
