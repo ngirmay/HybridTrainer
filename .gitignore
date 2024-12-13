@@ -1,0 +1,5 @@
+*.xcodeproj
+*.xcworkspace
+!*.xcodeproj/project.pbxproj
+.DS_Store
+xcuserdata/
