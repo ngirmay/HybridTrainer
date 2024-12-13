@@ -8,24 +8,26 @@ import SwiftUI
 struct MetricCard: View {
     let icon: String
     let iconColor: Color
-    let trend: Trend
+    let trend: TrendDirection
     let workouts: [Workout]
     
-    enum Trend {
-        case up, down, neutral
+    enum TrendDirection {
+        case increasing
+        case decreasing
+        case neutral
         
         var icon: String {
             switch self {
-            case .up: return "arrow.up"
-            case .down: return "arrow.down"
+            case .increasing: return "arrow.up"
+            case .decreasing: return "arrow.down"
             case .neutral: return "arrow.forward"
             }
         }
         
         var color: Color {
             switch self {
-            case .up: return .green
-            case .down: return .red
+            case .increasing: return .green
+            case .decreasing: return .red
             case .neutral: return .gray
             }
         }
@@ -88,7 +90,7 @@ struct MetricCard: View {
     MetricCard(
         icon: "figure.run",
         iconColor: .orange,
-        trend: .up,
+        trend: .increasing,
         workouts: []
     )
     .padding()

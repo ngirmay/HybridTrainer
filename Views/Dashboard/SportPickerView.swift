@@ -23,7 +23,7 @@ struct SportPickerView: View {
                     .cornerRadius(8)
                 }
                 
-                ForEach(WorkoutType.allCases, id: \.self) { type in
+                ForEach([WorkoutType.swim, .bike, .run, .strength], id: \.self) { type in
                     SportButton(
                         type: type,
                         isSelected: selectedType == type,
@@ -49,14 +49,17 @@ struct SportButton: View {
             }
             .padding(.horizontal, 12)
             .padding(.vertical, 8)
-            .background(isSelected ? Color(type.iconColor).opacity(0.2) : Color.clear)
-            .foregroundColor(isSelected ? Color(type.iconColor) : .primary)
+            .background(isSelected ? Color.accentColor.opacity(0.2) : Color.clear)
+            .foregroundColor(isSelected ? .accentColor : .primary)
             .cornerRadius(8)
         }
     }
 }
 
-#Preview {
-    SportPickerView(selectedType: .constant(.swim))
+struct SportPickerView_Previews: PreviewProvider {
+    static var previews: some View {
+        SportPickerView(selectedType: .constant(.swim))
+            .previewLayout(.sizeThatFits)
+    }
 }
 
