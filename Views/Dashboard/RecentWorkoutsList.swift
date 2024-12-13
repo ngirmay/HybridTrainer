@@ -36,7 +36,7 @@ struct WorkoutRow: View {
                 .foregroundColor(.accentColor)
             
             VStack(alignment: .leading) {
-                Text(workout.title ?? workout.type.rawValue.capitalized)
+                Text(workout.type.rawValue.capitalized)
                     .font(.headline)
                 
                 Text(workout.date.formatted(date: .abbreviated, time: .shortened))
@@ -46,11 +46,9 @@ struct WorkoutRow: View {
             
             Spacer()
             
-            if let duration = workout.duration {
-                Text(formatDuration(duration))
-                    .font(.callout)
-                    .foregroundColor(.secondary)
-            }
+            Text(formatDuration(workout.duration))
+                .font(.callout)
+                .foregroundColor(.secondary)
         }
         .padding()
         .background(Color(.systemBackground))

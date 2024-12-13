@@ -3,13 +3,16 @@ import SwiftData
 
 @main
 struct HybridTrainerApp: App {
+    let container: ModelContainer
+    
     init() {
-        Task {
-            do {
-                try await HealthKitManager.shared.requestAuthorization()
-            } catch {
-                print("HealthKit authorization failed: \(error)")
-            }
+        do {
+            container = try ModelContainer(
+                for: Workout.self,
+                configurations: ModelConfiguration(isStoredInMemoryOnly: false)
+            )
+        } catch {
+            fatalError("Failed to initialize ModelContainer: \(error)")
         }
     }
     
@@ -17,6 +20,6 @@ struct HybridTrainerApp: App {
         WindowGroup {
             ContentView()
         }
-        .modelContainer(for: [Goal.self, Workout.self, TrainingSession.self, WeeklyVolume.self])
+        .modelContainer(container)
     }
 } 
