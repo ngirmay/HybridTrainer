@@ -4,55 +4,82 @@
 //
 
 import SwiftUI
+import SwiftData
 
 @MainActor
 class WorkoutViewModel: ObservableObject {
     @Published var workouts: [Workout] = []
+    @Published var weeklyVolumes: [WeeklyVolume] = []
+    @Published var trainingLoad: [TrainingLoad] = []
     @Published var isLoading = false
     @Published var error: Error?
     
-    let healthKitService = HealthKitService.shared
+    private let modelContext: ModelContext
     
-    func loadWorkouts() async {
+    init(modelContext: ModelContext) {
+        self.modelContext = modelContext
+        loadData()
+    }
+    
+    func loadData() {
         isLoading = true
-        workouts = await healthKitService.fetchAndProcessWorkouts()
-        isLoading = false
+        defer { isLoading = false }
+        
+        do {
+            let descriptor = FetchDescriptor<Workout>(sortBy: [SortDescriptor(\.date, order: .reverse)])
+            self.workouts = try modelContext.fetch(descriptor)
+            calculateAggregateMetrics()
+        } catch {
+            self.error = error
+        }
     }
     
-    func workouts(for type: WorkoutType?) -> [Workout] {
-        guard let type = type else { return workouts }
-        return workouts.filter { $0.type == type }
+    private func calculateAggregateMetrics() {
+        calculateWeeklyVolumes()
+        calculateTrainingLoad()
     }
     
-    func weeklyVolume(for type: WorkoutType?) -> [(week: Date, duration: TimeInterval)] {
-        let data = workouts(for: type)
+    private func calculateWeeklyVolumes() {
         let calendar = Calendar.current
-        let groupedWorkouts = Dictionary(grouping: data) { workout in
-            calendar.date(from: calendar.dateComponents([.yearForWeekOfYear, .weekOfYear], from: workout.date))!
+        let groupedByWeek = Dictionary(grouping: workouts) { workout in
+            calendar.startOfWeek(for: workout.date)
         }
         
-        return groupedWorkouts.map { (week, wks) in
-            (week: week, duration: wks.reduce(0) { $0 + $1.duration })
-        }.sorted { $0.week < $1.week }
+        weeklyVolumes = groupedByWeek.map { (week, workouts) in
+            WeeklyVolume(
+                week: week,
+                swimHours: workouts.filter { $0.type == .swim }.reduce(0) { $0 + $1.duration / 3600 },
+                bikeHours: workouts.filter { $0.type == .bike }.reduce(0) { $0 + $1.duration / 3600 },
+                runHours: workouts.filter { $0.type == .run }.reduce(0) { $0 + $1.duration / 3600 },
+                totalTSS: workouts.compactMap { $0.tss }.reduce(0, +)
+            )
+        }.sorted { $0.week > $1.week }
     }
     
-    var volumeByType: [(type: WorkoutType, duration: TimeInterval)] {
-        let grouped = Dictionary(grouping: workouts) { $0.type }
-        return grouped.map { (type, wks) in
-            (type: type, duration: wks.reduce(0) { $0 + $1.duration })
-        }.sorted { $0.duration > $1.duration }
+    private func calculateTrainingLoad() {
+        let calendar = Calendar.current
+        let today = Date()
+        var loads: [TrainingLoad] = []
+        
+        for dayOffset in 0...42 {
+            let date = calendar.date(byAdding: .day, value: -dayOffset, to: today)!
+            let ctl = calculateExponentialAverage(days: 42, forDate: date)
+            let atl = calculateExponentialAverage(days: 7, forDate: date)
+            
+            loads.append(TrainingLoad(date: date, ctl: ctl, atl: atl))
+        }
+        
+        self.trainingLoad = loads.reversed()
     }
     
-    func averagePace(for type: WorkoutType?) -> Double? {
-        let filtered = workouts(for: type)
-        guard !filtered.isEmpty else { return nil }
-        
-        let runs = filtered.filter { $0.type == .run && $0.distance != nil && $0.distance! > 0 }
-        guard !runs.isEmpty else { return nil }
-        
-        let totalDistance = runs.reduce(0) { $0 + ($1.distance ?? 0) } / 1000.0
-        let totalTime = runs.reduce(0) { $0 + $1.duration } / 60.0
-        return totalDistance > 0 ? (totalTime / totalDistance) : nil
+    private func calculateExponentialAverage(days: Int, forDate: Date) -> Double {
+        let factor = 2.0 / Double(days + 1)
+        return workouts
+            .filter { Calendar.current.isDate($0.date, inSameDayAs: forDate) }
+            .compactMap { $0.tss }
+            .reduce(0) { acc, tss in
+                acc * (1 - factor) + tss * factor
+            }
     }
 }
 

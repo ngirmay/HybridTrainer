@@ -5,28 +5,58 @@
 
 import SwiftUI
 import Charts
+import SwiftData
 
 struct WeeklyVolumeSection: View {
-    @ObservedObject var viewModel: WorkoutViewModel
-    var selectedSport: WorkoutType?
-
+    let weeklyVolumes: [WeeklyVolume]
+    private let dateFormatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "MMM d"
+        return formatter
+    }()
+    
     var body: some View {
-        let data = viewModel.weeklyVolume(for: selectedSport)
-        
         ChartSection(title: "Weekly Volume") {
-            Chart(data, id: \.week) { item in
-                BarMark(
-                    x: .value("Week", item.week),
-                    y: .value("Hours", item.duration / 3600)
-                )
-            }
-            .frame(height: 200)
-            .chartXAxis {
-                AxisMarks() // Default axis marks
-            }
-            .chartYAxis {
-                AxisMarks()
+            if weeklyVolumes.isEmpty {
+                Text("No data available")
+                    .foregroundColor(.secondary)
+            } else {
+                VStack {
+                    Chart {
+                        ForEach(weeklyVolumes.prefix(8)) { volume in
+                            BarMark(
+                                x: .value("Week", dateFormatter.string(from: volume.week)),
+                                y: .value("Hours", volume.swimHours)
+                            )
+                            .foregroundStyle(Color.blue)
+                            
+                            BarMark(
+                                x: .value("Week", dateFormatter.string(from: volume.week)),
+                                y: .value("Hours", volume.bikeHours)
+                            )
+                            .foregroundStyle(Color.green)
+                            
+                            BarMark(
+                                x: .value("Week", dateFormatter.string(from: volume.week)),
+                                y: .value("Hours", volume.runHours)
+                            )
+                            .foregroundStyle(Color.orange)
+                        }
+                    }
+                    .frame(height: 200)
+                    
+                    HStack(spacing: 16) {
+                        Label("Swim", systemImage: "circle.fill").foregroundColor(.blue)
+                        Label("Bike", systemImage: "circle.fill").foregroundColor(.green)
+                        Label("Run", systemImage: "circle.fill").foregroundColor(.orange)
+                    }
+                    .font(.caption)
+                }
             }
         }
     }
+}
+
+#Preview {
+    WeeklyVolumeSection(weeklyVolumes: [])
 }

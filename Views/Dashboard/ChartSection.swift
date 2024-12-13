@@ -4,6 +4,7 @@
 //
 
 import SwiftUI
+import Charts
 
 struct ChartSection<Content: View>: View {
     let title: String
@@ -18,12 +19,18 @@ struct ChartSection<Content: View>: View {
         VStack(alignment: .leading, spacing: 8) {
             Text(title)
                 .font(.headline)
-            
             content
-                .padding()
-                .background(Color(.systemGray6))
-                .cornerRadius(12)
-                .shadow(radius: 2)
         }
+        .padding()
+        .background(Color(.systemBackground))
+        .cornerRadius(12)
+        .shadow(radius: 2)
     }
+}
+
+#Preview {
+    ChartSection(title: "Training Load") {
+        // Placeholder for the content
+    }
+    .modelContainer(for: WeeklyVolume.self, inMemory: true)
 }

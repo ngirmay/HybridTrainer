@@ -1,29 +1,41 @@
 //
-//  RecentWorkoutsSection.swift
+//  RecentWorkoutsList.swift
 //  HybridTrainer
 //
 
 import SwiftUI
 
-struct RecentWorkoutsSection: View {
-    @ObservedObject var viewModel: WorkoutViewModel
+struct RecentWorkoutsList: View {
+    let workouts: [Workout]
     var selectedSport: WorkoutType?
-
+    
     var body: some View {
-        let recent = viewModel.workouts(for: selectedSport).prefix(5)
         VStack(alignment: .leading, spacing: 12) {
             Text("Recent Workouts")
                 .font(.headline)
             
-            if recent.isEmpty {
-                Text("No recent workouts for this selection.")
+            let filteredWorkouts = selectedSport != nil ?
+                workouts.filter { $0.type == selectedSport } :
+                workouts
+            
+            if filteredWorkouts.isEmpty {
+                Text("No recent workouts")
                     .foregroundColor(.secondary)
+                    .frame(maxWidth: .infinity, alignment: .center)
                     .padding()
             } else {
-                ForEach(Array(recent), id: \.id) { workout in
+                ForEach(filteredWorkouts.prefix(5)) { workout in
                     WorkoutRow(workout: workout)
                 }
             }
         }
+        .padding()
+        .background(Color(.systemBackground))
+        .cornerRadius(12)
+        .shadow(radius: 2)
     }
+}
+
+#Preview {
+    RecentWorkoutsList(workouts: [])
 }

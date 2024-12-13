@@ -4,33 +4,60 @@
 //
 
 import SwiftUI
+import SwiftData
+import Charts
 
 struct DashboardView: View {
-    @StateObject private var viewModel = WorkoutViewModel()
-    @State private var selectedSport: WorkoutType? = nil
+    @Environment(\.modelContext) private var modelContext
+    @Query private var weeklyVolumes: [WeeklyVolume]
+    @Query private var workouts: [Workout]
+    
+    init() {
+        let weeklySort = SortDescriptor<WeeklyVolume>(\.week, order: .reverse)
+        _weeklyVolumes = Query(sort: [weeklySort])
+        let workoutSort = SortDescriptor<Workout>(\.date, order: .reverse)
+        _workouts = Query(sort: [workoutSort])
+    }
     
     var body: some View {
-        ScrollView {
-            VStack(spacing: 20) {
-                if viewModel.isLoading {
-                    ProgressView()
-                } else {
-                    SportPickerView(selectedSport: $selectedSport)
+        NavigationView {
+            ScrollView {
+                VStack(spacing: 20) {
+                    WeeklyVolumeSection(weeklyVolumes: weeklyVolumes)
+                        .padding(.horizontal)
                     
-                    WeeklyVolumeSection(viewModel: viewModel, selectedSport: selectedSport)
+                    ChartSection(title: "Training Load") {
+                        if weeklyVolumes.isEmpty {
+                            Text("No data available")
+                                .foregroundColor(.secondary)
+                        } else {
+                            Chart(weeklyVolumes) { volume in
+                                LineMark(
+                                    x: .value("Week", volume.week),
+                                    y: .value("TSS", volume.totalTSS)
+                                )
+                            }
+                            .frame(height: 200)
+                        }
+                    }
+                    .padding(.horizontal)
                     
-                    TrainingDistributionSection(viewModel: viewModel, selectedSport: selectedSport)
-                    
-                    MetricsSection(viewModel: viewModel, selectedSport: selectedSport)
-                    
-                    RecentWorkoutsSection(viewModel: viewModel, selectedSport: selectedSport)
+                    RecentWorkoutsList(workouts: workouts)
+                        .padding(.horizontal)
                 }
+                .padding(.vertical)
             }
-            .padding()
-        }
-        .navigationTitle("Dashboard")
-        .task {
-            await viewModel.loadWorkouts()
+            .navigationTitle("Dashboard")
         }
     }
+}
+
+#Preview {
+    DashboardView()
+        .modelContainer(for: [
+            Goal.self,
+            Workout.self,
+            TrainingSession.self,
+            WeeklyVolume.self
+        ], inMemory: true)
 }
