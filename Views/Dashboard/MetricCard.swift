@@ -44,34 +44,40 @@ struct MetricCard: View {
     }
     
     var body: some View {
-        VStack(alignment: .leading, spacing: 8) {
-            HStack {
+        VStack(alignment: .leading, spacing: 16) {
+            HStack(alignment: .center) {
                 Image(systemName: icon)
-                    .foregroundColor(iconColor)
                     .font(.title2)
+                    .foregroundColor(iconColor)
+                    .frame(width: 44, height: 44)
+                    .background(iconColor.opacity(0.1))
+                    .clipShape(RoundedRectangle(cornerRadius: 12))
                 
                 Spacer()
                 
-                Image(systemName: trend.icon)
-                    .foregroundColor(trend.color)
+                TrendBadge(direction: trend)
             }
             
-            VStack(alignment: .leading, spacing: 4) {
+            VStack(alignment: .leading, spacing: 8) {
                 Text(formatDuration(totalDuration))
-                    .font(.title3)
-                    .fontWeight(.bold)
+                    .font(.system(.title3, design: .serif))
+                    .fontWeight(.medium)
+                    .foregroundColor(Theme.textColor)
                 
                 if let avgHR = averageHeartRate {
-                    Text("\(Int(avgHR)) bpm avg")
-                        .font(.caption)
-                        .foregroundColor(.secondary)
+                    Text("\(Int(avgHR)) BPM")
+                        .font(.system(.subheadline, design: .serif))
+                        .foregroundColor(Theme.secondaryText)
                 }
             }
         }
-        .padding()
-        .background(Color(.systemBackground))
-        .cornerRadius(12)
-        .shadow(radius: 2)
+        .padding(Theme.padding)
+        .background(Theme.cardBackground)
+        .cornerRadius(Theme.cornerRadius)
+        .shadow(color: Theme.shadowColor,
+                radius: Theme.shadowRadius,
+                x: 0,
+                y: Theme.shadowY)
     }
     
     private func formatDuration(_ duration: TimeInterval) -> String {
@@ -83,6 +89,23 @@ struct MetricCard: View {
         } else {
             return "\(minutes)m"
         }
+    }
+}
+
+struct TrendBadge: View {
+    let direction: TrendDirection
+    
+    var body: some View {
+        HStack(spacing: 4) {
+            Image(systemName: direction.icon)
+            Text(direction.label)
+        }
+        .font(.system(.caption, design: .serif))
+        .padding(.horizontal, 12)
+        .padding(.vertical, 6)
+        .background(direction.color.opacity(0.1))
+        .foregroundColor(direction.color)
+        .cornerRadius(8)
     }
 }
 
