@@ -35,7 +35,7 @@ struct TrainingDistributionSection: View {
                     }
                     
                     // Intensity Score
-                    if let intensity = workout.intensityScore {
+                    if let intensity = workout.intensityScore as Double? {
                         HStack {
                             Text("Intensity")
                                 .font(.subheadline)
