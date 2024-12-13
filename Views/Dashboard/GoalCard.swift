@@ -16,14 +16,17 @@ struct GoalCard: View {
                 Image(systemName: "figure.run")
                     .font(.title2)
                     .foregroundColor(.blue)
+                
                 VStack(alignment: .leading) {
                     Text(goal.name)
                         .font(.headline)
+                    
                     Text(goal.targetDate, style: .date)
                         .font(.subheadline)
                         .foregroundColor(.secondary)
                 }
             }
+            
             ProgressView(value: 0.45)
                 .tint(.blue)
         }
@@ -32,4 +35,13 @@ struct GoalCard: View {
         .cornerRadius(20)
         .shadow(color: .black.opacity(0.1), radius: 10, x: 0, y: 5)
     }
+}
+
+#Preview {
+    GoalCard(goal: Goal(
+        name: "Run 5K",
+        targetDate: Date(),
+        type: .run,
+        targetDistance: 5000
+    ))
 }

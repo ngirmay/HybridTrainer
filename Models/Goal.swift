@@ -9,15 +9,26 @@ import SwiftData
 @Model
 final class Goal {
     var id: UUID
-    var title: String
+    var name: String
     var targetDate: Date
-    var isCompleted: Bool
+    var type: WorkoutType
+    var targetDistance: Double?
+    var completed: Bool
     
-    init(title: String, targetDate: Date) {
-        self.id = UUID()
-        self.title = title
+    init(
+        id: UUID = UUID(),
+        name: String,
+        targetDate: Date,
+        type: WorkoutType,
+        targetDistance: Double? = nil,
+        completed: Bool = false
+    ) {
+        self.id = id
+        self.name = name
         self.targetDate = targetDate
-        self.isCompleted = false
+        self.type = type
+        self.targetDistance = targetDistance
+        self.completed = completed
     }
 }
 
