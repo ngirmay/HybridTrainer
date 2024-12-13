@@ -2,9 +2,7 @@
 //  MetricCard.swift
 //  HybridTrainer
 //
-//  Created by Nobel Girmay on 12/11/24.
-//
-
+// Expected parameters: icon: iconColor: title: value:
 import SwiftUI
 
 struct MetricCard: View {
@@ -12,22 +10,22 @@ struct MetricCard: View {
     let iconColor: Color
     let title: String
     let value: String
-    
+
     var body: some View {
-        VStack(alignment: .leading, spacing: 8) {
+        VStack {
             Image(systemName: icon)
-                .font(.title2)
+                .font(.largeTitle)
                 .foregroundColor(iconColor)
             Text(title)
                 .font(.subheadline)
-                .foregroundColor(.secondary)
+                .fontWeight(.semibold)
             Text(value)
-                .font(.title2)
+                .font(.title3)
                 .fontWeight(.bold)
         }
         .padding()
         .background(Color(.systemBackground))
-        .cornerRadius(20)
-        .shadow(color: .black.opacity(0.1), radius: 10, x: 0, y: 5)
+        .cornerRadius(10)
+        .shadow(radius: 1)
     }
 }

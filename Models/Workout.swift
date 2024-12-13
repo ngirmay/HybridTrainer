@@ -2,8 +2,6 @@
 //  Workout.swift
 //  HybridTrainer
 //
-//  Created by Nobel Girmay on 12/10/24.
-//
 
 import Foundation
 import SwiftData
@@ -15,18 +13,16 @@ final class Workout {
     var type: WorkoutType
     var duration: TimeInterval
     
-    // Add new properties
-    var distance: Double?      // in meters
+    var distance: Double?
     var calories: Double?
     var averageHeartRate: Double?
     var maxHeartRate: Double?
     var notes: String?
     
-    // Sport-specific metrics
-    var strokeCount: Int?      // Swimming
-    var cadence: Double?       // Cycling/Running
-    var elevation: Double?     // Cycling/Running
-    var pace: Double?         // Running/Swimming
+    var strokeCount: Int?
+    var cadence: Double?
+    var elevation: Double?
+    var pace: Double?
     
     init(date: Date, type: WorkoutType, duration: TimeInterval) {
         self.id = UUID()
@@ -53,3 +49,4 @@ enum WorkoutType: String, Codable {
         }
     }
 }
+

@@ -2,8 +2,6 @@
 //  TrainingSession.swift
 //  HybridTrainer
 //
-//  Created by Nobel Girmay on 12/12/24.
-//
 
 import Foundation
 import SwiftData
@@ -15,7 +13,7 @@ final class TrainingSession {
     var workouts: [Workout]
     var type: SessionType
     var notes: String?
-    var readinessScore: Int?    // 1-100
+    var readinessScore: Int?
     var recoveryStatus: RecoveryStatus
     
     init(date: Date = Date(), workouts: [Workout] = [], type: SessionType) {
@@ -26,7 +24,6 @@ final class TrainingSession {
         self.recoveryStatus = .fresh
     }
     
-    // Computed property for total duration
     var totalDuration: TimeInterval {
         workouts.reduce(0) { $0 + $1.duration }
     }
@@ -65,3 +62,4 @@ enum RecoveryStatus: String, Codable {
         }
     }
 }
+

@@ -23,6 +23,9 @@
 		A3CC4EBC2D0BB30E00145F05 /* RecentWorkoutsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CC4EBB2D0BB30800145F05 /* RecentWorkoutsList.swift */; };
 		A3CC4EBE2D0BB31600145F05 /* WorkoutRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CC4EBD2D0BB31100145F05 /* WorkoutRow.swift */; };
 		A3CC4EC62D0BBC5700145F05 /* WeeklyVolumeSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CC4EC52D0BBC4E00145F05 /* WeeklyVolumeSection.swift */; };
+		A3CC4EC82D0BC6DF00145F05 /* MetricsSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CC4EC72D0BC6D800145F05 /* MetricsSection.swift */; };
+		A3CC4ECA2D0BC6EC00145F05 /* SportPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CC4EC92D0BC6E500145F05 /* SportPickerView.swift */; };
+		A3CC4ECC2D0BC81300145F05 /* TrainingDistributionSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CC4ECB2D0BC80900145F05 /* TrainingDistributionSection.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,6 +65,9 @@
 		A3CC4EBB2D0BB30800145F05 /* RecentWorkoutsList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentWorkoutsList.swift; sourceTree = "<group>"; };
 		A3CC4EBD2D0BB31100145F05 /* WorkoutRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutRow.swift; sourceTree = "<group>"; };
 		A3CC4EC52D0BBC4E00145F05 /* WeeklyVolumeSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeeklyVolumeSection.swift; sourceTree = "<group>"; };
+		A3CC4EC72D0BC6D800145F05 /* MetricsSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetricsSection.swift; sourceTree = "<group>"; };
+		A3CC4EC92D0BC6E500145F05 /* SportPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SportPickerView.swift; sourceTree = "<group>"; };
+		A3CC4ECB2D0BC80900145F05 /* TrainingDistributionSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingDistributionSection.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -179,6 +185,9 @@
 		A3CC4E962D08CA5300145F05 /* Dashboard */ = {
 			isa = PBXGroup;
 			children = (
+				A3CC4ECB2D0BC80900145F05 /* TrainingDistributionSection.swift */,
+				A3CC4EC92D0BC6E500145F05 /* SportPickerView.swift */,
+				A3CC4EC72D0BC6D800145F05 /* MetricsSection.swift */,
 				A3CC4EC52D0BBC4E00145F05 /* WeeklyVolumeSection.swift */,
 				A3CC4EBD2D0BB31100145F05 /* WorkoutRow.swift */,
 				A3CC4EBB2D0BB30800145F05 /* RecentWorkoutsList.swift */,
@@ -364,10 +373,13 @@
 				A3CC4EAC2D0A0F9E00145F05 /* GoalsView.swift in Sources */,
 				A3CC4EBA2D0BB30500145F05 /* ChartSection.swift in Sources */,
 				A3CC4EB82D0BB2E600145F05 /* WorkoutViewModel.swift in Sources */,
+				A3CC4ECC2D0BC81300145F05 /* TrainingDistributionSection.swift in Sources */,
 				A3CC4EB42D0BB2A000145F05 /* HealthKitService.swift in Sources */,
 				A3CC4E9C2D08DADE00145F05 /* HealthKitManager.swift in Sources */,
+				A3CC4ECA2D0BC6EC00145F05 /* SportPickerView.swift in Sources */,
 				A3CC4E9D2D08DAE400145F05 /* DashboardView.swift in Sources */,
 				A3CC4EBE2D0BB31600145F05 /* WorkoutRow.swift in Sources */,
+				A3CC4EC82D0BC6DF00145F05 /* MetricsSection.swift in Sources */,
 				A3CC4E9B2D08DAD800145F05 /* Workout.swift in Sources */,
 				A3CC4EA62D0A0F3F00145F05 /* GoalCard.swift in Sources */,
 				A3CC4EB22D0BB20000145F05 /* TrainingSession.swift in Sources */,

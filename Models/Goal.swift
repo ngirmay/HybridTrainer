@@ -2,8 +2,6 @@
 //  Goal.swift
 //  HybridTrainer
 //
-//  Created by Nobel Girmay on 12/10/24.
-//
 
 import Foundation
 import SwiftData
@@ -17,11 +15,10 @@ final class Goal {
     var status: GoalStatus
     var isPrimary: Bool
     
-    // Changed 'description' to 'goalDescription'
     var goalDescription: String?
-    var targetValue: Double?    // e.g., distance, time, or weight
-    var currentValue: Double?   // current progress
-    var relatedWorkouts: [Workout]? // Link to associated workouts
+    var targetValue: Double?
+    var currentValue: Double?
+    var relatedWorkouts: [Workout]?
     
     init(name: String, targetDate: Date, type: GoalType, isPrimary: Bool = false) {
         self.id = UUID()
@@ -32,7 +29,6 @@ final class Goal {
         self.isPrimary = isPrimary
     }
     
-    // Computed properties for visualization
     var progressPercentage: Double? {
         guard let target = targetValue, let current = currentValue else { return nil }
         return (current / target) * 100
@@ -74,3 +70,5 @@ enum GoalStatus: String, Codable {
         }
     }
 }
+
+

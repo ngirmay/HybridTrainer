@@ -2,10 +2,7 @@
 //  WorkoutRow.swift
 //  HybridTrainer
 //
-//  Created by Nobel Girmay on 12/12/24.
-//
 
-// Views/Dashboard/WorkoutRow.swift
 import SwiftUI
 
 struct WorkoutRow: View {

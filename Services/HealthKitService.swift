@@ -2,10 +2,7 @@
 //  HealthKitService.swift
 //  HybridTrainer
 //
-//  Created by Nobel Girmay on 12/12/24.
-//
 
-// HealthKitService.swift
 import HealthKit
 import SwiftData
 
@@ -19,18 +16,13 @@ class HealthKitService {
                 switch result {
                 case .success(let workoutsByType):
                     var processedWorkouts: [Workout] = []
-                    
-                    // Process each workout type
                     for (type, workouts) in workoutsByType {
-                        workouts.forEach { hkWorkout in
-                            // Convert HKWorkout to our Workout model
+                        for hkWorkout in workouts {
                             let workout = Workout(
                                 date: hkWorkout.startDate,
                                 type: self.mapWorkoutType(type),
                                 duration: hkWorkout.duration
                             )
-                            
-                            // Fetch additional stats
                             self.healthKitManager.fetchWorkoutStats(for: hkWorkout) { statsResult in
                                 if case .success(let stats) = statsResult {
                                     workout.distance = stats.totalDistance
@@ -40,14 +32,11 @@ class HealthKitService {
                                     workout.strokeCount = Int(stats.strokeCount ?? 0)
                                 }
                             }
-                            
                             processedWorkouts.append(workout)
                         }
                     }
                     continuation.resume(returning: processedWorkouts)
-                    
-                case .failure(let error):
-                    print("Error fetching workouts: \(error)")
+                case .failure:
                     continuation.resume(returning: [])
                 }
             }
@@ -63,3 +52,4 @@ class HealthKitService {
         }
     }
 }
+

@@ -2,8 +2,6 @@
 //  HealthKitManager.swift
 //  HybridTrainer
 //
-//  Created by Nobel Girmay on 12/10/24.
-//
 
 import HealthKit
 import Foundation
@@ -14,7 +12,6 @@ class HealthKitManager {
     
     private init() {}
     
-    // MARK: - Request Authorization
     func requestAuthorization() async throws {
         guard HKHealthStore.isHealthDataAvailable() else {
             throw HealthError.notAvailable
@@ -34,73 +31,37 @@ class HealthKitManager {
         try await healthStore.requestAuthorization(toShare: types, read: types)
     }
     
-    // MARK: - Fetch Recent Workouts
-    func fetchRecentWorkouts(completion: @escaping (Result<[HKWorkout], Error>) -> Void) {
-        let zeroDistance = HKQuantity(unit: .meter(), doubleValue: 0)
-        
-        let workoutPredicate = HKQuery.predicateForWorkouts(with: .greaterThanOrEqualTo,
-                                                           totalDistance: zeroDistance)
-        
-        let query = HKSampleQuery(
-            sampleType: HKObjectType.workoutType(),
-            predicate: workoutPredicate,
-            limit: 10,
-            sortDescriptors: [NSSortDescriptor(key: HKSampleSortIdentifierEndDate, ascending: false)]
-        ) { _, samples, error in
-            if let error = error {
-                completion(.failure(error))
-                return
-            }
-            
-            let workouts = samples as? [HKWorkout] ?? []
-            completion(.success(workouts))
-        }
-        
-        healthStore.execute(query)
-    }
-    
-    // MARK: - Fetch All Triathlon Workouts
     func fetchAllTriathlonWorkouts(completion: @escaping (Result<[String: [HKWorkout]], Error>) -> Void) {
         let group = DispatchGroup()
-        var workouts: [String: [HKWorkout]] = [
-            "swim": [],
-            "bike": [],
-            "run": []
-        ]
+        var workouts: [String: [HKWorkout]] = ["swim": [], "bike": [], "run": []]
         var fetchError: Error?
         
-        // Fetch Swimming Workouts
+        // Swim
         group.enter()
         fetchWorkoutsByType(.swimming) { result in
             switch result {
-            case .success(let swimWorkouts):
-                workouts["swim"] = swimWorkouts
-            case .failure(let error):
-                fetchError = error
+            case .success(let w): workouts["swim"] = w
+            case .failure(let e): fetchError = e
             }
             group.leave()
         }
         
-        // Fetch Cycling Workouts
+        // Bike
         group.enter()
         fetchWorkoutsByType(.cycling) { result in
             switch result {
-            case .success(let bikeWorkouts):
-                workouts["bike"] = bikeWorkouts
-            case .failure(let error):
-                fetchError = error
+            case .success(let w): workouts["bike"] = w
+            case .failure(let e): fetchError = e
             }
             group.leave()
         }
         
-        // Fetch Running Workouts
+        // Run
         group.enter()
         fetchWorkoutsByType(.running) { result in
             switch result {
-            case .success(let runWorkouts):
-                workouts["run"] = runWorkouts
-            case .failure(let error):
-                fetchError = error
+            case .success(let w): workouts["run"] = w
+            case .failure(let e): fetchError = e
             }
             group.leave()
         }
@@ -114,11 +75,9 @@ class HealthKitManager {
         }
     }
     
-    // MARK: - Fetch Workouts By Type
     private func fetchWorkoutsByType(_ type: HKWorkoutActivityType,
-                                   completion: @escaping (Result<[HKWorkout], Error>) -> Void) {
+                                     completion: @escaping (Result<[HKWorkout], Error>) -> Void) {
         let predicate = HKQuery.predicateForWorkouts(with: type)
-        
         let query = HKSampleQuery(
             sampleType: .workoutType(),
             predicate: predicate,
@@ -129,7 +88,6 @@ class HealthKitManager {
                 completion(.failure(error))
                 return
             }
-            
             let workouts = samples as? [HKWorkout] ?? []
             completion(.success(workouts))
         }
@@ -137,97 +95,68 @@ class HealthKitManager {
         healthStore.execute(query)
     }
     
-    // MARK: - Fetch Workout Statistics
     func fetchWorkoutStats(for workout: HKWorkout,
-                          completion: @escaping (Result<WorkoutStats, Error>) -> Void) {
+                           completion: @escaping (Result<WorkoutStats, Error>) -> Void) {
         let group = DispatchGroup()
         var stats = WorkoutStats()
         var fetchError: Error?
         
-        // Fetch heart rate if available
+        // Heart Rate
         if let heartRateType = HKObjectType.quantityType(forIdentifier: .heartRate) {
             group.enter()
             let predicate = HKQuery.predicateForSamples(
-                withStart: workout.startDate,
-                end: workout.endDate,
-                options: .strictStartDate
+                withStart: workout.startDate, end: workout.endDate, options: .strictStartDate
             )
-            
-            let query = HKStatisticsQuery(
-                quantityType: heartRateType,
-                quantitySamplePredicate: predicate,
-                options: [.discreteAverage, .discreteMin, .discreteMax]
-            ) { _, statistics, error in
+            let query = HKStatisticsQuery(quantityType: heartRateType, quantitySamplePredicate: predicate,
+                                          options: [.discreteAverage, .discreteMin, .discreteMax]) { _, statistics, error in
                 defer { group.leave() }
-                
                 if let error = error {
                     fetchError = error
                     return
                 }
-                
-                let heartRateUnit = HKUnit.count().unitDivided(by: .minute())
-                stats.averageHeartRate = statistics?.averageQuantity()?.doubleValue(for: heartRateUnit)
-                stats.minHeartRate = statistics?.minimumQuantity()?.doubleValue(for: heartRateUnit)
-                stats.maxHeartRate = statistics?.maximumQuantity()?.doubleValue(for: heartRateUnit)
+                let hrUnit = HKUnit.count().unitDivided(by: .minute())
+                stats.averageHeartRate = statistics?.averageQuantity()?.doubleValue(for: hrUnit)
+                stats.minHeartRate = statistics?.minimumQuantity()?.doubleValue(for: hrUnit)
+                stats.maxHeartRate = statistics?.maximumQuantity()?.doubleValue(for: hrUnit)
             }
-            
             healthStore.execute(query)
         }
         
-        // Fetch energy burned
-        if let energyBurnedType = HKObjectType.quantityType(forIdentifier: .activeEnergyBurned) {
+        // Energy Burned
+        if let energyType = HKObjectType.quantityType(forIdentifier: .activeEnergyBurned) {
             group.enter()
             let predicate = HKQuery.predicateForSamples(
-                withStart: workout.startDate,
-                end: workout.endDate,
-                options: .strictStartDate
+                withStart: workout.startDate, end: workout.endDate, options: .strictStartDate
             )
-            
-            let query = HKStatisticsQuery(
-                quantityType: energyBurnedType,
-                quantitySamplePredicate: predicate,
-                options: .cumulativeSum
-            ) { _, statistics, error in
+            let query = HKStatisticsQuery(quantityType: energyType, quantitySamplePredicate: predicate,
+                                          options: .cumulativeSum) { _, statistics, error in
                 defer { group.leave() }
-                
                 if let error = error {
                     fetchError = error
                     return
                 }
-                
                 stats.totalEnergyBurned = statistics?.sumQuantity()?.doubleValue(for: .kilocalorie())
             }
-            
             healthStore.execute(query)
         }
         
-        // Add swimming-specific metrics if it's a swim workout
-        if workout.workoutActivityType == .swimming {
-            if let strokeType = HKObjectType.quantityType(forIdentifier: .swimmingStrokeCount) {
-                group.enter()
-                let predicate = HKQuery.predicateForSamples(
-                    withStart: workout.startDate,
-                    end: workout.endDate,
-                    options: .strictStartDate
-                )
-                
-                let query = HKStatisticsQuery(
-                    quantityType: strokeType,
-                    quantitySamplePredicate: predicate,
-                    options: .cumulativeSum
-                ) { _, statistics, error in
-                    defer { group.leave() }
-                    
-                    if let error = error {
-                        fetchError = error
-                        return
-                    }
-                    
-                    stats.strokeCount = statistics?.sumQuantity()?.doubleValue(for: .count())
+        // Stroke Count if Swim
+        if workout.workoutActivityType == .swimming,
+           let strokeType = HKObjectType.quantityType(forIdentifier: .swimmingStrokeCount) {
+            group.enter()
+            let predicate = HKQuery.predicateForSamples(
+                withStart: workout.startDate, end: workout.endDate, options: .strictStartDate
+            )
+            let query = HKStatisticsQuery(quantityType: strokeType, quantitySamplePredicate: predicate,
+                                          options: .cumulativeSum) { _, statistics, error in
+                defer { group.leave() }
+                if let error = error {
+                    fetchError = error
+                    return
                 }
-                
-                healthStore.execute(query)
+                stats.strokeCount = statistics?.sumQuantity()?.doubleValue(for: .count())
             }
+            healthStore.execute(query)
         }
         
         group.notify(queue: .main) {
@@ -241,7 +170,6 @@ class HealthKitManager {
         }
     }
     
-    // MARK: - Supporting Types
     struct WorkoutStats {
         var duration: TimeInterval = 0
         var totalDistance: Double?
@@ -250,22 +178,12 @@ class HealthKitManager {
         var minHeartRate: Double?
         var maxHeartRate: Double?
         var strokeCount: Double?
-        
-        // Computed properties for easy access
-        var durationInMinutes: Double {
-            return duration / 60.0
-        }
-        
-        var distanceInKilometers: Double? {
-            guard let distance = totalDistance else { return nil }
-            return distance / 1000.0
-        }
     }
     
-    // MARK: - Errors
     enum HealthError: Error {
         case notAvailable
         case authorizationDenied
         case dataTypeUnavailable
     }
 }
+
