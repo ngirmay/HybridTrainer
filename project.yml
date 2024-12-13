@@ -1,0 +1,50 @@
+name: HybridTrainer
+options:
+  bundleIdPrefix: com.nobelgirmay
+  deploymentTarget:
+    iOS: 16.0
+  xcodeVersion: "15.0"
+  generateEmptyDirectories: true
+  createIntermediateGroups: true
+
+targets:
+  HybridTrainer:
+    type: application
+    platform: iOS
+    sources:
+      - path: HybridTrainer
+      - path: Models
+      - path: Services
+      - path: Utils
+      - path: Views
+    settings:
+      base:
+        INFOPLIST_FILE: HybridTrainer/Info.plist
+        PRODUCT_BUNDLE_IDENTIFIER: com.nobelgirmay.HybridTrainer
+    dependencies:
+      - sdk: SwiftUI.framework
+      - sdk: HealthKit.framework
+    info:
+      path: HybridTrainer/Info.plist
+      properties:
+        NSHealthShareUsageDescription: "We need access to HealthKit to track your workouts"
+        NSHealthUpdateUsageDescription: "We need access to HealthKit to save your workouts"
+        UILaunchScreen: {}
+        UIApplicationSceneManifest:
+          UIApplicationSupportsMultipleScenes: true
+
+  HybridTrainerTests:
+    type: bundle.unit-test
+    platform: iOS
+    sources:
+      - path: HybridTrainerTests
+    dependencies:
+      - target: HybridTrainer
+
+  HybridTrainerUITests:
+    type: bundle.ui-testing
+    platform: iOS
+    sources:
+      - path: HybridTrainerUITests
+    dependencies:
+      - target: HybridTrainer
