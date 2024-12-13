@@ -6,55 +6,39 @@
 import SwiftUI
 
 struct MetricsSection: View {
-    @ObservedObject var viewModel: WorkoutViewModel
+    let workouts: [Workout]
     
     var body: some View {
-        LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 16) {
-            MetricCard(
-                title: "Weekly Hours",
-                value: totalWeeklyHours,
-                trend: "+5%"
-            )
-            
-            MetricCard(
-                title: "Weekly TSS",
-                value: latestWeekTSS,
-                trend: "+12%"
-            )
-            
-            MetricCard(
-                title: "Fitness (CTL)",
-                value: currentCTL,
-                trend: "+3%"
-            )
-            
-            MetricCard(
-                title: "Fatigue (ATL)",
-                value: currentATL,
-                trend: "-2%"
-            )
+        VStack(spacing: 16) {
+            ForEach(WorkoutType.allCases, id: \.self) { type in
+                MetricCard(
+                    icon: type.icon,
+                    iconColor: Color(type.iconColor),
+                    trend: .up,  // You can calculate this based on your data
+                    workouts: workouts.filter { $0.type == type }
+                )
+            }
         }
     }
+}
+
+struct MetricCard: View {
+    let icon: String
+    let iconColor: Color
+    let trend: Trend
+    let workouts: [Workout]
     
-    private var totalWeeklyHours: String {
-        guard let latestWeek = viewModel.weeklyVolumes.first else { return "0" }
-        let total = latestWeek.swimHours + latestWeek.bikeHours + latestWeek.runHours
-        return String(format: "%.1f", total)
+    enum Trend {
+        case up, down, neutral
     }
     
-    private var latestWeekTSS: String {
-        guard let latestWeek = viewModel.weeklyVolumes.first else { return "0" }
-        return String(format: "%.0f", latestWeek.totalTSS)
-    }
-    
-    private var currentCTL: String {
-        guard let latest = viewModel.trainingLoad.last else { return "0" }
-        return String(format: "%.0f", latest.ctl)
-    }
-    
-    private var currentATL: String {
-        guard let latest = viewModel.trainingLoad.last else { return "0" }
-        return String(format: "%.0f", latest.atl)
+    var body: some View {
+        HStack {
+            Image(systemName: icon)
+                .foregroundColor(iconColor)
+            
+            // Rest of your MetricCard implementation
+        }
     }
 }
 
