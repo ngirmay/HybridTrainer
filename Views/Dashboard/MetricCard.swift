@@ -33,62 +33,29 @@ struct MetricCard: View {
     let trend: TrendDirection
     let workouts: [Workout]
     
-    var totalDuration: TimeInterval {
-        workouts.reduce(0) { $0 + $1.duration }
-    }
-    
-    var averageHeartRate: Double? {
-        let validWorkouts = workouts.compactMap { $0.averageHeartRate }
-        guard !validWorkouts.isEmpty else { return nil }
-        return validWorkouts.reduce(0, +) / Double(validWorkouts.count)
-    }
-    
     var body: some View {
-        VStack(alignment: .leading, spacing: 16) {
-            HStack(alignment: .center) {
+        VStack(alignment: .leading, spacing: 12) {
+            HStack {
                 Image(systemName: icon)
-                    .font(.title2)
                     .foregroundColor(iconColor)
-                    .frame(width: 44, height: 44)
-                    .background(iconColor.opacity(0.1))
-                    .clipShape(RoundedRectangle(cornerRadius: 12))
-                
+                    .font(.title2)
                 Spacer()
-                
                 TrendBadge(direction: trend)
             }
             
-            VStack(alignment: .leading, spacing: 8) {
-                Text(formatDuration(totalDuration))
-                    .font(.system(.title3, design: .serif))
-                    .fontWeight(.medium)
-                    .foregroundColor(Theme.textColor)
-                
-                if let avgHR = averageHeartRate {
-                    Text("\(Int(avgHR)) BPM")
-                        .font(.system(.subheadline, design: .serif))
-                        .foregroundColor(Theme.secondaryText)
-                }
+            if workouts.isEmpty {
+                Text("No workouts yet")
+                    .foregroundColor(.secondary)
+            } else {
+                // Add your workout statistics here
+                Text("Recent workouts: \(workouts.count)")
+                    .foregroundColor(.secondary)
             }
         }
-        .padding(Theme.padding)
-        .background(Theme.cardBackground)
-        .cornerRadius(Theme.cornerRadius)
-        .shadow(color: Theme.shadowColor,
-                radius: Theme.shadowRadius,
-                x: 0,
-                y: Theme.shadowY)
-    }
-    
-    private func formatDuration(_ duration: TimeInterval) -> String {
-        let hours = Int(duration / 3600)
-        let minutes = Int((duration.truncatingRemainder(dividingBy: 3600)) / 60)
-        
-        if hours > 0 {
-            return "\(hours)h \(minutes)m"
-        } else {
-            return "\(minutes)m"
-        }
+        .padding()
+        .background(Color(.systemBackground))
+        .cornerRadius(12)
+        .shadow(radius: 2)
     }
 }
 
@@ -109,13 +76,31 @@ struct TrendBadge: View {
     }
 }
 
-#Preview {
-    MetricCard(
-        icon: "figure.run",
-        iconColor: .orange,
-        trend: .increasing,
-        workouts: []
-    )
-    .padding()
-    .background(Color(.systemGray6))
+struct MetricCard_Previews: PreviewProvider {
+    static var previews: some View {
+        VStack {
+            MetricCard(
+                icon: "figure.run",
+                iconColor: .orange,
+                trend: .increasing,
+                workouts: []
+            )
+            
+            MetricCard(
+                icon: "figure.pool.swim",
+                iconColor: .blue,
+                trend: .decreasing,
+                workouts: []
+            )
+            
+            MetricCard(
+                icon: "bicycle",
+                iconColor: .green,
+                trend: .neutral,
+                workouts: []
+            )
+        }
+        .padding()
+        .background(Color(.systemGray6))
+    }
 }
