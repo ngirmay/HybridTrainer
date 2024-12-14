@@ -11,6 +11,7 @@
 		05818CA769A9F6DFEA7227A8 /* HybridTrainerUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54D11A8A11D8A23351D0FC70 /* HybridTrainerUITestsLaunchTests.swift */; };
 		0BF6A0D16204F633F810DA92 /* WeeklyVolumeSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E923423B2059A39A71A545E /* WeeklyVolumeSection.swift */; };
 		118889F6DBE05FC4CBA6BC1E /* TrainingSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56C53A36DE9327B58E90B449 /* TrainingSession.swift */; };
+		1FECC01797FF900F77933525 /* HybridTrainerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E45FC5406B9DC74108369BD6 /* HybridTrainerApp.swift */; };
 		2FE7F505E187D32BCB45BC0C /* TrainingCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD1E9AFAE9455B7DC33D1279 /* TrainingCard.swift */; };
 		3D57C9422741CC25F41F9F8A /* TrainingLoad.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A9CF945DA8634170F943903 /* TrainingLoad.swift */; };
 		4004E7C27B3BCF1BE4C98464 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = D81CC70B0F199D2BCBE16346 /* Item.swift */; };
@@ -33,12 +34,14 @@
 		AF9416574F97699BCBCED4CF /* GoalsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05885225B7CB6E41A69BDEF9 /* GoalsView.swift */; };
 		B75D25D1AF4D959212CAE8CF /* HealthKitService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80BB9FA9510E49303D5622D /* HealthKitService.swift */; };
 		C0B9CB44C100EB7F7A4CCBD0 /* SportPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAC712EB02843979A1E89651 /* SportPickerView.swift */; };
+		C3FA47B2BFBEC1EEBB26CC49 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA4816A9B382C1778F58ECA3 /* Theme.swift */; };
 		D61FE27878909E2D8A4DB2C4 /* Workout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2BEC2E1913E59BCCF01CF1 /* Workout.swift */; };
 		D6E8A9DDE71001435A47EACE /* RecentWorkoutsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC293943E510F4A4649D197B /* RecentWorkoutsList.swift */; };
 		DCB6B7306678104414DECDC3 /* WorkoutRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 203ABBA92B707BC66371E2D1 /* WorkoutRow.swift */; };
 		E4B3BED93D84F6F5B577B296 /* TrainingDistributionSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BBC9E9C6C52761B407B4B97 /* TrainingDistributionSection.swift */; };
 		E6592999DC2CC742D9080F1C /* DashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1473FA8513DFD89BC6E031F /* DashboardView.swift */; };
 		EE8E2583BEB336AE4040ABA6 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 12A53A69F9A6084ACE5EC9B2 /* SwiftUI.framework */; };
+		F700C93AA8372AE58351B8D6 /* Color+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD143A065DA7B849D586ECC6 /* Color+Hex.swift */; };
 		FA595AF71064A248345B0253 /* ChartSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB3899EB80EB647AEDDCCD37 /* ChartSection.swift */; };
 /* End PBXBuildFile section */
 
@@ -85,13 +88,16 @@
 		A1473FA8513DFD89BC6E031F /* DashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardView.swift; sourceTree = "<group>"; };
 		AC293943E510F4A4649D197B /* RecentWorkoutsList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentWorkoutsList.swift; sourceTree = "<group>"; };
 		B02EA93587E03880477F0540 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
+		BA4816A9B382C1778F58ECA3 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 		BAC712EB02843979A1E89651 /* SportPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SportPickerView.swift; sourceTree = "<group>"; };
 		C320C70EAFFEB46859DC0559 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		C9DBE42BEE2C29ABCCD54E86 /* WorkoutType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutType.swift; sourceTree = "<group>"; };
 		CB3899EB80EB647AEDDCCD37 /* ChartSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartSection.swift; sourceTree = "<group>"; };
 		D2BBB04C40DED0A948A87798 /* HybridTrainer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HybridTrainer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D81CC70B0F199D2BCBE16346 /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
+		DD143A065DA7B849D586ECC6 /* Color+Hex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Hex.swift"; sourceTree = "<group>"; };
 		DD1E9AFAE9455B7DC33D1279 /* TrainingCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingCard.swift; sourceTree = "<group>"; };
+		E45FC5406B9DC74108369BD6 /* HybridTrainerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HybridTrainerApp.swift; sourceTree = "<group>"; };
 		E79CC10B970432411B29044B /* HybridTrainerUITests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = HybridTrainerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E7BB07413BA65FAEEEB59184 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E80BB9FA9510E49303D5622D /* HealthKitService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthKitService.swift; sourceTree = "<group>"; };
@@ -125,6 +131,8 @@
 		11101AC6A5F84533762041DE = {
 			isa = PBXGroup;
 			children = (
+				9295F4A15AD44DE17046E1F1 /* App */,
+				1FD923BDCD694310B77FABB8 /* Design */,
 				C175C7D6A26010C0EDED7418 /* HybridTrainer */,
 				84ED5CEE628D596B85E065B2 /* HybridTrainerTests */,
 				023F1C2CEC6D56D7F35B3C5B /* HybridTrainerUITests */,
@@ -135,6 +143,15 @@
 				E9D2241B783E35440F5E7C98 /* Frameworks */,
 				F9C3004DD6D1D2E627A13C20 /* Products */,
 			);
+			sourceTree = "<group>";
+		};
+		1FD923BDCD694310B77FABB8 /* Design */ = {
+			isa = PBXGroup;
+			children = (
+				BA4816A9B382C1778F58ECA3 /* Theme.swift */,
+				E9EDBD2555CF8E527022A334 /* Extensions */,
+			);
+			path = Design;
 			sourceTree = "<group>";
 		};
 		2794FE8ACE4D78CCA931BACF /* ViewModels */ = {
@@ -175,6 +192,14 @@
 				E9251312C3D514DF5ABAB10C /* HybridTrainerTests.swift */,
 			);
 			path = HybridTrainerTests;
+			sourceTree = "<group>";
+		};
+		9295F4A15AD44DE17046E1F1 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				E45FC5406B9DC74108369BD6 /* HybridTrainerApp.swift */,
+			);
+			path = App;
 			sourceTree = "<group>";
 		};
 		A89F8E2F47BED24271DA9A79 /* Models */ = {
@@ -253,6 +278,14 @@
 				12A53A69F9A6084ACE5EC9B2 /* SwiftUI.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		E9EDBD2555CF8E527022A334 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				DD143A065DA7B849D586ECC6 /* Color+Hex.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		F8C5ED3380C8497E55F0EECC /* Views */ = {
@@ -389,6 +422,7 @@
 			files = (
 				8E3273A7DF049F633588A226 /* Calendar+Extensions.swift in Sources */,
 				FA595AF71064A248345B0253 /* ChartSection.swift in Sources */,
+				F700C93AA8372AE58351B8D6 /* Color+Hex.swift in Sources */,
 				88D2E84535739FAC4B120C93 /* ContentView.swift in Sources */,
 				E6592999DC2CC742D9080F1C /* DashboardView.swift in Sources */,
 				43F9A471326D0DB0752B7797 /* Goal.swift in Sources */,
@@ -397,11 +431,13 @@
 				43203A9DC66BD1C287596BB6 /* HealthKitManager.swift in Sources */,
 				B75D25D1AF4D959212CAE8CF /* HealthKitService.swift in Sources */,
 				7AE02838573A6CA7F188E365 /* HybridTrainerApp.swift in Sources */,
+				1FECC01797FF900F77933525 /* HybridTrainerApp.swift in Sources */,
 				4004E7C27B3BCF1BE4C98464 /* Item.swift in Sources */,
 				6C5F76783E191270DDF95570 /* MetricCard.swift in Sources */,
 				444F336342F4B7751E60AF4D /* MetricsSection.swift in Sources */,
 				D6E8A9DDE71001435A47EACE /* RecentWorkoutsList.swift in Sources */,
 				C0B9CB44C100EB7F7A4CCBD0 /* SportPickerView.swift in Sources */,
+				C3FA47B2BFBEC1EEBB26CC49 /* Theme.swift in Sources */,
 				2FE7F505E187D32BCB45BC0C /* TrainingCard.swift in Sources */,
 				E4B3BED93D84F6F5B577B296 /* TrainingDistributionSection.swift in Sources */,
 				3D57C9422741CC25F41F9F8A /* TrainingLoad.swift in Sources */,

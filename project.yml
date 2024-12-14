@@ -17,6 +17,8 @@ targets:
       - path: Services
       - path: Utils
       - path: Views
+      - path: Design
+      - path: App
     settings:
       base:
         INFOPLIST_FILE: HybridTrainer/Info.plist
