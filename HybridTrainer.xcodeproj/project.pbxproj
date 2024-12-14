@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 56;
+	objectVersion = 54;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -11,6 +11,7 @@
 		05818CA769A9F6DFEA7227A8 /* HybridTrainerUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54D11A8A11D8A23351D0FC70 /* HybridTrainerUITestsLaunchTests.swift */; };
 		0BF6A0D16204F633F810DA92 /* WeeklyVolumeSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E923423B2059A39A71A545E /* WeeklyVolumeSection.swift */; };
 		118889F6DBE05FC4CBA6BC1E /* TrainingSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56C53A36DE9327B58E90B449 /* TrainingSession.swift */; };
+		2EFDDC4B6C84352E1311D129 /* TrendDirection.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8826E674668BCD69D3E9414 /* TrendDirection.swift */; };
 		2FE7F505E187D32BCB45BC0C /* TrainingCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD1E9AFAE9455B7DC33D1279 /* TrainingCard.swift */; };
 		3D57C9422741CC25F41F9F8A /* TrainingLoad.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A9CF945DA8634170F943903 /* TrainingLoad.swift */; };
 		4004E7C27B3BCF1BE4C98464 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = D81CC70B0F199D2BCBE16346 /* Item.swift */; };
@@ -92,8 +93,9 @@
 		C320C70EAFFEB46859DC0559 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		C9DBE42BEE2C29ABCCD54E86 /* WorkoutType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutType.swift; sourceTree = "<group>"; };
 		CB3899EB80EB647AEDDCCD37 /* ChartSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartSection.swift; sourceTree = "<group>"; };
-		D2BBB04C40DED0A948A87798 /* HybridTrainer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HybridTrainer.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D2BBB04C40DED0A948A87798 /* HybridTrainer.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = HybridTrainer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D81CC70B0F199D2BCBE16346 /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
+		D8826E674668BCD69D3E9414 /* TrendDirection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendDirection.swift; sourceTree = "<group>"; };
 		DD143A065DA7B849D586ECC6 /* Color+Hex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Hex.swift"; sourceTree = "<group>"; };
 		DD1E9AFAE9455B7DC33D1279 /* TrainingCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingCard.swift; sourceTree = "<group>"; };
 		E79CC10B970432411B29044B /* HybridTrainerUITests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = HybridTrainerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -205,6 +207,7 @@
 				2DC8FE44793294B4DEC297CE /* Goal.swift */,
 				2A9CF945DA8634170F943903 /* TrainingLoad.swift */,
 				56C53A36DE9327B58E90B449 /* TrainingSession.swift */,
+				D8826E674668BCD69D3E9414 /* TrendDirection.swift */,
 				915D511B5F05CFEAA0625FE5 /* WeeklyVolume.swift */,
 				5C2BEC2E1913E59BCCF01CF1 /* Workout.swift */,
 				C9DBE42BEE2C29ABCCD54E86 /* WorkoutType.swift */,
@@ -438,6 +441,7 @@
 				E4B3BED93D84F6F5B577B296 /* TrainingDistributionSection.swift in Sources */,
 				3D57C9422741CC25F41F9F8A /* TrainingLoad.swift in Sources */,
 				118889F6DBE05FC4CBA6BC1E /* TrainingSession.swift in Sources */,
+				2EFDDC4B6C84352E1311D129 /* TrendDirection.swift in Sources */,
 				9AFCC23A12ADAD97CFA3F8EA /* WeeklyVolume.swift in Sources */,
 				0BF6A0D16204F633F810DA92 /* WeeklyVolumeSection.swift in Sources */,
 				D61FE27878909E2D8A4DB2C4 /* Workout.swift in Sources */,
@@ -494,7 +498,6 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				DEVELOPMENT_TEAM = 8KADHRJXJV;
 				INFOPLIST_FILE = HybridTrainer/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -662,7 +665,6 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				DEVELOPMENT_TEAM = 8KADHRJXJV;
 				INFOPLIST_FILE = HybridTrainer/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

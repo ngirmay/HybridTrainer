@@ -1,13 +1,12 @@
 // Models/TrendDirection.swift
-
 import SwiftUI
 
-enum TrendDirection {
+public enum TrendDirection {  // Make it public
     case increasing
     case decreasing
     case neutral
     
-    var label: String {
+    public var label: String {  // Make properties public
         switch self {
         case .increasing:
             return "Increasing"
@@ -18,7 +17,7 @@ enum TrendDirection {
         }
     }
     
-    var icon: String {
+    public var icon: String {
         switch self {
         case .increasing: return "arrow.up"
         case .decreasing: return "arrow.down"
@@ -26,7 +25,7 @@ enum TrendDirection {
         }
     }
     
-    var color: Color {
+    public var color: Color {
         switch self {
         case .increasing: return .green
         case .decreasing: return .red

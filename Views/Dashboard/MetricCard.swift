@@ -4,6 +4,7 @@
 //
 // Expected parameters: icon: iconColor: trend: workouts:
 import SwiftUI
+import Models
 
 enum TrendDirection {
     case increasing
@@ -47,7 +48,6 @@ struct MetricCard: View {
                 Text("No workouts yet")
                     .foregroundColor(.secondary)
             } else {
-                // Add your workout statistics here
                 Text("Recent workouts: \(workouts.count)")
                     .foregroundColor(.secondary)
             }
