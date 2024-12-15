@@ -61,9 +61,8 @@ private struct SportButton: View {
     }
 }
 
-#Preview {
+#Preview("Sport Picker") {
     SportPickerView(selectedType: .constant(.swim))
         .frame(height: 60)
-        .previewDisplayName("Sport Picker")
 }
 

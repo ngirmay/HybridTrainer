@@ -51,6 +51,9 @@ targets:
           - UIInterfaceOrientationPortraitUpsideDown
           - UIInterfaceOrientationLandscapeLeft
           - UIInterfaceOrientationLandscapeRight
+    entitlements:
+      com.apple.developer.healthkit: true
+      com.apple.developer.healthkit.access: []
 
   HybridTrainerTests:
     type: bundle.unit-test
