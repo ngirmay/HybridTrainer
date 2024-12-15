@@ -20,6 +20,7 @@ struct WorkoutRow: View {
             }
         }
         .padding(.vertical, 4)
+        .background(Theme.Colors.cardBackground)
     }
     
     private func formatDuration(_ duration: TimeInterval) -> String {

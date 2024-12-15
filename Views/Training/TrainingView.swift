@@ -30,9 +30,12 @@ public struct TrainingView: View {
                     List {
                         ForEach(sessions) { session in
                             TrainingSessionRow(session: session)
+                                .listRowBackground(Theme.Colors.cardBackground)
                         }
                         .onDelete(perform: deleteSessions)
                     }
+                    .scrollContentBackground(.hidden)
+                    .background(Theme.Colors.background)
                 }
             }
             .navigationTitle("Training")

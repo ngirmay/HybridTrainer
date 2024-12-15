@@ -59,9 +59,8 @@ public struct WeeklyVolumeSection: View {
             }
         }
         .padding()
-        .background(Color(.systemBackground))
-        .clipShape(RoundedRectangle(cornerRadius: 12))
-        .shadow(radius: 2)
+        .background(Theme.Colors.cardBackground)
+        .cornerRadius(Theme.Metrics.cornerRadius)
     }
 }
 

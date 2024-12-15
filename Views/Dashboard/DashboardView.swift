@@ -32,7 +32,7 @@ public struct DashboardView: View {
     public var body: some View {
         NavigationView {
             ScrollView {
-                VStack(spacing: 20) {
+                VStack(spacing: Theme.Metrics.padding) {
                     MetricsSection(workouts: workouts)
                         .padding(.horizontal)
                     
@@ -58,8 +58,9 @@ public struct DashboardView: View {
                     RecentWorkoutsList(workouts: workouts)
                         .padding(.horizontal)
                 }
-                .padding(.vertical)
+                .padding()
             }
+            .background(Theme.Colors.background)
             .navigationTitle("Dashboard")
         }
     }

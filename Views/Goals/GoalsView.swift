@@ -32,10 +32,12 @@ public struct GoalsView: View {
                 } else {
                     List {
                         ForEach(goals) { goal in
-                            GoalRow(goal: goal)
+                            GoalCard(goal: goal)
+                                .listRowBackground(Theme.Colors.cardBackground)
                         }
-                        .onDelete(perform: deleteGoals)
                     }
+                    .scrollContentBackground(.hidden)
+                    .background(Theme.Colors.background)
                 }
             }
             .navigationTitle("Goals")

@@ -3,16 +3,16 @@ import SwiftUI
 enum Theme {
     enum Colors {
         // Base colors from your website
-        static let background = Color(hex: "#FFFFFF")
-        static let primary = Color(hex: "#1A1A1A")
-        static let secondary = Color(hex: "#6B7280")
-        static let accent = Color(hex: "#4A6670") // Your website's blue-gray
+        static let background = Color(hex: "#F5F5F5")  // Light gray background
+        static let primary = Color(hex: "#2C3E50")     // Dark blue-gray
+        static let secondary = Color(hex: "#7F8C8D")   // Medium gray
+        static let accent = Color(hex: "#4A6670")      // Your website's blue-gray
         
-        // Workout type colors
-        static let swim = Color(hex: "#0EA5E9")    // Blue
-        static let bike = Color(hex: "#22C55E")    // Green
-        static let run = Color(hex: "#F97316")     // Orange
-        static let strength = Color(hex: "#A855F7") // Purple
+        // Workout type colors - matching your website's palette
+        static let swim = Color(hex: "#3498DB")    // Blue
+        static let bike = Color(hex: "#27AE60")    // Green
+        static let run = Color(hex: "#E67E22")     // Orange (matching your workout icons)
+        static let strength = Color(hex: "#9B59B6") // Purple (matching your strength icon)
         
         // Semantic colors
         static let success = Color(hex: "#22C55E")
@@ -21,7 +21,7 @@ enum Theme {
         
         // Surface colors
         static let cardBackground = Color(hex: "#FFFFFF")
-        static let surfaceSecondary = Color(hex: "#F3F4F6")
+        static let surfaceSecondary = Color(hex: "#ECF0F1")
     }
     
     enum Typography {

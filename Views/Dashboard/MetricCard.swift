@@ -61,9 +61,9 @@ struct MetricCard: View {
             }
         }
         .padding()
-        .background(Color(.systemBackground))
-        .clipShape(RoundedRectangle(cornerRadius: 12))
-        .shadow(radius: 2)
+        .background(Theme.Colors.cardBackground)
+        .cornerRadius(Theme.Metrics.cornerRadius)
+        .shadow(color: Theme.Colors.primary.opacity(0.05), radius: 4, x: 0, y: 2)
     }
 }
 

@@ -37,6 +37,8 @@ public struct WorkoutsView: View {
                         }
                         .onDelete(perform: deleteWorkouts)
                     }
+                    .scrollContentBackground(.hidden)
+                    .background(Theme.Colors.background)
                 }
             }
             .navigationTitle("Workouts")
