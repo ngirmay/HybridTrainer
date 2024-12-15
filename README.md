@@ -1,4 +1,5 @@
 
+# Hybrid Trainer Repository
 
 ## Overview
 The **Hybrid Trainer** application is an advanced tool designed to empower athletes in tracking and optimizing their performance across swimming, cycling, running, and strength training disciplines. By seamlessly integrating data from FORM Swim Goggles, Apple Watch, and Wahoo bike computers, it offers sophisticated analytics to support endurance training objectives, such as achieving success in Ironman 70.3 events.

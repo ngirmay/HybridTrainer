@@ -8,22 +8,35 @@ options:
   createIntermediateGroups: true
 
 targets:
+  Models:
+    type: framework
+    platform: iOS
+    deploymentTarget: "17.0"
+    sources:
+      - path: Models
+    dependencies:
+      - sdk: SwiftUI.framework
+
   HybridTrainer:
     type: application
     platform: iOS
     sources:
-      - path: HybridTrainer
-      - path: Models
-      - path: Services
-      - path: Utils
-      - path: Views
       - path: Design
-      - path: App
+      - path: HybridTrainer
+      - path: Views
+      - path: Services
+      - path: Utilities
+      - path: .
+        excludes:
+          - "project.yml"
+          - "README.md"
+          - "LICENSE"
     settings:
       base:
         INFOPLIST_FILE: HybridTrainer/Info.plist
         PRODUCT_BUNDLE_IDENTIFIER: com.nobelgirmay.HybridTrainer
     dependencies:
+      - target: Models
       - sdk: SwiftUI.framework
       - sdk: HealthKit.framework
     info:
