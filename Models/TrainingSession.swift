@@ -7,13 +7,13 @@ import Foundation
 import SwiftData
 
 @Model
-final class TrainingSession {
-    var id: UUID
-    var date: Date
-    var notes: String?
-    var workouts: [Workout]
+public final class TrainingSession {
+    public var id: UUID
+    public var date: Date
+    public var notes: String?
+    public var workouts: [Workout]
     
-    init(date: Date) {
+    public init(date: Date) {
         self.id = UUID()
         self.date = date
         self.workouts = []

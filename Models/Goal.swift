@@ -7,15 +7,15 @@ import Foundation
 import SwiftData
 
 @Model
-final class Goal {
-    var id: UUID
-    var name: String
-    var targetDate: Date
-    var type: WorkoutType
-    var targetDistance: Double?
-    var completed: Bool
+public final class Goal {
+    public var id: UUID
+    public var name: String
+    public var targetDate: Date
+    public var type: WorkoutType
+    public var targetDistance: Double?
+    public var completed: Bool
     
-    init(
+    public init(
         id: UUID = UUID(),
         name: String,
         targetDate: Date,
