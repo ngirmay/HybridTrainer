@@ -10,6 +10,14 @@ import SwiftData
 import Models
 
 struct ContentView: View {
+    @Environment(\.modelContext) private var modelContext
+    @StateObject private var workoutViewModel: WorkoutViewModel
+    
+    init() {
+        let container = DependencyContainer.shared
+        _workoutViewModel = StateObject(wrappedValue: WorkoutViewModel(workoutService: container.workoutService))
+    }
+    
     var body: some View {
         TabView {
             WorkoutsView()
@@ -26,6 +34,10 @@ struct ContentView: View {
                 .tabItem {
                     Label("Training", systemImage: "calendar")
                 }
+        }
+        .task {
+            // Load data when app launches
+            await workoutViewModel.loadWorkouts()
         }
     }
 }
