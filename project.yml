@@ -22,6 +22,7 @@ targets:
       path: Models/Info.plist
     dependencies:
       - sdk: SwiftUI.framework
+      - path: Design
 
   HybridTrainer:
     type: application

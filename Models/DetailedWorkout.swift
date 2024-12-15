@@ -1,7 +1,7 @@
 import Foundation
 import CoreLocation
 
-public struct DetailedWorkout: Identifiable {
+public struct DetailedWorkout: Identifiable, Codable {
     public let id: UUID
     public let workout: Workout
     public let heartRateData: [HeartRatePoint]

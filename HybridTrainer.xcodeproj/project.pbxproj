@@ -15,6 +15,7 @@
 		0BF6A0D16204F633F810DA92 /* WeeklyVolumeSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E923423B2059A39A71A545E /* WeeklyVolumeSection.swift */; };
 		11C12A16BEF44284B2B282C5 /* TrainingLoad.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A9CF945DA8634170F943903 /* TrainingLoad.swift */; };
 		195AC20569A9C12B00DEC671 /* WorkoutRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ACA4AB3A07BDDEB22CA1232 /* WorkoutRow.swift */; };
+		1ED807C5E1B90FA663A5BAD1 /* DetailedWorkout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B1DC879A3FC4EA2B2E10D04 /* DetailedWorkout.swift */; };
 		2FE7F505E187D32BCB45BC0C /* TrainingCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD1E9AFAE9455B7DC33D1279 /* TrainingCard.swift */; };
 		3F81F2E468808AFDDD80D2A8 /* WorkoutMetric.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6968F13916985F87CD392D64 /* WorkoutMetric.swift */; };
 		3FB96D24234D71028D7D416D /* Workout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2BEC2E1913E59BCCF01CF1 /* Workout.swift */; };
@@ -102,6 +103,7 @@
 		3685A15A3F58DF004092845C /* TrainingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingView.swift; sourceTree = "<group>"; };
 		3BBC9E9C6C52761B407B4B97 /* TrainingDistributionSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingDistributionSection.swift; sourceTree = "<group>"; };
 		3E923423B2059A39A71A545E /* WeeklyVolumeSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeeklyVolumeSection.swift; sourceTree = "<group>"; };
+		4B1DC879A3FC4EA2B2E10D04 /* DetailedWorkout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailedWorkout.swift; sourceTree = "<group>"; };
 		54D11A8A11D8A23351D0FC70 /* HybridTrainerUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HybridTrainerUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		56C53A36DE9327B58E90B449 /* TrainingSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingSession.swift; sourceTree = "<group>"; };
 		5C2BEC2E1913E59BCCF01CF1 /* Workout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Workout.swift; sourceTree = "<group>"; };
@@ -242,6 +244,7 @@
 		A89F8E2F47BED24271DA9A79 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				4B1DC879A3FC4EA2B2E10D04 /* DetailedWorkout.swift */,
 				2DC8FE44793294B4DEC297CE /* Goal.swift */,
 				65A4C42B67EAB7DB97E8CD07 /* Info.plist */,
 				2A9CF945DA8634170F943903 /* TrainingLoad.swift */,
@@ -488,6 +491,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1ED807C5E1B90FA663A5BAD1 /* DetailedWorkout.swift in Sources */,
 				0BAC0A29750806D144A0462E /* Goal.swift in Sources */,
 				11C12A16BEF44284B2B282C5 /* TrainingLoad.swift in Sources */,
 				A36CC5DCB4671BAAD0DF4BBA /* TrainingSession.swift in Sources */,
