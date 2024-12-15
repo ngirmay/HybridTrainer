@@ -7,12 +7,92 @@
 
 // Views/Goals/GoalsView.swift
 import SwiftUI
+import SwiftData
+import Models
 
-struct GoalsView: View {
-    var body: some View {
-        Text("Goals Section")
-            .font(.largeTitle)
-            .padding()
+public struct GoalsView: View {
+    @Environment(\.modelContext) private var modelContext
+    @Query(sort: \Goal.targetDate) private var goals: [Goal]
+    
+    public init() {}
+    
+    public var body: some View {
+        NavigationStack {
+            Group {
+                if goals.isEmpty {
+                    ContentUnavailableView {
+                        Label("No Goals", systemImage: "target")
+                    } description: {
+                        Text("Set training goals to track your progress")
+                    } actions: {
+                        Button(action: addSampleGoal) {
+                            Text("Add Goal")
+                        }
+                    }
+                } else {
+                    List {
+                        ForEach(goals) { goal in
+                            GoalRow(goal: goal)
+                        }
+                        .onDelete(perform: deleteGoals)
+                    }
+                }
+            }
             .navigationTitle("Goals")
+            .toolbar {
+                ToolbarItem(placement: .topBarTrailing) {
+                    Button(action: addSampleGoal) {
+                        Image(systemName: "plus")
+                    }
+                }
+            }
+        }
     }
+    
+    private func deleteGoals(at offsets: IndexSet) {
+        for index in offsets {
+            modelContext.delete(goals[index])
+        }
+    }
+    
+    private func addSampleGoal() {
+        let goal = Goal(
+            name: "Complete Half Marathon",
+            type: .run,
+            targetDate: Date().addingTimeInterval(60*60*24*90), // 90 days from now
+            targetValue: 21.1, // 21.1 km
+            currentValue: 0
+        )
+        modelContext.insert(goal)
+    }
+}
+
+struct GoalRow: View {
+    let goal: Goal
+    
+    var body: some View {
+        VStack(alignment: .leading, spacing: 8) {
+            Text(goal.name)
+                .font(.headline)
+            
+            HStack {
+                Image(systemName: goal.type.icon)
+                    .foregroundStyle(goal.type.color)
+                Text(goal.targetDate.formatted(date: .abbreviated, time: .omitted))
+                    .foregroundStyle(.secondary)
+                Spacer()
+                Text("\(Int(goal.currentValue))/\(Int(goal.targetValue)) km")
+                    .foregroundStyle(.secondary)
+            }
+            
+            ProgressView(value: goal.currentValue, total: goal.targetValue)
+                .tint(goal.type.color)
+        }
+        .padding(.vertical, 4)
+    }
+}
+
+#Preview {
+    GoalsView()
+        .modelContainer(for: [Goal.self], inMemory: true)
 }
