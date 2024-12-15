@@ -37,6 +37,7 @@ targets:
         INFOPLIST_FILE: HybridTrainer/Info.plist
         PRODUCT_BUNDLE_IDENTIFIER: com.nobelgirmay.HybridTrainer
         CODE_SIGN_ENTITLEMENTS: HybridTrainer/HybridTrainer.entitlements
+        DEVELOPMENT_TEAM: "Nobel Girmay (Personal Team)"
     dependencies:
       - target: Models
       - sdk: SwiftUI.framework
@@ -54,11 +55,11 @@ targets:
         UIRequiresFullScreen: true
         UISupportedInterfaceOrientations~ipad:
           - UIInterfaceOrientationPortrait
-
     entitlements:
+      path: HybridTrainer/HybridTrainer.entitlements
       properties:
         com.apple.developer.healthkit: true
-        com.apple.developer.healthkit.access: []
+        com.apple.developer.healthkit.access: ["health-records"]
         com.apple.developer.healthkit.background-delivery: false
 
   HybridTrainerTests:
