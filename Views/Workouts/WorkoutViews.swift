@@ -29,15 +29,20 @@ public struct WorkoutsView: View {
                         }
                     }
                 } else {
-                    List {
-                        ForEach(workouts) { workout in
-                            NavigationLink(value: workout) {
-                                WorkoutRow(workout: workout)
+                    ScrollView {
+                        WorkoutInsightsView(workouts: workouts)
+                        
+                        List {
+                            ForEach(workouts) { workout in
+                                NavigationLink(value: workout) {
+                                    WorkoutRow(workout: workout)
+                                }
                             }
+                            .onDelete(perform: deleteWorkouts)
                         }
-                        .onDelete(perform: deleteWorkouts)
+                        .listStyle(.plain)
+                        .scrollContentBackground(.hidden)
                     }
-                    .scrollContentBackground(.hidden)
                     .background(Theme.Colors.background)
                 }
             }
