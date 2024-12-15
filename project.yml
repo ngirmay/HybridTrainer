@@ -14,6 +14,12 @@ targets:
     deploymentTarget: "17.0"
     sources:
       - path: Models
+    settings:
+      base:
+        INFOPLIST_FILE: Models/Info.plist
+        PRODUCT_BUNDLE_IDENTIFIER: com.nobelgirmay.HybridTrainer.Models
+    info:
+      path: Models/Info.plist
     dependencies:
       - sdk: SwiftUI.framework
 
