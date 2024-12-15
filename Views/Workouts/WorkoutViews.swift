@@ -31,17 +31,6 @@ public struct WorkoutsView: View {
                 } else {
                     ScrollView {
                         WorkoutInsightsView(workouts: workouts)
-                        
-                        List {
-                            ForEach(workouts) { workout in
-                                NavigationLink(value: workout) {
-                                    WorkoutRow(workout: workout)
-                                }
-                            }
-                            .onDelete(perform: deleteWorkouts)
-                        }
-                        .listStyle(.plain)
-                        .scrollContentBackground(.hidden)
                     }
                     .background(Theme.Colors.background)
                 }
