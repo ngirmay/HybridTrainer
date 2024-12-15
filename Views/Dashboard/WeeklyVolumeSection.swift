@@ -23,17 +23,39 @@ public struct WeeklyVolumeSection: View {
                 Text("No data available")
                     .foregroundStyle(.secondary)
             } else {
-                Chart(weeklyVolumes) { volume in
-                    BarMark(
-                        x: .value("Week", volume.week, unit: .week),
-                        y: .value("Hours", volume.swimHours + volume.bikeHours + volume.runHours)
-                    )
-                    .foregroundStyle(by: .value("Sport", "Total"))
+                Chart {
+                    ForEach(weeklyVolumes) { volume in
+                        BarMark(
+                            x: .value("Week", volume.week, unit: .week),
+                            y: .value("Hours", volume.swimHours)
+                        )
+                        .foregroundStyle(.blue)
+                        
+                        BarMark(
+                            x: .value("Week", volume.week, unit: .week),
+                            y: .value("Hours", volume.bikeHours)
+                        )
+                        .foregroundStyle(.green)
+                        
+                        BarMark(
+                            x: .value("Week", volume.week, unit: .week),
+                            y: .value("Hours", volume.runHours)
+                        )
+                        .foregroundStyle(.orange)
+                    }
                 }
                 .frame(height: 200)
-                .chartForegroundStyleScale([
-                    "Total": Color.accentColor
-                ])
+                .chartLegend(position: .bottom) {
+                    HStack(spacing: 16) {
+                        Label("Swim", systemImage: "circle.fill")
+                            .foregroundStyle(.blue)
+                        Label("Bike", systemImage: "circle.fill")
+                            .foregroundStyle(.green)
+                        Label("Run", systemImage: "circle.fill")
+                            .foregroundStyle(.orange)
+                    }
+                    .font(.caption)
+                }
             }
         }
         .padding()
@@ -50,6 +72,12 @@ public struct WeeklyVolumeSection: View {
             swimHours: 2,
             bikeHours: 3,
             runHours: 1
+        ),
+        WeeklyVolume(
+            week: Calendar.current.date(byAdding: .day, value: -7, to: Date())!,
+            swimHours: 1.5,
+            bikeHours: 4,
+            runHours: 2
         )
     ])
     .padding()
