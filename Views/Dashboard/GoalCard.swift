@@ -19,7 +19,7 @@ public struct GoalCard: View {
         VStack(alignment: .leading, spacing: 12) {
             HStack {
                 Image(systemName: goal.type.icon)
-                    .foregroundStyle(goal.completed ? .green : .primary)
+                    .foregroundStyle(goal.completed ? .green : goal.type.color)
                     .font(.title2)
                 Spacer()
                 if goal.completed {
@@ -31,11 +31,12 @@ public struct GoalCard: View {
             Text(goal.name)
                 .font(.headline)
             
-            if let distance = goal.targetDistance {
-                Text(String(format: "%.1f km", distance / 1000))
-                    .font(.subheadline)
-                    .foregroundStyle(.secondary)
-            }
+            Text(String(format: "%.1f/%.1f km", goal.currentValue, goal.targetValue))
+                .font(.subheadline)
+                .foregroundStyle(.secondary)
+            
+            ProgressView(value: goal.progress)
+                .tint(goal.type.color)
             
             Text(goal.targetDate.formatted(date: .abbreviated, time: .omitted))
                 .font(.caption)
@@ -53,7 +54,7 @@ public struct GoalCard: View {
         name: "Run 10K",
         targetDate: Date().addingTimeInterval(7*24*3600),
         type: .run,
-        targetDistance: 10000
+        targetValue: 10.0 // 10 km
     ))
     .padding()
     .background(Color(.systemGray6))
