@@ -15,7 +15,7 @@ public struct DetailedWorkout: Identifiable, Codable {
     }
 }
 
-public struct HeartRatePoint: Identifiable {
+public struct HeartRatePoint: Identifiable, Codable {
     public let id: UUID
     public let timestamp: Date
     public let value: Double
@@ -27,16 +27,26 @@ public struct HeartRatePoint: Identifiable {
     }
 }
 
-public struct LocationPoint: Identifiable {
+public struct LocationPoint: Identifiable, Codable {
     public let id: UUID
     public let timestamp: Date
-    public let coordinate: CLLocationCoordinate2D
+    private let latitude: Double
+    private let longitude: Double
     public let elevation: Double?
+    
+    public var coordinate: CLLocationCoordinate2D {
+        CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
+    }
     
     public init(timestamp: Date, coordinate: CLLocationCoordinate2D, elevation: Double? = nil) {
         self.id = UUID()
         self.timestamp = timestamp
-        self.coordinate = coordinate
+        self.latitude = coordinate.latitude
+        self.longitude = coordinate.longitude
         self.elevation = elevation
+    }
+    
+    enum CodingKeys: String, CodingKey {
+        case id, timestamp, latitude, longitude, elevation
     }
 } 
