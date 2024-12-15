@@ -4,32 +4,75 @@
 //
 
 import SwiftUI
+import Models
 
-struct MetricsSection: View {
+public struct MetricsSection: View {
     let workouts: [Workout]
     
-    var body: some View {
+    public init(workouts: [Workout]) {
+        self.workouts = workouts
+    }
+    
+    public var body: some View {
         VStack(spacing: 16) {
             ForEach(WorkoutType.allCases, id: \.self) { type in
+                let typeWorkouts = workouts.filter { $0.type == type }
                 MetricCard(
                     icon: type.icon,
-                    iconColor: Color.accentColor,
-                    trend: calculateTrend(for: type),
-                    workouts: workouts.filter { $0.type == type }
+                    iconColor: typeColor(for: type),
+                    trend: calculateTrend(for: typeWorkouts),
+                    workouts: typeWorkouts
                 )
             }
         }
     }
     
-    private func calculateTrend(for type: WorkoutType) -> TrendDirection {
-        // You can implement your trend calculation logic here
-        // For now, returning a default value
-        return .neutral
+    private func typeColor(for type: WorkoutType) -> Color {
+        switch type {
+        case .swim: return .blue
+        case .bike: return .green
+        case .run: return .orange
+        case .strength: return .purple
+        }
+    }
+    
+    private func calculateTrend(for workouts: [Workout]) -> TrendDirection {
+        guard workouts.count >= 2 else { return .neutral }
+        
+        // Sort workouts by date
+        let sortedWorkouts = workouts.sorted { $0.startDate > $1.startDate }
+        
+        // Compare the two most recent workouts
+        let latest = sortedWorkouts[0]
+        let previous = sortedWorkouts[1]
+        
+        // Compare durations
+        if latest.duration > previous.duration {
+            return .increasing
+        } else if latest.duration < previous.duration {
+            return .decreasing
+        } else {
+            return .neutral
+        }
     }
 }
 
 #Preview {
-    MetricsSection(workouts: [])
-        .padding()
+    MetricsSection(workouts: [
+        Workout(
+            type: .run,
+            startDate: Date(),
+            duration: 3600,
+            distance: 10000
+        ),
+        Workout(
+            type: .run,
+            startDate: Date().addingTimeInterval(-86400),
+            duration: 3000,
+            distance: 8000
+        )
+    ])
+    .padding()
+    .background(Color(.systemGray6))
 }
 
