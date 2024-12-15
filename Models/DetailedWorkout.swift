@@ -13,6 +13,11 @@ public struct DetailedWorkout: Identifiable, Codable {
         self.heartRateData = heartRateData
         self.routeData = routeData
     }
+    
+    // Add explicit coding keys
+    private enum CodingKeys: String, CodingKey {
+        case id, workout, heartRateData, routeData
+    }
 }
 
 public struct HeartRatePoint: Identifiable, Codable {

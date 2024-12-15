@@ -20,7 +20,8 @@ class DependencyContainer {
             Goal.self,
             TrainingSession.self,
             WeeklyVolume.self
-        ])
+        ], 
+        version: SchemaVersion(1, 0, 0))
         
         do {
             modelContainer = try ModelContainer(for: schema)
