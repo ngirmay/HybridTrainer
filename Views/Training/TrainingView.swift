@@ -17,8 +17,14 @@ public struct TrainingView: View {
         NavigationStack {
             Group {
                 if sessions.isEmpty {
-                    ContentUnavailableView("No Training Sessions", systemImage: "calendar") {
+                    ContentUnavailableView {
+                        Label("No Training Sessions", systemImage: "calendar")
+                    } description: {
                         Text("Plan your training sessions to stay on track")
+                    } actions: {
+                        Button(action: addSampleSession) {
+                            Text("Add Session")
+                        }
                     }
                 } else {
                     List {
