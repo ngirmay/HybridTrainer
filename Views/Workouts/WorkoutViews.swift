@@ -31,6 +31,26 @@ public struct WorkoutsView: View {
                 } else {
                     ScrollView {
                         WorkoutInsightsView(workouts: workouts)
+                        
+                        // Keep navigation functionality
+                        LazyVStack {
+                            DisclosureGroup {
+                                ForEach(workouts) { workout in
+                                    NavigationLink(value: workout) {
+                                        WorkoutRow(workout: workout)
+                                    }
+                                }
+                                .onDelete(perform: deleteWorkouts)
+                            } label: {
+                                Text("Recent Workouts")
+                                    .font(.headline)
+                                    .foregroundStyle(Theme.Colors.primary)
+                            }
+                        }
+                        .padding()
+                        .background(Theme.Colors.cardBackground)
+                        .cornerRadius(Theme.Metrics.cornerRadius)
+                        .padding(.horizontal)
                     }
                     .background(Theme.Colors.background)
                 }
