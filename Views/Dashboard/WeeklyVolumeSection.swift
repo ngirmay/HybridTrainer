@@ -26,19 +26,19 @@ public struct WeeklyVolumeSection: View {
                 Chart {
                     ForEach(weeklyVolumes) { volume in
                         BarMark(
-                            x: .value("Week", volume.week, unit: .week),
+                            x: .value("Week", volume.week, unit: .weekOfYear),
                             y: .value("Hours", volume.swimHours)
                         )
                         .foregroundStyle(.blue)
                         
                         BarMark(
-                            x: .value("Week", volume.week, unit: .week),
+                            x: .value("Week", volume.week, unit: .weekOfYear),
                             y: .value("Hours", volume.bikeHours)
                         )
                         .foregroundStyle(.green)
                         
                         BarMark(
-                            x: .value("Week", volume.week, unit: .week),
+                            x: .value("Week", volume.week, unit: .weekOfYear),
                             y: .value("Hours", volume.runHours)
                         )
                         .foregroundStyle(.orange)
