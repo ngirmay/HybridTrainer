@@ -12,6 +12,7 @@
 		0BAC0A29750806D144A0462E /* Goal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DC8FE44793294B4DEC297CE /* Goal.swift */; };
 		0BF6A0D16204F633F810DA92 /* WeeklyVolumeSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E923423B2059A39A71A545E /* WeeklyVolumeSection.swift */; };
 		11C12A16BEF44284B2B282C5 /* TrainingLoad.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A9CF945DA8634170F943903 /* TrainingLoad.swift */; };
+		195AC20569A9C12B00DEC671 /* WorkoutRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ACA4AB3A07BDDEB22CA1232 /* WorkoutRow.swift */; };
 		2FE7F505E187D32BCB45BC0C /* TrainingCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD1E9AFAE9455B7DC33D1279 /* TrainingCard.swift */; };
 		39D9C4B5899CD07A71920F8C /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CC8055C42028A3DA15332D2 /* Item.swift */; };
 		3FB96D24234D71028D7D416D /* Workout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2BEC2E1913E59BCCF01CF1 /* Workout.swift */; };
@@ -101,6 +102,7 @@
 		56C53A36DE9327B58E90B449 /* TrainingSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingSession.swift; sourceTree = "<group>"; };
 		5C2BEC2E1913E59BCCF01CF1 /* Workout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Workout.swift; sourceTree = "<group>"; };
 		69C8074B2BC7D96A7E508F3B /* HybridTrainerTests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = HybridTrainerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		6ACA4AB3A07BDDEB22CA1232 /* WorkoutRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutRow.swift; sourceTree = "<group>"; };
 		718C08EFE6746C813662A502 /* MetricsSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetricsSection.swift; sourceTree = "<group>"; };
 		71E9F58479781EE34192368A /* HybridTrainerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HybridTrainerUITests.swift; sourceTree = "<group>"; };
 		7B0DD337B7E1EFAB220DC7B7 /* HybridTrainerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HybridTrainerApp.swift; sourceTree = "<group>"; };
@@ -245,6 +247,7 @@
 		B98F8E79843588EBB8E1687D /* Workouts */ = {
 			isa = PBXGroup;
 			children = (
+				6ACA4AB3A07BDDEB22CA1232 /* WorkoutRow.swift */,
 				33B1924C2A7DDBAAE49C33AE /* WorkoutViews.swift */,
 			);
 			path = Workouts;
@@ -499,6 +502,7 @@
 				2FE7F505E187D32BCB45BC0C /* TrainingCard.swift in Sources */,
 				E4B3BED93D84F6F5B577B296 /* TrainingDistributionSection.swift in Sources */,
 				0BF6A0D16204F633F810DA92 /* WeeklyVolumeSection.swift in Sources */,
+				195AC20569A9C12B00DEC671 /* WorkoutRow.swift in Sources */,
 				DCB6B7306678104414DECDC3 /* WorkoutRow.swift in Sources */,
 				9ECAFEC92941477B8748BED9 /* WorkoutViewModel.swift in Sources */,
 				99AF5E91D9631B408809EDD4 /* WorkoutViews.swift in Sources */,

@@ -11,53 +11,78 @@ import Models
 
 struct ContentView: View {
     @Environment(\.modelContext) private var modelContext
-    @Query private var workouts: [Workout]
-    @Query private var goals: [Goal]
-    @Query private var trainingSessions: [TrainingSession]
+    @Query(sort: \Workout.startDate, order: .reverse) private var workouts: [Workout]
+    @Query(sort: \Goal.targetDate) private var goals: [Goal]
+    @Query(sort: \TrainingSession.date, order: .reverse) private var trainingSessions: [TrainingSession]
     
     var body: some View {
         TabView {
-            NavigationStack {
-                List {
-                    ForEach(workouts) { workout in
-                        WorkoutRow(workout: workout)
-                    }
+            WorkoutsTab(workouts: workouts)
+                .tabItem {
+                    Label("Workouts", systemImage: "figure.run")
                 }
-                .navigationTitle("Workouts")
-            }
-            .tabItem {
-                Label("Workouts", systemImage: "figure.run")
-            }
             
-            NavigationStack {
-                List {
-                    ForEach(goals) { goal in
-                        Text(goal.name)
-                    }
+            GoalsTab(goals: goals)
+                .tabItem {
+                    Label("Goals", systemImage: "target")
                 }
-                .navigationTitle("Goals")
-            }
-            .tabItem {
-                Label("Goals", systemImage: "target")
-            }
             
-            NavigationStack {
-                List {
-                    ForEach(trainingSessions) { session in
-                        Text(session.date.formatted(date: .abbreviated, time: .shortened))
-                    }
+            TrainingTab(sessions: trainingSessions)
+                .tabItem {
+                    Label("Training", systemImage: "calendar")
                 }
-                .navigationTitle("Training")
+        }
+    }
+}
+
+private struct WorkoutsTab: View {
+    let workouts: [Workout]
+    
+    var body: some View {
+        NavigationStack {
+            List {
+                ForEach(workouts) { workout in
+                    WorkoutRow(workout: workout)
+                }
             }
-            .tabItem {
-                Label("Training", systemImage: "calendar")
+            .navigationTitle("Workouts")
+        }
+    }
+}
+
+private struct GoalsTab: View {
+    let goals: [Goal]
+    
+    var body: some View {
+        NavigationStack {
+            List {
+                ForEach(goals) { goal in
+                    Text(goal.name)
+                }
             }
+            .navigationTitle("Goals")
+        }
+    }
+}
+
+private struct TrainingTab: View {
+    let sessions: [TrainingSession]
+    
+    var body: some View {
+        NavigationStack {
+            List {
+                ForEach(sessions) { session in
+                    Text(session.date.formatted(date: .abbreviated, time: .shortened))
+                }
+            }
+            .navigationTitle("Training")
         }
     }
 }
 
 #Preview {
     ContentView()
+        .modelContainer(for: [Workout.self, Goal.self, TrainingSession.self])
 }
 
 

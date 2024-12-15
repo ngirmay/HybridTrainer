@@ -14,7 +14,11 @@ struct HybridTrainerApp: App {
                 TrainingSession.self,
                 WeeklyVolume.self
             ])
-            let modelConfiguration = ModelConfiguration(schema: schema)
+            let modelConfiguration = ModelConfiguration(
+                schema: schema,
+                isStoredInMemoryOnly: false,
+                allowsSave: true
+            )
             container = try ModelContainer(for: schema, configurations: modelConfiguration)
         } catch {
             fatalError("Failed to initialize ModelContainer: \(error)")
