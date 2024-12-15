@@ -58,10 +58,9 @@ public struct GoalsView: View {
     private func addSampleGoal() {
         let goal = Goal(
             name: "Complete Half Marathon",
-            type: .run,
             targetDate: Date().addingTimeInterval(60*60*24*90), // 90 days from now
-            targetValue: 21.1, // 21.1 km
-            currentValue: 0
+            type: .run,
+            targetValue: 21.1 // 21.1 km
         )
         modelContext.insert(goal)
     }
@@ -81,11 +80,11 @@ struct GoalRow: View {
                 Text(goal.targetDate.formatted(date: .abbreviated, time: .omitted))
                     .foregroundStyle(.secondary)
                 Spacer()
-                Text("\(Int(goal.currentValue))/\(Int(goal.targetValue)) km")
+                Text(String(format: "%.1f/%.1f km", goal.currentValue, goal.targetValue))
                     .foregroundStyle(.secondary)
             }
             
-            ProgressView(value: goal.currentValue, total: goal.targetValue)
+            ProgressView(value: goal.progress)
                 .tint(goal.type.color)
         }
         .padding(.vertical, 4)

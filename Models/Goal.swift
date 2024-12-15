@@ -12,7 +12,8 @@ public final class Goal {
     public var name: String
     public var targetDate: Date
     public var type: WorkoutType
-    public var targetDistance: Double?
+    public var targetValue: Double
+    public var currentValue: Double
     public var completed: Bool
     
     public init(
@@ -20,15 +21,22 @@ public final class Goal {
         name: String,
         targetDate: Date,
         type: WorkoutType,
-        targetDistance: Double? = nil,
+        targetValue: Double,
+        currentValue: Double = 0,
         completed: Bool = false
     ) {
         self.id = id
         self.name = name
         self.targetDate = targetDate
         self.type = type
-        self.targetDistance = targetDistance
+        self.targetValue = targetValue
+        self.currentValue = currentValue
         self.completed = completed
+    }
+    
+    public var progress: Double {
+        guard targetValue > 0 else { return 0 }
+        return min(currentValue / targetValue, 1.0)
     }
 }
 
