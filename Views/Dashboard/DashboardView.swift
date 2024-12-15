@@ -6,35 +6,48 @@
 import SwiftUI
 import SwiftData
 import Charts
+import Models
 
-struct DashboardView: View {
+public struct DashboardView: View {
     @Environment(\.modelContext) private var modelContext
     @Query private var weeklyVolumes: [WeeklyVolume]
     @Query private var workouts: [Workout]
+    @Query private var goals: [Goal]
+    @Query private var trainingSessions: [TrainingSession]
     
-    init() {
+    public init() {
         let weeklySort = SortDescriptor<WeeklyVolume>(\.week, order: .reverse)
         _weeklyVolumes = Query(sort: [weeklySort])
-        let workoutSort = SortDescriptor<Workout>(\.date, order: .reverse)
+        
+        let workoutSort = SortDescriptor<Workout>(\.startDate, order: .reverse)
         _workouts = Query(sort: [workoutSort])
+        
+        let goalSort = SortDescriptor<Goal>(\.targetDate)
+        _goals = Query(sort: [goalSort])
+        
+        let sessionSort = SortDescriptor<TrainingSession>(\.date, order: .reverse)
+        _trainingSessions = Query(sort: [sessionSort])
     }
     
-    var body: some View {
+    public var body: some View {
         NavigationView {
             ScrollView {
                 VStack(spacing: 20) {
+                    MetricsSection(workouts: workouts)
+                        .padding(.horizontal)
+                    
                     WeeklyVolumeSection(weeklyVolumes: weeklyVolumes)
                         .padding(.horizontal)
                     
                     ChartSection(title: "Training Load") {
                         if weeklyVolumes.isEmpty {
                             Text("No data available")
-                                .foregroundColor(.secondary)
+                                .foregroundStyle(.secondary)
                         } else {
                             Chart(weeklyVolumes) { volume in
                                 LineMark(
                                     x: .value("Week", volume.week),
-                                    y: .value("TSS", volume.totalTSS)
+                                    y: .value("Hours", volume.swimHours + volume.bikeHours + volume.runHours)
                                 )
                             }
                             .frame(height: 200)

@@ -5,58 +5,53 @@
 
 import SwiftUI
 import Charts
-import SwiftData
+import Models
 
-struct WeeklyVolumeSection: View {
+public struct WeeklyVolumeSection: View {
     let weeklyVolumes: [WeeklyVolume]
-    private let dateFormatter: DateFormatter = {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "MMM d"
-        return formatter
-    }()
     
-    var body: some View {
-        ChartSection(title: "Weekly Volume") {
+    public init(weeklyVolumes: [WeeklyVolume]) {
+        self.weeklyVolumes = weeklyVolumes
+    }
+    
+    public var body: some View {
+        VStack(alignment: .leading, spacing: 8) {
+            Text("Weekly Volume")
+                .font(.headline)
+            
             if weeklyVolumes.isEmpty {
                 Text("No data available")
-                    .foregroundColor(.secondary)
+                    .foregroundStyle(.secondary)
             } else {
-                VStack {
-                    Chart {
-                        ForEach(weeklyVolumes.prefix(8)) { volume in
-                            BarMark(
-                                x: .value("Week", dateFormatter.string(from: volume.week)),
-                                y: .value("Hours", volume.swimHours)
-                            )
-                            .foregroundStyle(Color.blue)
-                            
-                            BarMark(
-                                x: .value("Week", dateFormatter.string(from: volume.week)),
-                                y: .value("Hours", volume.bikeHours)
-                            )
-                            .foregroundStyle(Color.green)
-                            
-                            BarMark(
-                                x: .value("Week", dateFormatter.string(from: volume.week)),
-                                y: .value("Hours", volume.runHours)
-                            )
-                            .foregroundStyle(Color.orange)
-                        }
-                    }
-                    .frame(height: 200)
-                    
-                    HStack(spacing: 16) {
-                        Label("Swim", systemImage: "circle.fill").foregroundColor(.blue)
-                        Label("Bike", systemImage: "circle.fill").foregroundColor(.green)
-                        Label("Run", systemImage: "circle.fill").foregroundColor(.orange)
-                    }
-                    .font(.caption)
+                Chart(weeklyVolumes) { volume in
+                    BarMark(
+                        x: .value("Week", volume.week, unit: .week),
+                        y: .value("Hours", volume.swimHours + volume.bikeHours + volume.runHours)
+                    )
+                    .foregroundStyle(by: .value("Sport", "Total"))
                 }
+                .frame(height: 200)
+                .chartForegroundStyleScale([
+                    "Total": Color.accentColor
+                ])
             }
         }
+        .padding()
+        .background(Color(.systemBackground))
+        .clipShape(RoundedRectangle(cornerRadius: 12))
+        .shadow(radius: 2)
     }
 }
 
 #Preview {
-    WeeklyVolumeSection(weeklyVolumes: [])
+    WeeklyVolumeSection(weeklyVolumes: [
+        WeeklyVolume(
+            week: Date(),
+            swimHours: 2,
+            bikeHours: 3,
+            runHours: 1
+        )
+    ])
+    .padding()
+    .background(Color(.systemGray6))
 }
