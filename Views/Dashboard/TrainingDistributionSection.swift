@@ -5,55 +5,66 @@
 
 import SwiftUI
 import Charts
+import Models
 
 struct TrainingDistributionSection: View {
-    @ObservedObject var viewModel: WorkoutViewModel
+    let workouts: [Workout]
     
     var body: some View {
         VStack(alignment: .leading, spacing: 16) {
             Text("Training Distribution")
                 .font(.headline)
             
-            if let workout = viewModel.workouts.first {
+            if let workout = workouts.first {
                 VStack(spacing: 20) {
-                    // Heart Rate Zones
-                    if let avgHR = workout.averageHeartRate,
-                       let maxHR = workout.maxHeartRate {
-                        HStack {
-                            Text("Heart Rate")
-                                .font(.subheadline)
-                            Spacer()
-                            Text("\(Int(avgHR)) bpm avg")
-                                .font(.caption)
-                                .foregroundColor(.secondary)
-                            Text("•")
-                                .foregroundColor(.secondary)
-                            Text("\(Int(maxHR)) bpm max")
-                                .font(.caption)
-                                .foregroundColor(.secondary)
-                        }
+                    // Duration Distribution
+                    HStack {
+                        Text("Duration")
+                            .font(.subheadline)
+                        Spacer()
+                        Text(formatDuration(workout.duration))
+                            .font(.caption)
+                            .foregroundStyle(.secondary)
                     }
                     
-                    // Intensity Score
-                    if let intensity = workout.intensityScore as Double? {
+                    // Distance if available
+                    if let distance = workout.distance {
                         HStack {
-                            Text("Intensity")
+                            Text("Distance")
                                 .font(.subheadline)
                             Spacer()
-                            Text(String(format: "%.2f", intensity))
+                            Text(String(format: "%.1f km", distance / 1000))
                                 .font(.caption)
-                                .foregroundColor(.secondary)
+                                .foregroundStyle(.secondary)
                         }
                     }
                 }
             } else {
                 Text("No workout data available")
-                    .foregroundColor(.secondary)
+                    .foregroundStyle(.secondary)
             }
         }
         .padding()
         .background(Color(.systemBackground))
-        .cornerRadius(12)
+        .clipShape(RoundedRectangle(cornerRadius: 12))
         .shadow(radius: 2)
     }
+    
+    private func formatDuration(_ duration: TimeInterval) -> String {
+        let hours = Int(duration) / 3600
+        let minutes = Int(duration) / 60 % 60
+        return String(format: "%d:%02d", hours, minutes)
+    }
+}
+
+#Preview {
+    TrainingDistributionSection(workouts: [
+        Workout(
+            type: .run,
+            startDate: Date(),
+            duration: 3600,
+            distance: 10000
+        )
+    ])
+    .padding()
 }
