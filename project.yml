@@ -16,39 +16,24 @@ targets:
       - path: Models
     dependencies:
       - sdk: SwiftUI.framework
-      - sdk: SwiftData.framework
-      - sdk: HealthKit.framework
-    settings:
-      base:
-        ENABLE_TESTABILITY: YES
-        DEFINES_MODULE: YES
-        BUILD_LIBRARY_FOR_DISTRIBUTION: YES
 
   HybridTrainer:
     type: application
     platform: iOS
     sources:
+      - path: Design
       - path: HybridTrainer
-      - path: Views
       - path: Utilities
+      - path: Views
       - path: Services
-      - path: .
-        excludes:
-          - "project.yml"
-          - "README.md"
-          - "LICENSE"
-          - "Models"
-          - "**/*.md"
     settings:
       base:
         INFOPLIST_FILE: HybridTrainer/Info.plist
         PRODUCT_BUNDLE_IDENTIFIER: com.nobelgirmay.HybridTrainer
-        DEVELOPMENT_TEAM: S84HXJP4K6
     dependencies:
       - target: Models
       - sdk: SwiftUI.framework
       - sdk: HealthKit.framework
-      - sdk: SwiftData.framework
     info:
       path: HybridTrainer/Info.plist
       properties:

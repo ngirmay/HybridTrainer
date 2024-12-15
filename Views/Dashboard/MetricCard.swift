@@ -19,6 +19,14 @@ enum TrendDirection {
         }
     }
     
+    var label: String {
+        switch self {
+        case .increasing: return "Up"
+        case .decreasing: return "Down"
+        case .neutral: return "Steady"
+        }
+    }
+    
     var color: Color {
         switch self {
         case .increasing: return .green
@@ -46,15 +54,15 @@ struct MetricCard: View {
             
             if workouts.isEmpty {
                 Text("No workouts yet")
-                    .foregroundColor(.secondary)
+                    .foregroundStyle(.secondary)
             } else {
                 Text("Recent workouts: \(workouts.count)")
-                    .foregroundColor(.secondary)
+                    .foregroundStyle(.secondary)
             }
         }
         .padding()
         .background(Color(.systemBackground))
-        .cornerRadius(12)
+        .clipShape(RoundedRectangle(cornerRadius: 12))
         .shadow(radius: 2)
     }
 }
@@ -67,40 +75,38 @@ struct TrendBadge: View {
             Image(systemName: direction.icon)
             Text(direction.label)
         }
-        .font(.system(.caption, design: .serif))
-        .padding(.horizontal, 12)
-        .padding(.vertical, 6)
+        .font(.caption.monospaced())
+        .padding(.horizontal, 8)
+        .padding(.vertical, 4)
         .background(direction.color.opacity(0.1))
-        .foregroundColor(direction.color)
-        .cornerRadius(8)
+        .foregroundStyle(direction.color)
+        .clipShape(RoundedRectangle(cornerRadius: 6))
     }
 }
 
-struct MetricCard_Previews: PreviewProvider {
-    static var previews: some View {
-        VStack {
-            MetricCard(
-                icon: "figure.run",
-                iconColor: .orange,
-                trend: .increasing,
-                workouts: []
-            )
-            
-            MetricCard(
-                icon: "figure.pool.swim",
-                iconColor: .blue,
-                trend: .decreasing,
-                workouts: []
-            )
-            
-            MetricCard(
-                icon: "bicycle",
-                iconColor: .green,
-                trend: .neutral,
-                workouts: []
-            )
-        }
-        .padding()
-        .background(Color(.systemGray6))
+#Preview {
+    VStack {
+        MetricCard(
+            icon: "figure.run",
+            iconColor: .orange,
+            trend: .increasing,
+            workouts: []
+        )
+        
+        MetricCard(
+            icon: "figure.pool.swim",
+            iconColor: .blue,
+            trend: .decreasing,
+            workouts: []
+        )
+        
+        MetricCard(
+            icon: "bicycle",
+            iconColor: .green,
+            trend: .neutral,
+            workouts: []
+        )
     }
+    .padding()
+    .background(Color(.systemGray6))
 }
