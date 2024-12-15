@@ -14,6 +14,12 @@ targets:
     deploymentTarget: "17.0"
     sources:
       - path: Models
+    settings:
+      base:
+        INFOPLIST_FILE: Models/Info.plist
+        PRODUCT_BUNDLE_IDENTIFIER: com.nobelgirmay.HybridTrainer.Models
+    info:
+      path: Models/Info.plist
     dependencies:
       - sdk: SwiftUI.framework
 
@@ -30,6 +36,7 @@ targets:
       base:
         INFOPLIST_FILE: HybridTrainer/Info.plist
         PRODUCT_BUNDLE_IDENTIFIER: com.nobelgirmay.HybridTrainer
+        CODE_SIGN_ENTITLEMENTS: HybridTrainer/HybridTrainer.entitlements
     dependencies:
       - target: Models
       - sdk: SwiftUI.framework
@@ -44,16 +51,15 @@ targets:
           UIApplicationSupportsMultipleScenes: true
         UISupportedInterfaceOrientations:
           - UIInterfaceOrientationPortrait
-          - UIInterfaceOrientationLandscapeLeft
-          - UIInterfaceOrientationLandscapeRight
+        UIRequiresFullScreen: true
         UISupportedInterfaceOrientations~ipad:
           - UIInterfaceOrientationPortrait
-          - UIInterfaceOrientationPortraitUpsideDown
-          - UIInterfaceOrientationLandscapeLeft
-          - UIInterfaceOrientationLandscapeRight
+
     entitlements:
-      com.apple.developer.healthkit: true
-      com.apple.developer.healthkit.access: []
+      properties:
+        com.apple.developer.healthkit: true
+        com.apple.developer.healthkit.access: []
+        com.apple.developer.healthkit.background-delivery: false
 
   HybridTrainerTests:
     type: bundle.unit-test
