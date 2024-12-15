@@ -20,10 +20,10 @@ class DependencyContainer {
             Goal.self,
             TrainingSession.self,
             WeeklyVolume.self
-        ], 
-        versionedSchema: nil)
+        ])
         
         do {
+            // Create container with just the schema
             modelContainer = try ModelContainer(for: schema)
             modelContext = ModelContext(modelContainer)
             workoutService = WorkoutDataService(
