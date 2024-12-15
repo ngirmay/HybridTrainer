@@ -99,6 +99,7 @@
 		54D11A8A11D8A23351D0FC70 /* HybridTrainerUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HybridTrainerUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		56C53A36DE9327B58E90B449 /* TrainingSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingSession.swift; sourceTree = "<group>"; };
 		5C2BEC2E1913E59BCCF01CF1 /* Workout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Workout.swift; sourceTree = "<group>"; };
+		65A4C42B67EAB7DB97E8CD07 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		69C8074B2BC7D96A7E508F3B /* HybridTrainerTests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = HybridTrainerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6ACA4AB3A07BDDEB22CA1232 /* WorkoutRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutRow.swift; sourceTree = "<group>"; };
 		718C08EFE6746C813662A502 /* MetricsSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetricsSection.swift; sourceTree = "<group>"; };
@@ -231,6 +232,7 @@
 			isa = PBXGroup;
 			children = (
 				2DC8FE44793294B4DEC297CE /* Goal.swift */,
+				65A4C42B67EAB7DB97E8CD07 /* Info.plist */,
 				8CC8055C42028A3DA15332D2 /* Item.swift */,
 				2A9CF945DA8634170F943903 /* TrainingLoad.swift */,
 				56C53A36DE9327B58E90B449 /* TrainingSession.swift */,
@@ -560,6 +562,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = Models/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -672,6 +675,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = Models/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
