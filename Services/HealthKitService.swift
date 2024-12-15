@@ -6,6 +6,7 @@
 import Foundation
 import HealthKit
 import SwiftData
+import Models
 
 class HealthKitService {
     static let shared = HealthKitService()
@@ -56,16 +57,12 @@ class HealthKitService {
         return try await withThrowingTaskGroup(of: Workout.self) { group in
             for hkWorkout in workouts {
                 group.addTask {
-                    let (avgHR, maxHR) = try await self.fetchHeartRateData(for: hkWorkout)
-                    
                     return Workout(
-                        date: hkWorkout.startDate,
                         type: WorkoutType.from(healthKitType: hkWorkout.workoutActivityType),
+                        startDate: hkWorkout.startDate,
                         duration: hkWorkout.duration,
-                        distance: hkWorkout.totalDistance?.doubleValue(for: .meter()) ?? 0,
-                        calories: hkWorkout.totalEnergyBurned?.doubleValue(for: .kilocalorie()) ?? 0,
-                        averageHeartRate: avgHR,
-                        maxHeartRate: maxHR
+                        distance: hkWorkout.totalDistance?.doubleValue(for: .meter()),
+                        calories: hkWorkout.totalEnergyBurned?.doubleValue(for: .kilocalorie())
                     )
                 }
             }
@@ -74,32 +71,7 @@ class HealthKitService {
             for try await workout in group {
                 processedWorkouts.append(workout)
             }
-            return processedWorkouts
-        }
-    }
-    
-    private func fetchHeartRateData(for workout: HKWorkout) async throws -> (average: Double?, max: Double?) {
-        let heartRateType = HKObjectType.quantityType(forIdentifier: .heartRate)!
-        let predicate = HKQuery.predicateForSamples(withStart: workout.startDate, end: workout.endDate)
-        
-        return try await withCheckedThrowingContinuation { continuation in
-            let query = HKStatisticsQuery(
-                quantityType: heartRateType,
-                quantitySamplePredicate: predicate,
-                options: [.discreteAverage, .discreteMax]
-            ) { _, statistics, error in
-                if let error = error {
-                    continuation.resume(throwing: error)
-                    return
-                }
-                
-                let avgHeartRate = statistics?.averageQuantity()?.doubleValue(for: HKUnit.count().unitDivided(by: .minute()))
-                let maxHeartRate = statistics?.maximumQuantity()?.doubleValue(for: HKUnit.count().unitDivided(by: .minute()))
-                
-                continuation.resume(returning: (avgHeartRate, maxHeartRate))
-            }
-            
-            healthStore.execute(query)
+            return processedWorkouts.sorted { $0.startDate > $1.startDate }
         }
     }
 }

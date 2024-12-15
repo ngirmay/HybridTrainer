@@ -5,6 +5,7 @@
 
 import SwiftUI
 import Charts
+import Models
 
 struct ChartSection<Content: View>: View {
     let title: String
@@ -23,14 +24,14 @@ struct ChartSection<Content: View>: View {
         }
         .padding()
         .background(Color(.systemBackground))
-        .cornerRadius(12)
+        .clipShape(RoundedRectangle(cornerRadius: 12))
         .shadow(radius: 2)
     }
 }
 
 #Preview {
     ChartSection(title: "Training Load") {
-        // Placeholder for the content
+        Text("Chart Content")
     }
-    .modelContainer(for: WeeklyVolume.self, inMemory: true)
+    .padding()
 }

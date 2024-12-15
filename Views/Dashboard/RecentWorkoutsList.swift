@@ -4,6 +4,7 @@
 //
 
 import SwiftUI
+import Models
 
 struct RecentWorkoutsList: View {
     let workouts: [Workout]
@@ -15,7 +16,7 @@ struct RecentWorkoutsList: View {
             
             if workouts.isEmpty {
                 Text("No recent workouts")
-                    .foregroundColor(.secondary)
+                    .foregroundStyle(.secondary)
                     .frame(maxWidth: .infinity, alignment: .center)
                     .padding()
             } else {
@@ -28,5 +29,12 @@ struct RecentWorkoutsList: View {
 }
 
 #Preview {
-    RecentWorkoutsList(workouts: [])
+    RecentWorkoutsList(workouts: [
+        Workout(
+            type: .run,
+            startDate: Date(),
+            duration: 3600,
+            distance: 10000
+        )
+    ])
 }

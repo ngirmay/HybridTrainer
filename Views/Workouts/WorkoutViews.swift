@@ -10,7 +10,7 @@ import SwiftUI
 import Models
 
 struct WorkoutsView: View {
-    let workouts: [Workout]
+    @Query private var workouts: [Workout]
     
     var body: some View {
         List {
@@ -23,13 +23,7 @@ struct WorkoutsView: View {
 }
 
 #Preview {
-    WorkoutsView(workouts: [
-        Workout(
-            type: .run,
-            startDate: Date(),
-            duration: 3600,
-            distance: 10000
-        )
-    ])
+    WorkoutsView()
+        .modelContainer(for: [Workout.self], inMemory: true)
 }
 
