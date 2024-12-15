@@ -29,6 +29,7 @@ targets:
     sources:
       - path: Design
       - path: HybridTrainer
+      - path: ViewModels
       - path: Utilities
       - path: Views
       - path: Services
