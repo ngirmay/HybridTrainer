@@ -4,14 +4,17 @@
 //
 
 import Foundation
+import SwiftData
+import HealthKit
 
-public struct Workout: Identifiable {
-    public let id: UUID
-    public let type: WorkoutType
-    public let startDate: Date
-    public let duration: TimeInterval
-    public let distance: Double? // in meters
-    public let calories: Double?
+@Model
+public final class Workout {
+    public var id: UUID
+    public var type: WorkoutType
+    public var startDate: Date
+    public var duration: TimeInterval
+    public var distance: Double? // in meters
+    public var calories: Double?
     
     public init(
         id: UUID = UUID(),
