@@ -1,6 +1,7 @@
 import SwiftUI
 import SwiftData
 import Models
+import HealthKit
 
 @main
 struct HybridTrainerApp: App {
@@ -20,6 +21,15 @@ struct HybridTrainerApp: App {
                 allowsSave: true
             )
             container = try ModelContainer(for: schema, configurations: modelConfiguration)
+            
+            // Request HealthKit authorization
+            Task {
+                do {
+                    try await HealthKitService.shared.requestAuthorization()
+                } catch {
+                    print("HealthKit authorization failed: \(error)")
+                }
+            }
         } catch {
             fatalError("Failed to initialize ModelContainer: \(error)")
         }

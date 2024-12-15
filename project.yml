@@ -29,17 +29,10 @@ targets:
     platform: iOS
     sources:
       - path: HybridTrainer
-        excludes:
-          - "HybridTrainerApp.swift"
       - path: Views
-        excludes:
-          - "**/WorkoutRow.swift"
-      - path: Views/Workouts/WorkoutRow.swift
       - path: Utilities
       - path: Services
       - path: .
-        includes:
-          - "HybridTrainerApp.swift"
         excludes:
           - "project.yml"
           - "README.md"
