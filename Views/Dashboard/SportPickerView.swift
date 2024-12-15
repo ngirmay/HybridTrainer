@@ -50,6 +50,7 @@ private struct SportButton: View {
         Button(action: action) {
             HStack {
                 Image(systemName: type.icon)
+                    .foregroundStyle(type.displayColor)
                 Text(type.rawValue.capitalized)
             }
             .padding(.horizontal, 12)

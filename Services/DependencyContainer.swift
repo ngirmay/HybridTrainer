@@ -21,7 +21,7 @@ class DependencyContainer {
             TrainingSession.self,
             WeeklyVolume.self
         ], 
-        version: SchemaVersion(1, 0, 0))
+        versionedSchema: nil)
         
         do {
             modelContainer = try ModelContainer(for: schema)

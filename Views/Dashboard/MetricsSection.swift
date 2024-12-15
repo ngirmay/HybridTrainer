@@ -28,12 +28,7 @@ public struct MetricsSection: View {
     }
     
     private func typeColor(for type: WorkoutType) -> Color {
-        switch type {
-        case .swim: return .blue
-        case .bike: return .green
-        case .run: return .orange
-        case .strength: return .purple
-        }
+        return type.displayColor
     }
     
     private func calculateTrend(for workouts: [Workout]) -> TrendDirection {

@@ -8,19 +8,16 @@
 import SwiftUI
 
 struct TrainingCard: View {
-    let icon: String
-    let iconColor: Color
-    let title: String
-    let subtitle: String
+    let session: TrainingSession
     
     var body: some View {
         VStack(alignment: .leading, spacing: 12) {
-            Image(systemName: icon)
+            Image(systemName: session.type.icon)
                 .font(.title)
-                .foregroundColor(iconColor)
-            Text(title)
+                .foregroundStyle(session.type.displayColor)
+            Text(session.title)
                 .font(.headline)
-            Text(subtitle)
+            Text(session.subtitle)
                 .font(.subheadline)
                 .foregroundColor(.secondary)
         }

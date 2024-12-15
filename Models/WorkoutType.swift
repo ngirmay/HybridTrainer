@@ -16,10 +16,10 @@ public enum WorkoutType: String, Codable, Hashable, CaseIterable {
     
     public var color: Color {
         switch self {
-        case .swim: return Theme.Colors.swim
-        case .bike: return Theme.Colors.bike
-        case .run: return Theme.Colors.run
-        case .strength: return Theme.Colors.strength
+        case .swim: return .blue
+        case .bike: return .green
+        case .run: return .orange
+        case .strength: return .purple
         }
     }
     

@@ -79,7 +79,7 @@ struct WorkoutDetailView: View {
             Section {
                 HStack {
                     Image(systemName: workout.type.icon)
-                        .foregroundStyle(workout.type.color)
+                        .foregroundStyle(workout.type.displayColor)
                         .font(.title2)
                     Text(workout.type.rawValue.capitalized)
                         .font(.headline)

@@ -31,7 +31,7 @@ public struct GoalCard: View {
                     // Progress hexagon
                     RegularPolygon(sides: 6)
                         .trim(from: 0, to: goal.progress)
-                        .stroke(goal.type.color, lineWidth: 2)
+                        .stroke(goal.type.displayColor, lineWidth: 2)
                         .frame(width: hexagonSize, height: hexagonSize)
                     
                     // Icon
@@ -67,7 +67,7 @@ public struct GoalCard: View {
                     
                     // Progress bar
                     Capsule()
-                        .fill(goal.type.color)
+                        .fill(goal.type.displayColor)
                         .frame(width: geometry.size.width * goal.progress, height: 4)
                 }
             }

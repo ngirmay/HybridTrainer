@@ -29,30 +29,30 @@ public struct WeeklyVolumeSection: View {
                             x: .value("Week", volume.week, unit: .weekOfYear),
                             y: .value("Hours", volume.swimHours)
                         )
-                        .foregroundStyle(.blue)
+                        .foregroundStyle(WorkoutType.swim.displayColor)
                         
                         BarMark(
                             x: .value("Week", volume.week, unit: .weekOfYear),
                             y: .value("Hours", volume.bikeHours)
                         )
-                        .foregroundStyle(.green)
+                        .foregroundStyle(WorkoutType.bike.displayColor)
                         
                         BarMark(
                             x: .value("Week", volume.week, unit: .weekOfYear),
                             y: .value("Hours", volume.runHours)
                         )
-                        .foregroundStyle(.orange)
+                        .foregroundStyle(WorkoutType.run.displayColor)
                     }
                 }
                 .frame(height: 200)
                 .chartLegend(position: .bottom) {
                     HStack(spacing: 16) {
                         Label("Swim", systemImage: "circle.fill")
-                            .foregroundStyle(.blue)
+                            .foregroundStyle(WorkoutType.swim.displayColor)
                         Label("Bike", systemImage: "circle.fill")
-                            .foregroundStyle(.green)
+                            .foregroundStyle(WorkoutType.bike.displayColor)
                         Label("Run", systemImage: "circle.fill")
-                            .foregroundStyle(.orange)
+                            .foregroundStyle(WorkoutType.run.displayColor)
                     }
                     .font(.caption)
                 }

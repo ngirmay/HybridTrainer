@@ -71,7 +71,7 @@ struct TrainingSessionRow: View {
         VStack(alignment: .leading, spacing: 8) {
             HStack {
                 Image(systemName: session.type.icon)
-                    .foregroundStyle(session.type.color)
+                    .foregroundStyle(session.type.displayColor)
                 Text(session.date.formatted(date: .abbreviated, time: .shortened))
                     .font(.headline)
             }

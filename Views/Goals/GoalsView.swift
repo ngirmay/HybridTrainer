@@ -76,7 +76,7 @@ struct GoalRow: View {
             
             HStack {
                 Image(systemName: goal.type.icon)
-                    .foregroundStyle(goal.type.color)
+                    .foregroundStyle(goal.type.displayColor)
                 Text(goal.targetDate.formatted(date: .abbreviated, time: .omitted))
                     .foregroundStyle(.secondary)
                 Spacer()
@@ -85,7 +85,7 @@ struct GoalRow: View {
             }
             
             ProgressView(value: goal.progress)
-                .tint(goal.type.color)
+                .tint(goal.type.displayColor)
         }
         .padding(.vertical, 4)
     }

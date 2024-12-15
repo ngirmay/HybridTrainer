@@ -8,6 +8,7 @@ struct WorkoutRow: View {
         VStack(alignment: .leading) {
             HStack {
                 Image(systemName: workout.type.icon)
+                    .foregroundStyle(workout.type.displayColor)
                 Text(workout.startDate.formatted(date: .abbreviated, time: .shortened))
                 Spacer()
                 Text(formatDuration(workout.duration))

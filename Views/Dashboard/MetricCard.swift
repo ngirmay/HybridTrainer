@@ -46,7 +46,7 @@ struct MetricCard: View {
         VStack(alignment: .leading, spacing: 12) {
             HStack {
                 Image(systemName: icon)
-                    .foregroundColor(iconColor)
+                    .foregroundStyle(iconColor)
                     .font(.title2)
                 Spacer()
                 TrendBadge(direction: trend)
