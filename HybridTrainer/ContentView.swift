@@ -6,49 +6,52 @@
 //
 // ContentView.swift
 import SwiftUI
+import SwiftData
+import Models
 
 struct ContentView: View {
+    @Environment(\.modelContext) private var modelContext
+    @Query private var workouts: [Workout]
+    @Query private var goals: [Goal]
+    @Query private var trainingSessions: [TrainingSession]
+    
     var body: some View {
         TabView {
-            DashboardWrapper()
-                .tabItem {
-                    Label("Dashboard", systemImage: "house.fill")
+            NavigationStack {
+                List {
+                    ForEach(workouts) { workout in
+                        WorkoutRow(workout: workout)
+                    }
                 }
+                .navigationTitle("Workouts")
+            }
+            .tabItem {
+                Label("Workouts", systemImage: "figure.run")
+            }
             
-            WorkoutWrapper()
-                .tabItem {
-                    Label("Train", systemImage: "figure.run")
+            NavigationStack {
+                List {
+                    ForEach(goals) { goal in
+                        Text(goal.name)
+                    }
                 }
+                .navigationTitle("Goals")
+            }
+            .tabItem {
+                Label("Goals", systemImage: "target")
+            }
             
-            GoalWrapper()
-                .tabItem {
-                    Label("Goals", systemImage: "target")
+            NavigationStack {
+                List {
+                    ForEach(trainingSessions) { session in
+                        Text(session.date.formatted(date: .abbreviated, time: .shortened))
+                    }
                 }
-        }
-    }
-}
-
-// Wrappers for each section to simplify type inference
-private struct DashboardWrapper: View {
-    var body: some View {
-        NavigationStack {
-            DashboardView()
-        }
-    }
-}
-
-private struct WorkoutWrapper: View {
-    var body: some View {
-        NavigationStack {
-            WorkoutViews()
-        }
-    }
-}
-
-private struct GoalWrapper: View {
-    var body: some View {
-        NavigationStack {
-            GoalsView()
+                .navigationTitle("Training")
+            }
+            .tabItem {
+                Label("Training", systemImage: "calendar")
+            }
         }
     }
 }
@@ -56,4 +59,5 @@ private struct GoalWrapper: View {
 #Preview {
     ContentView()
 }
+
 
