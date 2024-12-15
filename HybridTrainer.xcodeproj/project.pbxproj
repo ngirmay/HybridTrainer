@@ -40,6 +40,7 @@
 		A3AB863418DA8130582DE6C2 /* TrendDirection.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8826E674668BCD69D3E9414 /* TrendDirection.swift */; };
 		AD0445E351CE97B6F6102E8B /* GoalCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = F99140FEDC4A001A07E345E4 /* GoalCard.swift */; };
 		AF9416574F97699BCBCED4CF /* GoalsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05885225B7CB6E41A69BDEF9 /* GoalsView.swift */; };
+		B3A9967611E0ADF3E4EA833F /* WorkoutType+Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD2C0BF6B858B2A96B362CDD /* WorkoutType+Color.swift */; };
 		B75D25D1AF4D959212CAE8CF /* HealthKitService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80BB9FA9510E49303D5622D /* HealthKitService.swift */; };
 		C0B9CB44C100EB7F7A4CCBD0 /* SportPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAC712EB02843979A1E89651 /* SportPickerView.swift */; };
 		C25A7196A71C46112F05229B /* WeeklyVolume.swift in Sources */ = {isa = PBXBuildFile; fileRef = 915D511B5F05CFEAA0625FE5 /* WeeklyVolume.swift */; };
@@ -140,6 +141,7 @@
 		F03A22331E2E9A73D024B911 /* HybridTrainer.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = HybridTrainer.entitlements; sourceTree = "<group>"; };
 		F767D0190A07CC90BB876305 /* DependencyContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DependencyContainer.swift; sourceTree = "<group>"; };
 		F99140FEDC4A001A07E345E4 /* GoalCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalCard.swift; sourceTree = "<group>"; };
+		FD2C0BF6B858B2A96B362CDD /* WorkoutType+Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WorkoutType+Color.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -205,13 +207,6 @@
 				E9EDBD2555CF8E527022A334 /* Extensions */,
 			);
 			path = Design;
-			sourceTree = "<group>";
-		};
-		2794FE8ACE4D78CCA931BACF /* ViewModels */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = ViewModels;
 			sourceTree = "<group>";
 		};
 		5CBA481599D536A9C1090661 /* Components */ = {
@@ -329,6 +324,14 @@
 			path = ViewModels;
 			sourceTree = "<group>";
 		};
+		E855BBD707DD9073CAB92418 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				FD2C0BF6B858B2A96B362CDD /* WorkoutType+Color.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		E9D2241B783E35440F5E7C98 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -351,9 +354,9 @@
 			children = (
 				5CBA481599D536A9C1090661 /* Components */,
 				BDB440DACD001B17A7EA3AC2 /* Dashboard */,
+				E855BBD707DD9073CAB92418 /* Extensions */,
 				BB6A20906508F3F99515F4B0 /* Goals */,
 				B310351CFE6D96ED9ED6DA78 /* Training */,
-				2794FE8ACE4D78CCA931BACF /* ViewModels */,
 				B98F8E79843588EBB8E1687D /* Workouts */,
 			);
 			path = Views;
@@ -538,6 +541,7 @@
 				0BF6A0D16204F633F810DA92 /* WeeklyVolumeSection.swift in Sources */,
 				79F18535808029C556C26CD7 /* WorkoutDataService.swift in Sources */,
 				195AC20569A9C12B00DEC671 /* WorkoutRow.swift in Sources */,
+				B3A9967611E0ADF3E4EA833F /* WorkoutType+Color.swift in Sources */,
 				60B090ADA97CEAABE63BFD5E /* WorkoutViewModel.swift in Sources */,
 				99AF5E91D9631B408809EDD4 /* WorkoutViews.swift in Sources */,
 			);

@@ -32,7 +32,6 @@ targets:
       - path: ViewModels
       - path: Utilities
       - path: Views
-      - path: Views/Extensions
       - path: Services
     settings:
       base:
