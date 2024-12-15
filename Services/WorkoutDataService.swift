@@ -1,3 +1,7 @@
+import Foundation
+import SwiftData
+import Models
+
 protocol WorkoutDataServiceProtocol {
     func fetchWorkouts(from: Date?) async throws -> [DetailedWorkout]
     func saveWorkout(_ workout: DetailedWorkout) async throws

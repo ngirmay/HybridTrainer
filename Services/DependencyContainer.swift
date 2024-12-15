@@ -1,3 +1,7 @@
+import SwiftUI
+import SwiftData
+import Models
+
 @MainActor
 class DependencyContainer {
     let healthKitManager: HealthKitManager

@@ -1,3 +1,6 @@
+import SwiftUI
+import Models
+
 @MainActor
 class WorkoutViewModel: ObservableObject {
     @Published private(set) var workouts: [DetailedWorkout] = []

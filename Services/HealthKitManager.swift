@@ -5,6 +5,7 @@
 
 import HealthKit
 import Foundation
+import CoreLocation
 import Models
 
 enum HealthKitError: Error {
