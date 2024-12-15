@@ -1,13 +1,13 @@
 import Foundation
 import HealthKit
 
-enum WorkoutType: String, Codable, Hashable, CaseIterable {
+public enum WorkoutType: String, Codable, Hashable, CaseIterable {
     case swim
     case bike
     case run
     case strength
     
-    var icon: String {
+    public var icon: String {
         switch self {
         case .swim: return "figure.pool.swim"
         case .bike: return "bicycle"
@@ -16,7 +16,7 @@ enum WorkoutType: String, Codable, Hashable, CaseIterable {
         }
     }
     
-    var healthKitType: HKWorkoutActivityType {
+    public var healthKitType: HKWorkoutActivityType {
         switch self {
         case .swim: return .swimming
         case .bike: return .cycling
@@ -25,7 +25,7 @@ enum WorkoutType: String, Codable, Hashable, CaseIterable {
         }
     }
     
-    static func from(healthKitType: HKWorkoutActivityType) -> WorkoutType {
+    public static func from(healthKitType: HKWorkoutActivityType) -> WorkoutType {
         switch healthKitType {
         case .swimming: return .swim
         case .cycling: return .bike

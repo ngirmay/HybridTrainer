@@ -23,14 +23,9 @@ targets:
     sources:
       - path: Design
       - path: HybridTrainer
+      - path: Utilities
       - path: Views
       - path: Services
-      - path: Utilities
-      - path: .
-        excludes:
-          - "project.yml"
-          - "README.md"
-          - "LICENSE"
     settings:
       base:
         INFOPLIST_FILE: HybridTrainer/Info.plist
