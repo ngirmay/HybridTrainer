@@ -88,6 +88,8 @@ public struct GoalCard: View {
 // Helper shape for hexagon
 struct RegularPolygon: Shape {
     let sides: Int
+    var trimFrom: Double = 0
+    var trimTo: Double = 1.0
     
     func path(in rect: CGRect) -> Path {
         let center = CGPoint(x: rect.width / 2, y: rect.height / 2)
@@ -98,22 +100,39 @@ struct RegularPolygon: Shape {
         
         for i in 0..<sides {
             let currentAngle = angle * Double(i) - Double.pi / 2
+            let nextAngle = angle * Double(i + 1) - Double.pi / 2
+            
+            let progress = Double(i) / Double(sides)
+            let nextProgress = Double(i + 1) / Double(sides)
+            
+            // Skip segments before trim start
+            guard nextProgress > trimFrom else { continue }
+            // Stop after trim end
+            guard progress < trimTo else { break }
+            
             let x = center.x + CGFloat(cos(currentAngle)) * radius
             let y = center.y + CGFloat(sin(currentAngle)) * radius
             
-            if i == 0 {
+            if path.isEmpty {
                 path.move(to: CGPoint(x: x, y: y))
             } else {
                 path.addLine(to: CGPoint(x: x, y: y))
             }
+            
+            // Add final point for the segment
+            let nextX = center.x + CGFloat(cos(nextAngle)) * radius
+            let nextY = center.y + CGFloat(sin(nextAngle)) * radius
+            path.addLine(to: CGPoint(x: nextX, y: nextY))
         }
         
-        path.closeSubpath()
         return path
     }
     
-    func trim(from: Double, to: Double) -> some Shape {
-        TrimmedShape(shape: self, from: from, to: to)
+    func trim(from: Double, to: Double) -> RegularPolygon {
+        var shape = self
+        shape.trimFrom = from
+        shape.trimTo = to
+        return shape
     }
 }
 
