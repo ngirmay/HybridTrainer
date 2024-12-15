@@ -16,8 +16,8 @@ targets:
       - path: Models
     dependencies:
       - sdk: SwiftUI.framework
-      - sdk: HealthKit.framework
       - sdk: SwiftData.framework
+      - sdk: HealthKit.framework
     settings:
       base:
         ENABLE_TESTABILITY: YES
@@ -44,7 +44,6 @@ targets:
         INFOPLIST_FILE: HybridTrainer/Info.plist
         PRODUCT_BUNDLE_IDENTIFIER: com.nobelgirmay.HybridTrainer
         DEVELOPMENT_TEAM: S84HXJP4K6
-        SWIFT_ACTIVE_COMPILATION_CONDITIONS: DEBUG
     dependencies:
       - target: Models
       - sdk: SwiftUI.framework

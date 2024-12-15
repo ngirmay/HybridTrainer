@@ -7,12 +7,16 @@
 
 // Views/Workouts/WorkoutViews.swift
 import SwiftUI
+import SwiftData
 import Models
 
-struct WorkoutsView: View {
-    @Query private var workouts: [Workout]
+public struct WorkoutsView: View {
+    @Environment(\.modelContext) private var modelContext
+    @Query(sort: \Workout.startDate, order: .reverse) private var workouts: [Workout]
     
-    var body: some View {
+    public init() {}
+    
+    public var body: some View {
         List {
             ForEach(workouts) { workout in
                 WorkoutRow(workout: workout)
