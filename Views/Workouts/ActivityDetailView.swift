@@ -3,7 +3,6 @@ import Charts
 import Models
 
 struct ActivityDetailView: View {
-    @Environment(\.modelContext) private var modelContext
     let workoutType: WorkoutType
     let workouts: [Workout]
     
@@ -53,10 +52,8 @@ struct ActivityDetailView: View {
                         .foregroundStyle(Theme.Colors.primary)
                     
                     ForEach(filteredWorkouts) { workout in
-                        NavigationLink(value: workout) {
-                            WorkoutRow(workout: workout)
-                                .padding(.vertical, 4)
-                        }
+                        WorkoutRow(workout: workout)
+                            .padding(.vertical, 4)
                     }
                 }
                 .padding()
