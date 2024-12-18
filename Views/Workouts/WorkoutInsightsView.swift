@@ -58,21 +58,27 @@ struct WorkoutInsightsView: View {
                     title: "Run",
                     value: String(format: "%.1f km", weeklyStats.run),
                     icon: "figure.run",
-                    color: Theme.Colors.run
+                    color: Theme.Colors.run,
+                    workoutType: .run,
+                    workouts: workouts
                 )
                 
                 InsightCard(
                     title: "Bike",
                     value: String(format: "%.1f km", weeklyStats.bike),
                     icon: "bicycle",
-                    color: Theme.Colors.bike
+                    color: Theme.Colors.bike,
+                    workoutType: .bike,
+                    workouts: workouts
                 )
                 
                 InsightCard(
                     title: "Swim",
                     value: String(format: "%.1f km", weeklyStats.swim),
                     icon: "figure.pool.swim",
-                    color: Theme.Colors.swim
+                    color: Theme.Colors.swim,
+                    workoutType: .swim,
+                    workouts: workouts
                 )
             }
             
@@ -113,24 +119,29 @@ struct InsightCard: View {
     let value: String
     let icon: String
     let color: Color
+    let workoutType: WorkoutType
+    let workouts: [Workout]
     
     var body: some View {
-        VStack(alignment: .leading, spacing: 8) {
-            HStack {
-                Image(systemName: icon)
-                    .foregroundStyle(color)
-                Text(title)
-                    .foregroundStyle(Theme.Colors.secondary)
+        NavigationLink(destination: ActivityDetailView(workoutType: workoutType, workouts: workouts)) {
+            VStack(alignment: .leading, spacing: 8) {
+                HStack {
+                    Image(systemName: icon)
+                        .foregroundStyle(color)
+                    Text(title)
+                        .foregroundStyle(Theme.Colors.secondary)
+                }
+                .font(.subheadline)
+                
+                Text(value)
+                    .font(.title2.bold())
+                    .foregroundStyle(Theme.Colors.primary)
             }
-            .font(.subheadline)
-            
-            Text(value)
-                .font(.title2.bold())
-                .foregroundStyle(Theme.Colors.primary)
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .padding()
+            .background(Theme.Colors.cardBackground)
+            .cornerRadius(Theme.Metrics.cornerRadius)
         }
-        .frame(maxWidth: .infinity, alignment: .leading)
-        .padding()
-        .background(Theme.Colors.cardBackground)
-        .cornerRadius(Theme.Metrics.cornerRadius)
+        .buttonStyle(.plain)
     }
 } 
