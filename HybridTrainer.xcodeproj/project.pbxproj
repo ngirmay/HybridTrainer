@@ -583,7 +583,7 @@
 				88D2E84535739FAC4B120C93 /* ContentView.swift in Sources */,
 				E6592999DC2CC742D9080F1C /* DashboardView.swift in Sources */,
 				515BC343902EC5A4DE2F20C7 /* DependencyContainer.swift in Sources */,
-				5FCCAB1066CD54E72270F601 /* GoalCard.swift in Sources */,
+				AD0445E351CE97B6F6102E8B /* GoalCard.swift in Sources */,
 				9A0DE63D21029FDE22C0202A /* GoalRow.swift in Sources */,
 				AF9416574F97699BCBCED4CF /* GoalsView.swift in Sources */,
 				43203A9DC66BD1C287596BB6 /* HealthKitManager.swift in Sources */,
