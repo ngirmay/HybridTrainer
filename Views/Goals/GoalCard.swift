@@ -1,1 +1,0 @@
-// Delete this file if it exists, as we're using GoalRow now 
