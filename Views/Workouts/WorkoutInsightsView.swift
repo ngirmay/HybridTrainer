@@ -123,7 +123,9 @@ struct InsightCard: View {
     let workouts: [Workout]
     
     var body: some View {
-        NavigationLink(destination: ActivityDetailView(workoutType: workoutType, workouts: workouts)) {
+        NavigationLink {
+            ActivityDetailView(workoutType: workoutType, workouts: workouts)
+        } label: {
             VStack(alignment: .leading, spacing: 8) {
                 HStack {
                     Image(systemName: icon)

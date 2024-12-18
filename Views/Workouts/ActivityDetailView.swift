@@ -3,6 +3,7 @@ import Charts
 import Models
 
 struct ActivityDetailView: View {
+    @Environment(\.modelContext) private var modelContext
     let workoutType: WorkoutType
     let workouts: [Workout]
     
@@ -52,8 +53,10 @@ struct ActivityDetailView: View {
                         .foregroundStyle(Theme.Colors.primary)
                     
                     ForEach(filteredWorkouts) { workout in
-                        WorkoutRow(workout: workout)
-                            .padding(.vertical, 4)
+                        NavigationLink(value: workout) {
+                            WorkoutRow(workout: workout)
+                                .padding(.vertical, 4)
+                        }
                     }
                 }
                 .padding()
@@ -64,6 +67,9 @@ struct ActivityDetailView: View {
         }
         .background(Theme.Colors.background)
         .navigationTitle(workoutType.rawValue.capitalized)
+        .navigationDestination(for: Workout.self) { workout in
+            WorkoutDetailView(workout: workout)
+        }
     }
 }
 
@@ -91,4 +97,17 @@ private struct StatCard: View {
         .background(Theme.Colors.cardBackground)
         .cornerRadius(Theme.Metrics.cornerRadius)
     }
+}
+
+#Preview {
+    NavigationStack {
+        ActivityDetailView(
+            workoutType: .run,
+            workouts: [
+                Workout(type: .run, startDate: Date(), duration: 3600, distance: 10000),
+                Workout(type: .run, startDate: Date().addingTimeInterval(-86400), duration: 3000, distance: 8000)
+            ]
+        )
+    }
+    .modelContainer(for: [Workout.self], inMemory: true)
 } 
