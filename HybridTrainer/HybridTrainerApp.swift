@@ -10,8 +10,8 @@ struct HybridTrainerApp: App {
     init() {
         do {
             container = try ModelContainer(
-                for: [
-                    Goal.self,
+                for: Goal.self,
+                additionalTypes: [
                     Workout.self,
                     TrainingSession.self,
                     WeeklyVolume.self
