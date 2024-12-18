@@ -2,6 +2,7 @@ import Foundation
 import SwiftData
 import Models
 
+@MainActor
 class DependencyContainer {
     static let shared = DependencyContainer()
     

@@ -14,13 +14,8 @@ public struct WorkoutsView: View {
     @StateObject private var viewModel: WorkoutViewModel
     
     public init() {
-        // Create the view model using a temporary context to avoid self capture
-        let tempContext = DependencyContainer.shared.modelContainer.mainContext
-        _viewModel = StateObject(
-            wrappedValue: DependencyContainer.shared.makeWorkoutViewModel(
-                modelContext: tempContext
-            )
-        )
+        // Initialize with a temporary view model - will be updated in onAppear
+        _viewModel = StateObject(wrappedValue: WorkoutViewModel(modelContext: ModelContext(DependencyContainer.shared.modelContainer)))
     }
     
     public var body: some View {
