@@ -17,8 +17,7 @@ struct GoalsView: View {
     @State private var showingAddGoal = false
     
     init() {
-        let context = ModelContext(try! ModelContainer(for: Goal.self))
-        _viewModel = StateObject(wrappedValue: GoalsViewModel(modelContext: context))
+        _viewModel = StateObject(wrappedValue: GoalsViewModel(modelContext: modelContext))
     }
     
     var body: some View {

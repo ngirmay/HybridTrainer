@@ -43,13 +43,17 @@ class HealthKitManager {
     }
     
     func fetchWorkouts() async throws -> [Workout] {
-        let workoutPredicate = HKQuery.predicateForWorkouts(with: .greaterThan)
+        let calendar = Calendar.current
+        let now = Date()
+        let startOfYear = calendar.date(from: calendar.dateComponents([.year], from: now))!
+        let predicate = HKQuery.predicateForSamples(withStart: startOfYear, end: now, options: .strictStartDate)
+        
         let sortDescriptor = NSSortDescriptor(key: HKSampleSortIdentifierStartDate, ascending: false)
         
         let hkWorkouts = try await withCheckedThrowingContinuation { continuation in
             let query = HKSampleQuery(
                 sampleType: .workoutType(),
-                predicate: workoutPredicate,
+                predicate: predicate,
                 limit: HKObjectQueryNoLimit,
                 sortDescriptors: [sortDescriptor]
             ) { (query, samples, error) in
@@ -69,7 +73,6 @@ class HealthKitManager {
             healthStore.execute(query)
         }
         
-        // Convert HKWorkout to our Workout model
         return hkWorkouts.map { hkWorkout in
             Workout(
                 type: convertToWorkoutType(hkWorkout.workoutActivityType),
