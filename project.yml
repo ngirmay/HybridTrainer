@@ -31,7 +31,6 @@ targets:
       - path: HybridTrainer
       - path: ViewModels
       - path: Utilities
-      - path: build
       - path: Views
       - path: Services
     settings:
