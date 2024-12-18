@@ -64,8 +64,11 @@ class HealthKitManager {
         }
         
         return hkWorkouts.map { hkWorkout in
-            let distance = hkWorkout.totalDistance?.doubleValue(for: HKUnit.meter())
-            let calories = hkWorkout.totalEnergyBurned?.doubleValue(for: HKUnit.kilocalorie())
+            let meterUnit = HKUnit.meter()
+            let calorieUnit = HKUnit.kilocalorie()
+            
+            let distance = hkWorkout.totalDistance?.doubleValue(for: meterUnit)
+            let calories = hkWorkout.totalEnergyBurned?.doubleValue(for: calorieUnit)
             
             return Workout(
                 type: WorkoutType.from(healthKitType: hkWorkout.workoutActivityType),
