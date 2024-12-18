@@ -6,36 +6,6 @@
 import SwiftUI
 import Models
 
-enum TrendDirection {
-    case increasing
-    case decreasing
-    case neutral
-    
-    var icon: String {
-        switch self {
-        case .increasing: return "arrow.up"
-        case .decreasing: return "arrow.down"
-        case .neutral: return "arrow.forward"
-        }
-    }
-    
-    var label: String {
-        switch self {
-        case .increasing: return "Up"
-        case .decreasing: return "Down"
-        case .neutral: return "Steady"
-        }
-    }
-    
-    var color: Color {
-        switch self {
-        case .increasing: return .green
-        case .decreasing: return .red
-        case .neutral: return .gray
-        }
-    }
-}
-
 struct MetricCard: View {
     let icon: String
     let iconColor: Color

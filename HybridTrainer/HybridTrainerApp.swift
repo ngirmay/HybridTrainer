@@ -9,7 +9,14 @@ struct HybridTrainerApp: App {
     
     init() {
         do {
-            container = try ModelContainer(for: Goal.self)
+            container = try ModelContainer(
+                for: [
+                    Goal.self,
+                    Workout.self,
+                    TrainingSession.self,
+                    WeeklyVolume.self
+                ]
+            )
         } catch {
             fatalError("Failed to initialize ModelContainer: \(error)")
         }

@@ -1,5 +1,11 @@
+//
+//  ContentView.swift
+//  HybridTrainer
+//
+
 import SwiftUI
 import SwiftData
+import Models
 
 struct ContentView: View {
     @Environment(\.modelContext) private var modelContext
@@ -11,14 +17,19 @@ struct ContentView: View {
                     Label("Dashboard", systemImage: "chart.bar.fill")
                 }
             
-            GoalsView(modelContext: modelContext)
+            WorkoutsView()
                 .tabItem {
-                    Label("Goals", systemImage: "flag.fill")
+                    Label("Workouts", systemImage: "figure.run")
                 }
             
             TrainingView()
                 .tabItem {
-                    Label("Training", systemImage: "figure.run")
+                    Label("Training", systemImage: "calendar")
+                }
+            
+            GoalsView(modelContext: modelContext)
+                .tabItem {
+                    Label("Goals", systemImage: "flag.fill")
                 }
         }
     }
@@ -26,7 +37,13 @@ struct ContentView: View {
 
 #Preview {
     let config = ModelConfiguration(isStoredInMemoryOnly: true)
-    let container = try! ModelContainer(for: Goal.self, configurations: config)
+    let container = try! ModelContainer(
+        for: Goal.self, 
+        Workout.self, 
+        TrainingSession.self, 
+        WeeklyVolume.self,
+        configurations: config
+    )
     
     return ContentView()
         .modelContainer(container)
