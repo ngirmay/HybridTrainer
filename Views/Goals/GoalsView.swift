@@ -13,8 +13,12 @@ import Models
 struct GoalsView: View {
     @Environment(\.modelContext) private var modelContext
     @Query(sort: \Goal.targetDate) private var goals: [Goal]
-    @StateObject private var viewModel = GoalsViewModel(modelContext: ModelContext(try! ModelContainer(for: Goal.self)))
+    @StateObject private var viewModel: GoalsViewModel
     @State private var showingAddGoal = false
+    
+    init(modelContext: ModelContext) {
+        _viewModel = StateObject(wrappedValue: GoalsViewModel(modelContext: modelContext))
+    }
     
     var body: some View {
         NavigationStack {
@@ -53,6 +57,6 @@ struct GoalsView: View {
     let container = try! ModelContainer(for: Goal.self, configurations: config)
     let context = ModelContext(container)
     
-    return GoalsView()
+    return GoalsView(modelContext: context)
         .modelContainer(container)
 }

@@ -42,7 +42,7 @@ class HealthKitManager {
         
         let hkWorkouts = try await withCheckedThrowingContinuation { continuation in
             let query = HKSampleQuery(
-                sampleType: .workoutType(),
+                sampleType: HKObjectType.workoutType(),
                 predicate: predicate,
                 limit: HKObjectQueryNoLimit,
                 sortDescriptors: [sortDescriptor]
@@ -64,8 +64,8 @@ class HealthKitManager {
         }
         
         return hkWorkouts.map { hkWorkout in
-            let meterUnit = HKUnit.meter()
-            let calorieUnit = HKUnit.kilocalorie()
+            let meterUnit: HKUnit = .meter()
+            let calorieUnit: HKUnit = .kilocalorie()
             
             let distance = hkWorkout.totalDistance?.doubleValue(for: meterUnit)
             let calories = hkWorkout.totalEnergyBurned?.doubleValue(for: calorieUnit)
