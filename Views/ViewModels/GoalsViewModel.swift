@@ -3,7 +3,7 @@ import SwiftData
 import Models
 
 @Observable
-class GoalsViewModel {
+class GoalsViewModel: ObservableObject {
     private var modelContext: ModelContext
     
     init(modelContext: ModelContext) {
