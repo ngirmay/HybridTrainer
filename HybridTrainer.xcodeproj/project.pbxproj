@@ -28,7 +28,6 @@
 		534EDAB6A44F347320298F22 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B02EA93587E03880477F0540 /* HealthKit.framework */; };
 		57B80663890DE929EA10382C /* HybridTrainerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71E9F58479781EE34192368A /* HybridTrainerUITests.swift */; };
 		57FFEC54D0B27CBBD7714CBA /* manifest.json in Resources */ = {isa = PBXBuildFile; fileRef = EECEDADC5675A912F96E0567 /* manifest.json */; };
-		59DE6C943A218B5E67E8BBC0 /* AddGoalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62954ECF563D234F2F1B5FCB /* AddGoalView.swift */; };
 		60B090ADA97CEAABE63BFD5E /* WorkoutViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 122085D254DD3CEC8C69E7DA /* WorkoutViewModel.swift */; };
 		6C5F76783E191270DDF95570 /* MetricCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87CB65D596241E5F3A601BFD /* MetricCard.swift */; };
 		6D8A54E337E58F651400076C /* WorkoutInsightsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B750A13BA64F63E61730561 /* WorkoutInsightsView.swift */; };
@@ -43,10 +42,10 @@
 		8A8C1C225AEF23B873BEA128 /* target-graph.txt in Resources */ = {isa = PBXBuildFile; fileRef = B3190281ED1DAD134627DAED /* target-graph.txt */; };
 		8BC21BFA9BE3AEB59D39C7B0 /* build-request.json in Resources */ = {isa = PBXBuildFile; fileRef = 3926E9B92FB207FB5C570DFB /* build-request.json */; };
 		99AF5E91D9631B408809EDD4 /* WorkoutViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B1924C2A7DDBAAE49C33AE /* WorkoutViews.swift */; };
-		9A0DE63D21029FDE22C0202A /* GoalRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0857D655CB2A93E7D1B98F0F /* GoalRow.swift */; };
 		9C92FFC617BDABE110251828 /* Calendar+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD67D00E540D99F82E6168AF /* Calendar+Extensions.swift */; };
 		A36CC5DCB4671BAAD0DF4BBA /* TrainingSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56C53A36DE9327B58E90B449 /* TrainingSession.swift */; };
 		A3AB863418DA8130582DE6C2 /* TrendDirection.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8826E674668BCD69D3E9414 /* TrendDirection.swift */; };
+		AD0445E351CE97B6F6102E8B /* GoalCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = F99140FEDC4A001A07E345E4 /* GoalCard.swift */; };
 		AF9416574F97699BCBCED4CF /* GoalsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05885225B7CB6E41A69BDEF9 /* GoalsView.swift */; };
 		B03C69058E5424946F4EEB2C /* ActivityDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAD3482E013C9016D3F0EBB0 /* ActivityDetailView.swift */; };
 		B3A9967611E0ADF3E4EA833F /* WorkoutType+Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD2C0BF6B858B2A96B362CDD /* WorkoutType+Color.swift */; };
@@ -106,7 +105,6 @@
 /* Begin PBXFileReference section */
 		04B26C611A8181001B21502B /* AddGoalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddGoalView.swift; sourceTree = "<group>"; };
 		05885225B7CB6E41A69BDEF9 /* GoalsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalsView.swift; sourceTree = "<group>"; };
-		0857D655CB2A93E7D1B98F0F /* GoalRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalRow.swift; sourceTree = "<group>"; };
 		11084FA2533F780E0C506129 /* WorkoutDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutDataService.swift; sourceTree = "<group>"; };
 		122085D254DD3CEC8C69E7DA /* WorkoutViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutViewModel.swift; sourceTree = "<group>"; };
 		12A53A69F9A6084ACE5EC9B2 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
@@ -124,7 +122,6 @@
 		54D11A8A11D8A23351D0FC70 /* HybridTrainerUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HybridTrainerUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		56C53A36DE9327B58E90B449 /* TrainingSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingSession.swift; sourceTree = "<group>"; };
 		5C2BEC2E1913E59BCCF01CF1 /* Workout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Workout.swift; sourceTree = "<group>"; };
-		62954ECF563D234F2F1B5FCB /* AddGoalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddGoalView.swift; sourceTree = "<group>"; };
 		65A4C42B67EAB7DB97E8CD07 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		6968F13916985F87CD392D64 /* WorkoutMetric.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutMetric.swift; sourceTree = "<group>"; };
 		69C8074B2BC7D96A7E508F3B /* HybridTrainerTests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = HybridTrainerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -352,8 +349,6 @@
 		BB6A20906508F3F99515F4B0 /* Goals */ = {
 			isa = PBXGroup;
 			children = (
-				62954ECF563D234F2F1B5FCB /* AddGoalView.swift */,
-				0857D655CB2A93E7D1B98F0F /* GoalRow.swift */,
 				05885225B7CB6E41A69BDEF9 /* GoalsView.swift */,
 				65EDAF60BDCC4EA14A21AC0B /* Components */,
 			);
@@ -599,7 +594,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B03C69058E5424946F4EEB2C /* ActivityDetailView.swift in Sources */,
-				59DE6C943A218B5E67E8BBC0 /* AddGoalView.swift in Sources */,
+				EDD4FA669212D31E34975DD9 /* AddGoalView.swift in Sources */,
 				07ECA30A6E7AAC41E26FC02C /* AnalyticsService.swift in Sources */,
 				9C92FFC617BDABE110251828 /* Calendar+Extensions.swift in Sources */,
 				FA595AF71064A248345B0253 /* ChartSection.swift in Sources */,
@@ -607,9 +602,13 @@
 				88D2E84535739FAC4B120C93 /* ContentView.swift in Sources */,
 				E6592999DC2CC742D9080F1C /* DashboardView.swift in Sources */,
 				515BC343902EC5A4DE2F20C7 /* DependencyContainer.swift in Sources */,
+				AD0445E351CE97B6F6102E8B /* GoalCard.swift in Sources */,
+				8495D763CEC8A593E9728C4F /* GoalRow.swift in Sources */,
+				AF9416574F97699BCBCED4CF /* GoalsView.swift in Sources */,
 				715FF95AE0A21AAFD8A88CDE /* GoalsViewModel.swift in Sources */,
 				43203A9DC66BD1C287596BB6 /* HealthKitManager.swift in Sources */,
 				B75D25D1AF4D959212CAE8CF /* HealthKitService.swift in Sources */,
+				7AE02838573A6CA7F188E365 /* HybridTrainerApp.swift in Sources */,
 				6C5F76783E191270DDF95570 /* MetricCard.swift in Sources */,
 				444F336342F4B7751E60AF4D /* MetricsSection.swift in Sources */,
 				D6E8A9DDE71001435A47EACE /* RecentWorkoutsList.swift in Sources */,
