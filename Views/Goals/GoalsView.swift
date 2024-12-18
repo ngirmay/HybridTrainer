@@ -10,43 +10,46 @@ import SwiftUI
 import SwiftData
 import Models
 
-public struct GoalsView: View {
+struct GoalsView: View {
     @Environment(\.modelContext) private var modelContext
-    @Query(sort: \Goal.targetDate) private var goals: [Goal]
+    @Query(sort: \Goal.deadline) private var goals: [Goal]
+    @State private var showingAddGoal = false
     
-    public init() {}
-    
-    public var body: some View {
+    var body: some View {
         NavigationStack {
-            Group {
+            List {
                 if goals.isEmpty {
                     ContentUnavailableView {
-                        Label("No Goals", systemImage: "target")
+                        Label("No Goals", systemImage: "flag.filled.and.flag.crossed")
                     } description: {
                         Text("Set training goals to track your progress")
                     } actions: {
-                        Button(action: addSampleGoal) {
-                            Text("Add Goal")
+                        Button(action: addHalfIronmanGoal) {
+                            Text("Add Half Ironman Goal")
                         }
                     }
-                } else {
-                    List {
-                        ForEach(goals) { goal in
-                            GoalCard(goal: goal)
-                                .listRowBackground(Theme.Colors.cardBackground)
-                        }
+                }
+                
+                ForEach(goals) { goal in
+                    GoalRow(goal: goal)
+                }
+                .onDelete(perform: deleteGoals)
+            }
+            .navigationTitle("Training Goals")
+            .toolbar {
+                Menu {
+                    Button(action: { showingAddGoal = true }) {
+                        Label("Add Custom Goal", systemImage: "plus")
                     }
-                    .scrollContentBackground(.hidden)
-                    .background(Theme.Colors.background)
+                    Button(action: addHalfIronmanGoal) {
+                        Label("Add Half Ironman Goal", systemImage: "flag.filled.and.flag.crossed")
+                    }
+                } label: {
+                    Image(systemName: "plus")
                 }
             }
-            .navigationTitle("Goals")
-            .toolbar {
-                ToolbarItem(placement: .topBarTrailing) {
-                    Button(action: addSampleGoal) {
-                        Image(systemName: "plus")
-                    }
-                }
+            .sheet(isPresented: $showingAddGoal) {
+                AddGoalView()
             }
         }
     }
@@ -57,13 +60,10 @@ public struct GoalsView: View {
         }
     }
     
-    private func addSampleGoal() {
-        let goal = Goal(
-            name: "Complete Half Marathon",
-            targetDate: Date().addingTimeInterval(60*60*24*90), // 90 days from now
-            type: .run,
-            targetValue: 21.1 // 21.1 km
-        )
+    private func addHalfIronmanGoal() {
+        // June 15th, 2025
+        let raceDate = Calendar.current.date(from: DateComponents(year: 2025, month: 6, day: 15))!
+        let goal = Goal.halfIronman(deadline: raceDate)
         modelContext.insert(goal)
     }
 }
@@ -73,23 +73,44 @@ struct GoalRow: View {
     
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
-            Text(goal.name)
-                .font(.headline)
-            
             HStack {
                 Image(systemName: goal.type.icon)
                     .foregroundStyle(goal.type.displayColor)
-                Text(goal.targetDate.formatted(date: .abbreviated, time: .omitted))
-                    .foregroundStyle(.secondary)
+                Text(goal.type.rawValue.capitalized)
+                    .font(.headline)
                 Spacer()
-                Text(String(format: "%.1f/%.1f km", goal.currentValue, goal.targetValue))
+                if goal.isCompleted {
+                    Image(systemName: "checkmark.circle.fill")
+                        .foregroundStyle(.green)
+                }
+            }
+            
+            HStack {
+                Label(String(format: "%.1f km", goal.targetDistance/1000), 
+                      systemImage: "ruler")
+                Spacer()
+                Label(formatDuration(goal.targetTime), 
+                      systemImage: "clock")
+            }
+            .foregroundStyle(.secondary)
+            
+            if let notes = goal.notes {
+                Text(notes)
+                    .font(.subheadline)
                     .foregroundStyle(.secondary)
             }
             
-            ProgressView(value: goal.progress)
-                .tint(goal.type.displayColor)
+            Text("Due \(goal.deadline.formatted(date: .abbreviated, time: .omitted))")
+                .font(.caption)
+                .foregroundStyle(.secondary)
         }
         .padding(.vertical, 4)
+    }
+    
+    private func formatDuration(_ duration: TimeInterval) -> String {
+        let hours = Int(duration) / 3600
+        let minutes = Int(duration) / 60 % 60
+        return String(format: "%d:%02d", hours, minutes)
     }
 }
 
