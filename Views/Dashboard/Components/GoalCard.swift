@@ -1,4 +1,19 @@
-// Update import paths if needed
-import SwiftUI
+//
+//  GoalCard.swift
+//  HybridTrainer
+//
 
-// If you need to reference any moved components, update their paths 
+import SwiftUI
+import Models
+
+struct GoalCard: View {
+    let goal: Goal
+    
+    var body: some View {
+        // Your existing GoalCard implementation here
+    }
+}
+
+#Preview {
+    GoalCard(goal: Goal.example)
+}
