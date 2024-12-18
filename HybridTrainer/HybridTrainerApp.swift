@@ -5,16 +5,20 @@ import HealthKit
 
 @main
 struct HybridTrainerApp: App {
+    let container: ModelContainer
+    
+    init() {
+        do {
+            container = try ModelContainer(for: Goal.self)
+        } catch {
+            fatalError("Failed to initialize ModelContainer: \(error)")
+        }
+    }
+    
     var body: some Scene {
         WindowGroup {
             ContentView()
-                .preferredColorScheme(.light)
-                .tint(Theme.Colors.accent)
+                .modelContainer(container)
         }
-        .modelContainer(for: [
-            Workout.self,
-            Goal.self,
-            TrainingSession.self
-        ])
     }
 } 
