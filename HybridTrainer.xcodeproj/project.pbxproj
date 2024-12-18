@@ -46,7 +46,6 @@
 		9C92FFC617BDABE110251828 /* Calendar+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD67D00E540D99F82E6168AF /* Calendar+Extensions.swift */; };
 		A36CC5DCB4671BAAD0DF4BBA /* TrainingSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56C53A36DE9327B58E90B449 /* TrainingSession.swift */; };
 		A3AB863418DA8130582DE6C2 /* TrendDirection.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8826E674668BCD69D3E9414 /* TrendDirection.swift */; };
-		AD0445E351CE97B6F6102E8B /* GoalCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = F99140FEDC4A001A07E345E4 /* GoalCard.swift */; };
 		AF9416574F97699BCBCED4CF /* GoalsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05885225B7CB6E41A69BDEF9 /* GoalsView.swift */; };
 		B03C69058E5424946F4EEB2C /* ActivityDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAD3482E013C9016D3F0EBB0 /* ActivityDetailView.swift */; };
 		B3A9967611E0ADF3E4EA833F /* WorkoutType+Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD2C0BF6B858B2A96B362CDD /* WorkoutType+Color.swift */; };
@@ -162,7 +161,6 @@
 		F03A22331E2E9A73D024B911 /* HybridTrainer.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = HybridTrainer.entitlements; sourceTree = "<group>"; };
 		F339424966C5B71FEF9DCBB4 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		F767D0190A07CC90BB876305 /* DependencyContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DependencyContainer.swift; sourceTree = "<group>"; };
-		F99140FEDC4A001A07E345E4 /* GoalCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalCard.swift; sourceTree = "<group>"; };
 		FD2C0BF6B858B2A96B362CDD /* WorkoutType+Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WorkoutType+Color.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -362,7 +360,6 @@
 			children = (
 				CB3899EB80EB647AEDDCCD37 /* ChartSection.swift */,
 				A1473FA8513DFD89BC6E031F /* DashboardView.swift */,
-				F99140FEDC4A001A07E345E4 /* GoalCard.swift */,
 				87CB65D596241E5F3A601BFD /* MetricCard.swift */,
 				718C08EFE6746C813662A502 /* MetricsSection.swift */,
 				AC293943E510F4A4649D197B /* RecentWorkoutsList.swift */,
@@ -613,7 +610,6 @@
 				416E807D371ADEB33F7B4B1C /* ContentView.swift in Sources */,
 				E6592999DC2CC742D9080F1C /* DashboardView.swift in Sources */,
 				515BC343902EC5A4DE2F20C7 /* DependencyContainer.swift in Sources */,
-				AD0445E351CE97B6F6102E8B /* GoalCard.swift in Sources */,
 				831075573EB8EF4D758FD1DA /* GoalCard.swift in Sources */,
 				8495D763CEC8A593E9728C4F /* GoalRow.swift in Sources */,
 				AF9416574F97699BCBCED4CF /* GoalsView.swift in Sources */,

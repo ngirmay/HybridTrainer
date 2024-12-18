@@ -18,7 +18,7 @@ struct HybridTrainerApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
-                .modelContainer(container)
         }
+        .modelContainer(container)
     }
 } 
