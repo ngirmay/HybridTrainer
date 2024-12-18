@@ -40,7 +40,7 @@ class HealthKitManager {
         
         let sortDescriptor = NSSortDescriptor(key: HKSampleSortIdentifierStartDate, ascending: false)
         
-        let hkWorkouts = try await withCheckedThrowingContinuation { continuation in
+        let hkWorkouts = try await withCheckedThrowingContinuation { (continuation: CheckedContinuation<[HKWorkout], Error>) in
             let query = HKSampleQuery(
                 sampleType: HKObjectType.workoutType(),
                 predicate: predicate,
