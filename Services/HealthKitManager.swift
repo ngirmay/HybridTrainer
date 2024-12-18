@@ -32,16 +32,6 @@ class HealthKitManager {
         try await healthStore.requestAuthorization(toShare: [], read: typesToRead)
     }
     
-    private func convertToWorkoutType(_ hkType: HKWorkoutActivityType) -> WorkoutType {
-        switch hkType {
-        case .running: return .run
-        case .cycling: return .bike
-        case .swimming: return .swim
-        case .traditionalStrengthTraining: return .strength
-        default: return .run
-        }
-    }
-    
     func fetchWorkouts() async throws -> [Workout] {
         let calendar = Calendar.current
         let now = Date()
@@ -74,12 +64,15 @@ class HealthKitManager {
         }
         
         return hkWorkouts.map { hkWorkout in
-            Workout(
-                type: convertToWorkoutType(hkWorkout.workoutActivityType),
+            let distance = hkWorkout.totalDistance?.doubleValue(for: HKUnit.meter())
+            let calories = hkWorkout.totalEnergyBurned?.doubleValue(for: HKUnit.kilocalorie())
+            
+            return Workout(
+                type: WorkoutType.from(healthKitType: hkWorkout.workoutActivityType),
                 startDate: hkWorkout.startDate,
                 duration: hkWorkout.duration,
-                distance: hkWorkout.totalDistance?.doubleValue(for: .meter()),
-                calories: hkWorkout.totalEnergyBurned?.doubleValue(for: .kilocalorie())
+                distance: distance,
+                calories: calories
             )
         }
     }

@@ -45,29 +45,11 @@ public class Goal {
 
 // Extension for creating preset goals
 extension Goal {
-    static func halfIronman(targetDate: Date) -> [Goal] {
+    public static func halfIronman(targetDate: Date) -> [Goal] {
         [
-            Goal(
-                name: "Half Ironman - Swim",
-                targetDate: targetDate,
-                type: .swim,
-                targetValue: 1.9,
-                notes: "1.9km swim leg"
-            ),
-            Goal(
-                name: "Half Ironman - Bike",
-                targetDate: targetDate,
-                type: .bike,
-                targetValue: 90.0,
-                notes: "90km bike leg"
-            ),
-            Goal(
-                name: "Half Ironman - Run",
-                targetDate: targetDate,
-                type: .run,
-                targetValue: 21.1,
-                notes: "21.1km run leg"
-            )
+            Goal(name: "Half Ironman Swim", targetDate: targetDate, type: .swim, targetValue: 1.9),
+            Goal(name: "Half Ironman Bike", targetDate: targetDate, type: .bike, targetValue: 90.0),
+            Goal(name: "Half Ironman Run", targetDate: targetDate, type: .run, targetValue: 21.1)
         ]
     }
 }
