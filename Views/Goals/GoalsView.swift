@@ -13,7 +13,7 @@ import Models
 struct GoalsView: View {
     @Environment(\.modelContext) private var modelContext
     @Query(sort: \Goal.targetDate) private var goals: [Goal]
-    @StateObject private var viewModel: GoalsViewModel
+    @StateObject private var viewModel = GoalsViewModel(modelContext: ModelContext(try! ModelContainer(for: Goal.self)))
     @State private var showingAddGoal = false
     
     var body: some View {
@@ -45,17 +45,13 @@ struct GoalsView: View {
                 AddGoalView(viewModel: viewModel)
             }
         }
-        .onAppear {
-            if viewModel == nil {
-                _viewModel = StateObject(wrappedValue: GoalsViewModel(modelContext: modelContext))
-            }
-        }
     }
 }
 
 #Preview {
     let config = ModelConfiguration(isStoredInMemoryOnly: true)
     let container = try! ModelContainer(for: Goal.self, configurations: config)
+    let context = ModelContext(container)
     
     return GoalsView()
         .modelContainer(container)
