@@ -27,7 +27,7 @@ struct ContentView: View {
                     Label("Training", systemImage: "calendar")
                 }
             
-            GoalsView(modelContext: modelContext)
+            GoalsView()
                 .tabItem {
                     Label("Goals", systemImage: "flag.fill")
                 }
