@@ -24,7 +24,7 @@ struct GoalsView: View {
         NavigationStack {
             List {
                 ForEach(goals) { goal in
-                    GoalRow(goal: goal)
+                    Components.GoalRow(goal: goal)
                 }
                 .onDelete { indexSet in
                     for index in indexSet {
@@ -46,7 +46,7 @@ struct GoalsView: View {
                 }
             }
             .sheet(isPresented: $showingAddGoal) {
-                AddGoalView(viewModel: viewModel)
+                Components.AddGoalView(viewModel: viewModel)
             }
         }
     }
