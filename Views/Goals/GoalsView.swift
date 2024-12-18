@@ -12,24 +12,12 @@ import Models
 
 struct GoalsView: View {
     @Environment(\.modelContext) private var modelContext
-    @Query(sort: \Goal.deadline) private var goals: [Goal]
+    @Query(sort: \Goal.targetDate) private var goals: [Goal]
     @State private var showingAddGoal = false
     
     var body: some View {
         NavigationStack {
             List {
-                if goals.isEmpty {
-                    ContentUnavailableView {
-                        Label("No Goals", systemImage: "flag.filled.and.flag.crossed")
-                    } description: {
-                        Text("Set training goals to track your progress")
-                    } actions: {
-                        Button(action: addHalfIronmanGoal) {
-                            Text("Add Half Ironman Goal")
-                        }
-                    }
-                }
-                
                 ForEach(goals) { goal in
                     GoalRow(goal: goal)
                 }
@@ -41,8 +29,8 @@ struct GoalsView: View {
                     Button(action: { showingAddGoal = true }) {
                         Label("Add Custom Goal", systemImage: "plus")
                     }
-                    Button(action: addHalfIronmanGoal) {
-                        Label("Add Half Ironman Goal", systemImage: "flag.filled.and.flag.crossed")
+                    Button(action: addHalfIronmanGoals) {
+                        Label("Add Half Ironman Goals", systemImage: "flag.filled.and.flag.crossed")
                     }
                 } label: {
                     Image(systemName: "plus")
@@ -60,11 +48,11 @@ struct GoalsView: View {
         }
     }
     
-    private func addHalfIronmanGoal() {
+    private func addHalfIronmanGoals() {
         // June 15th, 2025
         let raceDate = Calendar.current.date(from: DateComponents(year: 2025, month: 6, day: 15))!
-        let goal = Goal.halfIronman(deadline: raceDate)
-        modelContext.insert(goal)
+        let goals = Goal.halfIronman(targetDate: raceDate)
+        goals.forEach { modelContext.insert($0) }
     }
 }
 
@@ -76,21 +64,21 @@ struct GoalRow: View {
             HStack {
                 Image(systemName: goal.type.icon)
                     .foregroundStyle(goal.type.displayColor)
-                Text(goal.type.rawValue.capitalized)
+                Text(goal.name)
                     .font(.headline)
                 Spacer()
-                if goal.isCompleted {
+                if goal.completed {
                     Image(systemName: "checkmark.circle.fill")
                         .foregroundStyle(.green)
                 }
             }
             
             HStack {
-                Label(String(format: "%.1f km", goal.targetDistance/1000), 
+                Label(String(format: "%.1f/%.1f km", goal.currentValue, goal.targetValue),
                       systemImage: "ruler")
                 Spacer()
-                Label(formatDuration(goal.targetTime), 
-                      systemImage: "clock")
+                Text("Due \(goal.targetDate.formatted(date: .abbreviated, time: .omitted))")
+                    .font(.caption)
             }
             .foregroundStyle(.secondary)
             
@@ -100,17 +88,10 @@ struct GoalRow: View {
                     .foregroundStyle(.secondary)
             }
             
-            Text("Due \(goal.deadline.formatted(date: .abbreviated, time: .omitted))")
-                .font(.caption)
-                .foregroundStyle(.secondary)
+            ProgressView(value: goal.progress)
+                .tint(goal.type.displayColor)
         }
         .padding(.vertical, 4)
-    }
-    
-    private func formatDuration(_ duration: TimeInterval) -> String {
-        let hours = Int(duration) / 3600
-        let minutes = Int(duration) / 60 % 60
-        return String(format: "%d:%02d", hours, minutes)
     }
 }
 
