@@ -11,14 +11,20 @@ import Models
 
 public struct WorkoutsView: View {
     @Environment(\.modelContext) private var modelContext
-    @Query(sort: \Workout.startDate, order: .reverse) private var workouts: [Workout]
+    @StateObject private var viewModel: WorkoutViewModel
     
-    public init() {}
+    public init() {
+        _viewModel = StateObject(
+            wrappedValue: DependencyContainer.shared.makeWorkoutViewModel(
+                modelContext: modelContext
+            )
+        )
+    }
     
     public var body: some View {
         NavigationStack {
             Group {
-                if workouts.isEmpty {
+                if viewModel.workouts.isEmpty {
                     ContentUnavailableView {
                         Label("No Workouts", systemImage: "figure.run")
                     } description: {
@@ -30,12 +36,12 @@ public struct WorkoutsView: View {
                     }
                 } else {
                     ScrollView {
-                        WorkoutInsightsView(workouts: workouts)
+                        WorkoutInsightsView(workouts: viewModel.workouts)
                         
                         // Keep navigation functionality
                         LazyVStack {
                             DisclosureGroup {
-                                ForEach(workouts) { workout in
+                                ForEach(viewModel.workouts) { workout in
                                     NavigationLink(value: workout) {
                                         WorkoutRow(workout: workout)
                                     }
@@ -71,7 +77,7 @@ public struct WorkoutsView: View {
     
     private func deleteWorkouts(at offsets: IndexSet) {
         for index in offsets {
-            modelContext.delete(workouts[index])
+            modelContext.delete(viewModel.workouts[index])
         }
     }
     

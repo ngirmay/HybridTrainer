@@ -1,37 +1,37 @@
-import SwiftUI
+import Foundation
 import SwiftData
-import Models
 
-@MainActor
 class DependencyContainer {
-    let healthKitManager: HealthKitManager
-    let workoutService: WorkoutDataServiceProtocol
-    let modelContainer: ModelContainer
-    let modelContext: ModelContext
-    
     static let shared = DependencyContainer()
     
+    // Core services
+    let healthKitService: HealthKitService
+    let workoutDataService: WorkoutDataService
+    let analyticsService: AnalyticsService
+    
     private init() {
-        healthKitManager = HealthKitManager.shared
+        // Initialize core services
+        self.healthKitService = HealthKitService.shared
         
-        // Initialize ModelContainer
+        // Create a temporary model container for initialization
         let schema = Schema([
-            Workout.self,
             Goal.self,
+            Workout.self,
             TrainingSession.self,
             WeeklyVolume.self
         ])
-        
-        do {
-            // Create container with just the schema
-            modelContainer = try ModelContainer(for: schema)
-            modelContext = ModelContext(modelContainer)
-            workoutService = WorkoutDataService(
-                healthKitManager: healthKitManager,
-                modelContext: modelContext
-            )
-        } catch {
-            fatalError("Failed to create ModelContainer: \(error)")
+        let modelConfiguration = ModelConfiguration(schema: schema)
+        guard let container = try? ModelContainer(for: schema, configurations: modelConfiguration) else {
+            fatalError("Failed to initialize ModelContainer")
         }
+        
+        // Initialize services with dependencies
+        self.workoutDataService = WorkoutDataService(modelContext: container.mainContext)
+        self.analyticsService = AnalyticsService()
+    }
+    
+    // Factory methods for ViewModels
+    func makeWorkoutViewModel(modelContext: ModelContext) -> WorkoutViewModel {
+        WorkoutViewModel(modelContext: modelContext)
     }
 } 
