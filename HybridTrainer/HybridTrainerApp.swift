@@ -9,14 +9,14 @@ struct HybridTrainerApp: App {
     
     init() {
         do {
-            container = try ModelContainer(
-                for: Goal.self,
-                additionalTypes: [
-                    Workout.self,
-                    TrainingSession.self,
-                    WeeklyVolume.self
-                ]
-            )
+            let schema = Schema([
+                Goal.self,
+                Workout.self,
+                TrainingSession.self,
+                WeeklyVolume.self
+            ])
+            let modelConfiguration = ModelConfiguration(schema: schema)
+            container = try ModelContainer(for: schema, configurations: modelConfiguration)
         } catch {
             fatalError("Failed to initialize ModelContainer: \(error)")
         }
