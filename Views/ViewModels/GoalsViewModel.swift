@@ -4,9 +4,11 @@ import Models
 
 @Observable
 class GoalsViewModel: ObservableObject {
-    @Environment(\.modelContext) private var modelContext
+    private var modelContext: ModelContext
     
-    init() { }
+    init(modelContext: ModelContext) {
+        self.modelContext = modelContext
+    }
     
     func deleteGoal(_ goal: Goal) {
         modelContext.delete(goal)
