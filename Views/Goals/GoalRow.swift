@@ -54,4 +54,10 @@ struct GoalRow: View {
         }
         .padding(.vertical, 4)
     }
+    
+    private func formatDuration(_ duration: TimeInterval) -> String {
+        let hours = Int(duration) / 3600
+        let minutes = Int(duration) / 60 % 60
+        return String(format: "%d:%02d", hours, minutes)
+    }
 } 

@@ -7,36 +7,59 @@ import Foundation
 import SwiftData
 
 @Model
-public final class Goal {
-    public var id: UUID
-    public var name: String
-    public var targetDate: Date
+public class Goal {
     public var type: WorkoutType
-    public var targetValue: Double
-    public var currentValue: Double
-    public var completed: Bool
+    public var targetDistance: Double  // in meters
+    public var targetTime: TimeInterval
+    public var deadline: Date
+    public var isCompleted: Bool
+    public var notes: String?
+    public var isRaceGoal: Bool
+    public var subGoals: [Goal]?
     
-    public init(
-        id: UUID = UUID(),
-        name: String,
-        targetDate: Date,
-        type: WorkoutType,
-        targetValue: Double,
-        currentValue: Double = 0,
-        completed: Bool = false
-    ) {
-        self.id = id
-        self.name = name
-        self.targetDate = targetDate
+    public init(type: WorkoutType, 
+         targetDistance: Double, 
+         targetTime: TimeInterval, 
+         deadline: Date,
+         isRaceGoal: Bool = false,
+         notes: String? = nil,
+         subGoals: [Goal]? = nil) {
         self.type = type
-        self.targetValue = targetValue
-        self.currentValue = currentValue
-        self.completed = completed
+        self.targetDistance = targetDistance
+        self.targetTime = targetTime
+        self.deadline = deadline
+        self.isCompleted = false
+        self.isRaceGoal = isRaceGoal
+        self.notes = notes
+        self.subGoals = subGoals
+    }
+}
+
+extension Goal {
+    private func formatDuration(_ duration: TimeInterval) -> String {
+        let hours = Int(duration) / 3600
+        let minutes = Int(duration) / 60 % 60
+        return String(format: "%d:%02d", hours, minutes)
     }
     
-    public var progress: Double {
-        guard targetValue > 0 else { return 0 }
-        return min(currentValue / targetValue, 1.0)
+    static func halfIronman(deadline: Date) -> Goal {
+        let mainGoal = Goal(
+            type: .triathlon,
+            targetDistance: 113000, // 113km total
+            targetTime: 6 * 3600,   // 6 hours
+            deadline: deadline,
+            isRaceGoal: true,
+            notes: "Half Ironman Race Goal",
+            subGoals: [
+                Goal(type: .swim, targetDistance: 1900, targetTime: 45 * 60, deadline: deadline,
+                     notes: "1.9km swim leg"),
+                Goal(type: .bike, targetDistance: 90000, targetTime: 3 * 3600, deadline: deadline,
+                     notes: "90km bike leg"),
+                Goal(type: .run, targetDistance: 21100, targetTime: 2 * 3600, deadline: deadline,
+                     notes: "21.1km run leg")
+            ]
+        )
+        return mainGoal
     }
 }
 
