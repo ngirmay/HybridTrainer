@@ -2,38 +2,42 @@ import Foundation
 import SwiftData
 import Models
 
-protocol WorkoutDataServiceProtocol {
-    func fetchWorkouts(from: Date?) async throws -> [DetailedWorkout]
-    func saveWorkout(_ workout: DetailedWorkout) async throws
-}
-
-class WorkoutDataService: WorkoutDataServiceProtocol {
-    private let healthKitManager: HealthKitManager
+class WorkoutDataService {
     private let modelContext: ModelContext
+    private let healthKitService: HealthKitService
     
-    init(healthKitManager: HealthKitManager, modelContext: ModelContext) {
-        self.healthKitManager = healthKitManager
+    init(modelContext: ModelContext) {
         self.modelContext = modelContext
+        self.healthKitService = HealthKitService.shared
     }
     
-    func fetchWorkouts(from date: Date? = nil) async throws -> [DetailedWorkout] {
-        // First request authorization
-        try await healthKitManager.requestAuthorization()
-        
-        // Fetch workouts from HealthKit
-        let workouts = try await healthKitManager.fetchWorkouts(from: date)
-        
-        // Save to SwiftData
-        for workout in workouts {
-            modelContext.insert(workout.workout)
+    func fetchWorkouts() async throws -> [Workout] {
+        // First try to fetch from HealthKit
+        do {
+            let workouts = try await healthKitService.fetchWorkouts()
+            
+            // Save workouts to SwiftData
+            for workout in workouts {
+                modelContext.insert(workout)
+            }
+            
+            return workouts
+        } catch {
+            print("Error fetching from HealthKit: \(error)")
+            
+            // Fallback to local data if HealthKit fails
+            let descriptor = FetchDescriptor<Workout>(
+                sortBy: [SortDescriptor(\.startDate, order: .reverse)]
+            )
+            return (try? modelContext.fetch(descriptor)) ?? []
         }
-        try modelContext.save()
-        
-        return workouts
     }
     
-    func saveWorkout(_ workout: DetailedWorkout) async throws {
-        modelContext.insert(workout.workout)
-        try modelContext.save()
+    func addWorkout(_ workout: Workout) {
+        modelContext.insert(workout)
+    }
+    
+    func deleteWorkout(_ workout: Workout) {
+        modelContext.delete(workout)
     }
 } 

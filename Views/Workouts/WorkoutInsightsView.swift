@@ -3,7 +3,14 @@ import Charts
 import Models
 
 struct WorkoutInsightsView: View {
+    @Environment(\.modelContext) private var modelContext
     let workouts: [Workout]
+    private let workoutService: WorkoutDataService
+    
+    init(workouts: [Workout]) {
+        self.workouts = workouts
+        self.workoutService = WorkoutDataService(modelContext: modelContext)
+    }
     
     private var weeklyStats: (run: Double, bike: Double, swim: Double) {
         let calendar = Calendar.current

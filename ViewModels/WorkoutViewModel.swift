@@ -1,16 +1,17 @@
 import SwiftUI
 import Models
+import SwiftData
 
 @MainActor
 class WorkoutViewModel: ObservableObject {
-    @Published private(set) var workouts: [DetailedWorkout] = []
+    @Published private(set) var workouts: [Workout] = []
     @Published private(set) var isLoading = false
     @Published var error: Error?
     
-    private let workoutService: WorkoutDataServiceProtocol
+    private let workoutService: WorkoutDataService
     
-    init(workoutService: WorkoutDataServiceProtocol) {
-        self.workoutService = workoutService
+    init(modelContext: ModelContext) {
+        self.workoutService = WorkoutDataService(modelContext: modelContext)
     }
     
     func loadWorkouts() async {
@@ -18,7 +19,7 @@ class WorkoutViewModel: ObservableObject {
         defer { isLoading = false }
         
         do {
-            workouts = try await workoutService.fetchWorkouts(from: nil)
+            workouts = try await workoutService.fetchWorkouts()
         } catch {
             self.error = error
         }
