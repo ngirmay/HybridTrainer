@@ -64,7 +64,7 @@ struct GoalsView: View {
     let schema = Schema([Goal.self])
     let container = try! ModelContainer(for: schema, configurations: config)
     
-    // Add a sample goal
+    // Add a sample goal for preview
     let context = container.mainContext
     let goal = Goal(
         name: "Complete Half Ironman",
