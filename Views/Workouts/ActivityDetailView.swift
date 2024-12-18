@@ -67,9 +67,6 @@ struct ActivityDetailView: View {
         }
         .background(Theme.Colors.background)
         .navigationTitle(workoutType.rawValue.capitalized)
-        .navigationDestination(for: Workout.self) { workout in
-            WorkoutDetailView(workout: workout)
-        }
     }
 }
 
