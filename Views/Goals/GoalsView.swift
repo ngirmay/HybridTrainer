@@ -16,10 +16,6 @@ struct GoalsView: View {
     @StateObject private var viewModel: GoalsViewModel
     @State private var showingAddGoal = false
     
-    init() {
-        _viewModel = StateObject(wrappedValue: GoalsViewModel(modelContext: modelContext))
-    }
-    
     var body: some View {
         NavigationStack {
             List {
@@ -49,10 +45,18 @@ struct GoalsView: View {
                 AddGoalView(viewModel: viewModel)
             }
         }
+        .onAppear {
+            if viewModel == nil {
+                _viewModel = StateObject(wrappedValue: GoalsViewModel(modelContext: modelContext))
+            }
+        }
     }
 }
 
 #Preview {
-    GoalsView()
-        .modelContainer(for: [Goal.self], inMemory: true)
+    let config = ModelConfiguration(isStoredInMemoryOnly: true)
+    let container = try! ModelContainer(for: Goal.self, configurations: config)
+    
+    return GoalsView()
+        .modelContainer(container)
 }
