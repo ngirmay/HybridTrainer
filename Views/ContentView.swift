@@ -38,13 +38,10 @@ struct ContentView: View {
 #Preview {
     let config = ModelConfiguration(isStoredInMemoryOnly: true)
     let container = try! ModelContainer(
-        for: Goal.self, 
-        Workout.self, 
-        TrainingSession.self, 
-        WeeklyVolume.self,
+        for: [Goal.self, Workout.self, TrainingSession.self, WeeklyVolume.self],
         configurations: config
     )
     
-    return ContentView()
+    ContentView()
         .modelContainer(container)
 } 
