@@ -6,6 +6,50 @@ struct WorkoutInsightsView: View {
     @Environment(\.modelContext) private var modelContext
     let workouts: [Workout]
     
+    private var weeklyStats: (run: Double, bike: Double, swim: Double) {
+        let calendar = Calendar.current
+        let weekStart = calendar.startOfWeek(for: Date())
+        let weekWorkouts = workouts.filter { workout in
+            calendar.isDate(workout.startDate, equalTo: weekStart, toGranularity: .weekOfYear)
+        }
+        
+        let runDistance = weekWorkouts
+            .filter { $0.type == .run }
+            .compactMap { $0.distance }
+            .reduce(0, +) / 1000
+        
+        let bikeDistance = weekWorkouts
+            .filter { $0.type == .bike }
+            .compactMap { $0.distance }
+            .reduce(0, +) / 1000
+        
+        let swimDistance = weekWorkouts
+            .filter { $0.type == .swim }
+            .compactMap { $0.distance }
+            .reduce(0, +) / 1000
+        
+        return (run: runDistance, bike: bikeDistance, swim: swimDistance)
+    }
+    
+    private var recentWeeklyTotals: [(week: Date, distance: Double)] {
+        let calendar = Calendar.current
+        let now = Date()
+        let fourWeeksAgo = calendar.date(byAdding: .weekOfYear, value: -3, to: now)!
+        
+        return workouts
+            .filter { $0.startDate >= fourWeeksAgo }
+            .compactMap { workout -> (Date, Double)? in
+                guard let distance = workout.distance else { return nil }
+                let weekStart = calendar.startOfWeek(for: workout.startDate)
+                return (weekStart, distance / 1000)
+            }
+            .reduce(into: [:]) { result, item in
+                result[item.0, default: 0] += item.1
+            }
+            .map { ($0.key, $0.value) }
+            .sorted { $0.0 < $1.0 }
+    }
+    
     var body: some View {
         VStack(spacing: Theme.Metrics.padding) {
             // Weekly Summary Cards

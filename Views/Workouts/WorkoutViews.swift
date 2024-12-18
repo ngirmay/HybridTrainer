@@ -72,6 +72,9 @@ public struct WorkoutsView: View {
                     }
                 }
             }
+            .task {
+                await viewModel.loadWorkouts()
+            }
         }
     }
     
