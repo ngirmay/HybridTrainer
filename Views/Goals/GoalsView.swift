@@ -14,6 +14,11 @@ struct GoalsView: View {
     @Environment(\.modelContext) private var modelContext
     @Query(sort: \Goal.targetDate) private var goals: [Goal]
     @State private var showingAddGoal = false
+    @StateObject private var viewModel: GoalsViewModel
+    
+    init() {
+        _viewModel = StateObject(wrappedValue: GoalsViewModel(modelContext: modelContext))
+    }
     
     var body: some View {
         NavigationStack {
@@ -47,7 +52,7 @@ struct GoalsView: View {
                 }
             }
             .sheet(isPresented: $showingAddGoal) {
-                AddGoalView()
+                AddGoalView(viewModel: viewModel)
             }
         }
     }
