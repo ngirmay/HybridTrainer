@@ -61,19 +61,7 @@ struct GoalsView: View {
 
 #Preview {
     let config = ModelConfiguration(isStoredInMemoryOnly: true)
-    let schema = Schema([Goal.self])
-    let container = try! ModelContainer(for: schema, configurations: config)
-    
-    // Add a sample goal for preview
-    let context = container.mainContext
-    let goal = Goal(
-        name: "Complete Half Ironman",
-        targetDate: Date().addingTimeInterval(90*24*3600),
-        type: .triathlon,
-        targetValue: 5.5,
-        notes: "Finish under 5:30:00"
-    )
-    context.insert(goal)
+    let container = try! ModelContainer(for: Goal.self, configurations: config)
     
     return GoalsView()
         .modelContainer(container)
