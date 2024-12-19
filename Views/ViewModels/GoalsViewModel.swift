@@ -10,6 +10,10 @@ class GoalsViewModel: ObservableObject {
         self.modelContext = modelContext
     }
     
+    func updateModelContext(_ newContext: ModelContext) {
+        self.modelContext = newContext
+    }
+    
     func deleteGoal(_ goal: Goal) {
         modelContext.delete(goal)
     }

@@ -17,7 +17,9 @@ struct GoalsView: View {
     @StateObject private var viewModel: GoalsViewModel
     
     init() {
-        _viewModel = StateObject(wrappedValue: GoalsViewModel(modelContext: modelContext))
+        // Create a temporary model context for initialization
+        let container = try! ModelContainer(for: Goal.self)
+        _viewModel = StateObject(wrappedValue: GoalsViewModel(modelContext: container.mainContext))
     }
     
     var body: some View {
@@ -54,6 +56,10 @@ struct GoalsView: View {
             .sheet(isPresented: $showingAddGoal) {
                 AddGoalView(viewModel: viewModel)
             }
+        }
+        .onAppear {
+            // Update the view model with the correct model context when the view appears
+            viewModel.updateModelContext(modelContext)
         }
     }
     
