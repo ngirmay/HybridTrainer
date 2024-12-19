@@ -31,9 +31,6 @@ targets:
       - path: HybridTrainer
       - path: ViewModels
       - path: Utilities
-      - path: HybridTrainer
-      - path: 2.xcodeproj
-      - path: build
       - path: Views
       - path: Services
     settings:
