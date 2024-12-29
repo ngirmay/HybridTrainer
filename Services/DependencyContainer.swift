@@ -14,7 +14,10 @@ class DependencyContainer {
                 TrainingBlock.self,
                 TrainingWeek.self,
                 TrainingDay.self,
-                WeeklyMetrics.self
+                WeeklyMetrics.self,
+                Goal.self,
+                Workout.self,
+                WeeklyVolume.self
             ])
             
             let modelConfiguration = ModelConfiguration(

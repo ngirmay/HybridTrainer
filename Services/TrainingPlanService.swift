@@ -139,6 +139,59 @@ public class TrainingPlanService {
     }
     
     // Similar methods for bike and swim mileage...
+    
+    // Add new block-based training plan methods
+    func createTrainingBlock(
+        phase: TrainingPhase,
+        startDate: Date,
+        endDate: Date,
+        focus: String
+    ) throws -> TrainingBlock {
+        let block = TrainingBlock(
+            phase: phase,
+            startDate: startDate,
+            endDate: endDate,
+            focus: focus
+        )
+        
+        modelContext.insert(block)
+        return block
+    }
+    
+    func addWeekToBlock(
+        _ block: TrainingBlock,
+        weekNumber: Int,
+        startDate: Date
+    ) throws -> TrainingWeek {
+        let week = TrainingWeek(
+            blockId: block.id,
+            weekNumber: weekNumber,
+            startDate: startDate
+        )
+        
+        block.weeks.append(week)
+        return week
+    }
+    
+    func addWorkoutToDay(
+        _ day: TrainingDay,
+        type: WorkoutType,
+        description: String,
+        intensity: WorkoutIntensity,
+        targetDistance: Double? = nil,
+        targetDuration: TimeInterval? = nil
+    ) throws -> PlannedWorkout {
+        let workout = PlannedWorkout(
+            type: type,
+            description: description,
+            intensity: intensity,
+            targetDistance: targetDistance,
+            targetDuration: targetDuration
+        )
+        
+        day.workouts.append(workout)
+        return workout
+    }
 }
 
 // MARK: - Supporting Types
