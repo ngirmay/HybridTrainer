@@ -9,14 +9,15 @@ struct DashboardView: View {
                     VStack(spacing: 16) {
                         Text("Transform Your Training")
                             .font(.system(size: 32, weight: .bold))
+                            .foregroundColor(.black)
                         
                         Text("with HybridTrainer")
                             .font(.system(size: 32, weight: .bold))
-                            .foregroundColor(.blue)
+                            .foregroundColor(.black)
                         
                         Text("Combine genetic insights, performance tracking, and advanced analytics")
                             .font(.subheadline)
-                            .foregroundColor(.secondary)
+                            .foregroundColor(.gray)
                             .multilineTextAlignment(.center)
                             .padding(.horizontal)
                     }
@@ -24,8 +25,8 @@ struct DashboardView: View {
                     
                     // Feature Icons
                     HStack(spacing: 32) {
-                        FeatureIcon(icon: "dna", title: "Genetics")
-                        FeatureIcon(icon: "display", title: "Analytics")
+                        FeatureIcon(icon: "figure.run", title: "Training")
+                        FeatureIcon(icon: "chart.bar", title: "Analytics")
                         FeatureIcon(icon: "chart.line.uptrend.xyaxis", title: "Progress")
                     }
                     .padding()
@@ -38,6 +39,7 @@ struct DashboardView: View {
                 }
             }
             .navigationTitle("Dashboard")
+            .background(Color.white)
         }
     }
 }
@@ -59,7 +61,7 @@ struct FeatureIcon: View {
             
             Text(title)
                 .font(.caption)
-                .foregroundColor(.secondary)
+                .foregroundColor(.black)
         }
     }
 }
@@ -69,16 +71,18 @@ struct TodayTrainingCard: View {
         VStack(alignment: .leading, spacing: 16) {
             Text("Today's Training")
                 .font(.headline)
+                .foregroundColor(.black)
             
             HStack {
                 VStack(alignment: .leading) {
                     Text("Swim 2 + Run 8")
                         .font(.title3)
                         .fontWeight(.semibold)
+                        .foregroundColor(.black)
                     
                     Text("Base Building • Week 4")
                         .font(.subheadline)
-                        .foregroundColor(.secondary)
+                        .foregroundColor(.gray)
                 }
                 
                 Spacer()
@@ -88,15 +92,18 @@ struct TodayTrainingCard: View {
                         .fontWeight(.semibold)
                         .foregroundColor(.white)
                         .frame(width: 100, height: 40)
-                        .background(Color.blue)
+                        .background(Color.black)
                         .cornerRadius(20)
                 }
             }
         }
         .padding()
-        .background(Color(.systemBackground))
+        .background(Color.white)
         .cornerRadius(16)
-        .shadow(radius: 5)
+        .overlay(
+            RoundedRectangle(cornerRadius: 16)
+                .stroke(Color.gray.opacity(0.2), lineWidth: 1)
+        )
         .padding(.horizontal)
     }
 }
@@ -107,8 +114,8 @@ struct QuickActionsGrid: View {
             GridItem(.flexible()),
             GridItem(.flexible())
         ], spacing: 16) {
-            QuickActionButton(title: "Get Started", icon: "play.fill")
-            QuickActionButton(title: "Learn More", icon: "book.fill")
+            QuickActionButton(title: "Get Started", icon: "play.fill", isPrimary: true)
+            QuickActionButton(title: "Learn More", icon: "book.fill", isPrimary: false)
         }
         .padding(.horizontal)
     }
@@ -117,6 +124,7 @@ struct QuickActionsGrid: View {
 struct QuickActionButton: View {
     let title: String
     let icon: String
+    let isPrimary: Bool
     
     var body: some View {
         Button(action: {}) {
@@ -127,12 +135,12 @@ struct QuickActionButton: View {
             }
             .frame(maxWidth: .infinity)
             .frame(height: 50)
-            .background(title == "Get Started" ? Color.black : Color.white)
-            .foregroundColor(title == "Get Started" ? .white : .black)
+            .background(isPrimary ? Color.black : Color.white)
+            .foregroundColor(isPrimary ? .white : .black)
             .cornerRadius(25)
             .overlay(
                 RoundedRectangle(cornerRadius: 25)
-                    .stroke(Color.gray.opacity(0.2), lineWidth: title == "Get Started" ? 0 : 1)
+                    .stroke(Color.gray.opacity(0.2), lineWidth: isPrimary ? 0 : 1)
             )
         }
     }
