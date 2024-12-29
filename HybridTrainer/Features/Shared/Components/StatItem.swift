@@ -23,11 +23,8 @@ struct StatItem: View {
 
 #Preview {
     VStack(spacing: 20) {
-        // Analytics style
         StatItem(value: "26.2", unit: "mi", label: "Run")
-        
-        // Program details style
-        StatItem(icon: "clock", value: "45-60", unit: "min")
+        StatItem(value: "120", unit: "mi", label: "Bike")
     }
     .padding()
 } 
