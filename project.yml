@@ -30,48 +30,13 @@ targets:
       - path: Design
       - path: HybridTrainer
       - path: ViewModels
-      - path: Utilities
       - path: Views
       - path: Services
     settings:
       base:
         INFOPLIST_FILE: HybridTrainer/Info.plist
         PRODUCT_BUNDLE_IDENTIFIER: com.nobelgirmay.HybridTrainer
-        CODE_SIGN_ENTITLEMENTS: HybridTrainer/HybridTrainer.entitlements
     dependencies:
       - target: Models
       - sdk: SwiftUI.framework
       - sdk: HealthKit.framework
-    info:
-      path: HybridTrainer/Info.plist
-      properties:
-        NSHealthShareUsageDescription: "We need access to HealthKit to track your workouts"
-        NSHealthUpdateUsageDescription: "We need access to HealthKit to save your workouts"
-        UILaunchScreen: {}
-        UIApplicationSceneManifest:
-          UIApplicationSupportsMultipleScenes: true
-        UISupportedInterfaceOrientations:
-          - UIInterfaceOrientationPortrait
-        UIRequiresFullScreen: true
-        UISupportedInterfaceOrientations~ipad:
-          - UIInterfaceOrientationPortrait
-    entitlements:
-      path: HybridTrainer/HybridTrainer.entitlements
-      properties:
-        com.apple.developer.healthkit: true
-
-  HybridTrainerTests:
-    type: bundle.unit-test
-    platform: iOS
-    sources:
-      - path: HybridTrainerTests
-    dependencies:
-      - target: HybridTrainer
-
-  HybridTrainerUITests:
-    type: bundle.ui-testing
-    platform: iOS
-    sources:
-      - path: HybridTrainerUITests
-    dependencies:
-      - target: HybridTrainer
