@@ -50,6 +50,10 @@ public final class TrainingSession {
     public var weekNumber: Int?
     public var phase: TrainingPhase?
     
+    // For backward compatibility
+    public var plannedDuration: TimeInterval?
+    public var plannedDistance: Double?
+    
     public var title: String {
         type.rawValue.capitalized
     }
@@ -62,7 +66,9 @@ public final class TrainingSession {
         notes: String? = nil,
         isCompleted: Bool = false,
         weekNumber: Int? = nil,
-        phase: TrainingPhase? = nil
+        phase: TrainingPhase? = nil,
+        plannedDuration: TimeInterval? = nil,
+        plannedDistance: Double? = nil
     ) {
         self.id = id
         self.type = type
@@ -72,6 +78,8 @@ public final class TrainingSession {
         self.isCompleted = isCompleted
         self.weekNumber = weekNumber
         self.phase = phase
+        self.plannedDuration = plannedDuration
+        self.plannedDistance = plannedDistance
     }
 }
 
@@ -105,6 +113,11 @@ public final class PlannedWorkout {
         self.targetPace = targetPace
         self.isCompleted = isCompleted
     }
+}
+
+@Model
+public final class TrainingWeek {
+    // Move implementation from Models/Training/TrainingWeek.swift
 }
 
 // ... other models 

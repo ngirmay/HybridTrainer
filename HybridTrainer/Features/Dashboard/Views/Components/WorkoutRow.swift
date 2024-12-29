@@ -1,3 +1,6 @@
+import SwiftUI
+import Models
+
 struct WorkoutRow: View {
     let workout: Workout
     
@@ -23,4 +26,15 @@ struct WorkoutRow: View {
         }
         .padding(.vertical, 8)
     }
+}
+
+#Preview {
+    WorkoutRow(workout: Workout(
+        type: .run,
+        date: Date(),
+        distance: 5000,
+        duration: 1800,
+        calories: 400
+    ))
+    .padding()
 } 
