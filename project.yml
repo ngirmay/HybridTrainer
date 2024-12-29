@@ -17,6 +17,8 @@ targets:
     platform: iOS
     sources:
       - path: /Users/ngirmay/Documents/GitHub/HybridTrainer/HybridTrainer
+    resources:
+      - path: /Users/ngirmay/Documents/GitHub/HybridTrainer/HybridTrainer/Resources
     settings:
       base:
         INFOPLIST_FILE: /Users/ngirmay/Documents/GitHub/HybridTrainer/HybridTrainer/Info.plist

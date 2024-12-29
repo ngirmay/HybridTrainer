@@ -1,0 +1,490 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 54;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		29186F7C56DBF4C390B76E78 /* training_plan.json in Resources */ = {isa = PBXBuildFile; fileRef = FE336D9C278088591DE18B63 /* training_plan.json */; };
+		491EC57F6737A0C1F59525D0 /* TrainingPlanView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 490805A5DE769E0135FCDC90 /* TrainingPlanView.swift */; };
+		8184B462DDD928258BE0CA53 /* HybridTrainerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BDA5EB0AAB4A5E82690D953 /* HybridTrainerApp.swift */; };
+		910A075FB9431F84F8F3B408 /* TrainingPlan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F0B86F7FF95ACBD279AAB80 /* TrainingPlan.swift */; };
+		BA611140DCB4359FC5F6C706 /* AnalyticsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 767EE0FB190B9641BDAB40D1 /* AnalyticsView.swift */; };
+		CE094E7B8B182D33A67124C9 /* DashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34BA9EDE0EFA04D7C0504027 /* DashboardView.swift */; };
+		E6E4FBFC802D8E5E29C9E92B /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77707524971C05E437EF42A7 /* MainTabView.swift */; };
+		FE49209309E3A554E201CEE3 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39274DF692959AB51EC2C16B /* ProfileView.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		8CF1A44B45965C066F4E76C3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 74C015D5E5F9A21C52153BCA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 6FE0E45F0AF36E1D29F9041A;
+			remoteInfo = HybridTrainer;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		34BA9EDE0EFA04D7C0504027 /* DashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardView.swift; sourceTree = "<group>"; };
+		39274DF692959AB51EC2C16B /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		490805A5DE769E0135FCDC90 /* TrainingPlanView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingPlanView.swift; sourceTree = "<group>"; };
+		69C8074B2BC7D96A7E508F3B /* HybridTrainerTests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = HybridTrainerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		767EE0FB190B9641BDAB40D1 /* AnalyticsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsView.swift; sourceTree = "<group>"; };
+		77707524971C05E437EF42A7 /* MainTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabView.swift; sourceTree = "<group>"; };
+		7BDA5EB0AAB4A5E82690D953 /* HybridTrainerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HybridTrainerApp.swift; sourceTree = "<group>"; };
+		7F0B86F7FF95ACBD279AAB80 /* TrainingPlan.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingPlan.swift; sourceTree = "<group>"; };
+		84FE32F3D41CDE964BF94E39 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		D2BBB04C40DED0A948A87798 /* HybridTrainer.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = HybridTrainer.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		FE336D9C278088591DE18B63 /* training_plan.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = training_plan.json; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXGroup section */
+		11101AC6A5F84533762041DE = {
+			isa = PBXGroup;
+			children = (
+				C175C7D6A26010C0EDED7418 /* HybridTrainer */,
+				84ED5CEE628D596B85E065B2 /* HybridTrainerTests */,
+				F9C3004DD6D1D2E627A13C20 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		14B40FB077856972A4967B8F /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				7F0B86F7FF95ACBD279AAB80 /* TrainingPlan.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		2109EAB39D884A4A936F8CA4 /* Navigation */ = {
+			isa = PBXGroup;
+			children = (
+				77707524971C05E437EF42A7 /* MainTabView.swift */,
+			);
+			path = Navigation;
+			sourceTree = "<group>";
+		};
+		2E39901163BCBBCBAB23635E /* Dashboard */ = {
+			isa = PBXGroup;
+			children = (
+				B6E7EB444517BE25933E8ACD /* Views */,
+			);
+			path = Dashboard;
+			sourceTree = "<group>";
+		};
+		3A8E310D4440160617A80C4C /* Analytics */ = {
+			isa = PBXGroup;
+			children = (
+				767EE0FB190B9641BDAB40D1 /* AnalyticsView.swift */,
+			);
+			path = Analytics;
+			sourceTree = "<group>";
+		};
+		3CA1726F4D539D8417128B4E /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				39274DF692959AB51EC2C16B /* ProfileView.swift */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
+		47D3B4B498CB2EE4FFF34D20 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				7BDA5EB0AAB4A5E82690D953 /* HybridTrainerApp.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		84ED5CEE628D596B85E065B2 /* HybridTrainerTests */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = HybridTrainerTests;
+			sourceTree = "<group>";
+		};
+		91D55D0342C5A6358AC498B0 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				FE336D9C278088591DE18B63 /* training_plan.json */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		B6E7EB444517BE25933E8ACD /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				34BA9EDE0EFA04D7C0504027 /* DashboardView.swift */,
+				490805A5DE769E0135FCDC90 /* TrainingPlanView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		C175C7D6A26010C0EDED7418 /* HybridTrainer */ = {
+			isa = PBXGroup;
+			children = (
+				47D3B4B498CB2EE4FFF34D20 /* App */,
+				E6C1C95C74EAA93807BC4A4A /* Features */,
+				14B40FB077856972A4967B8F /* Models */,
+				91D55D0342C5A6358AC498B0 /* Resources */,
+				84FE32F3D41CDE964BF94E39 /* Info.plist */,
+			);
+			path = HybridTrainer;
+			sourceTree = "<group>";
+		};
+		E6C1C95C74EAA93807BC4A4A /* Features */ = {
+			isa = PBXGroup;
+			children = (
+				3A8E310D4440160617A80C4C /* Analytics */,
+				2E39901163BCBBCBAB23635E /* Dashboard */,
+				2109EAB39D884A4A936F8CA4 /* Navigation */,
+				3CA1726F4D539D8417128B4E /* Profile */,
+			);
+			path = Features;
+			sourceTree = "<group>";
+		};
+		F9C3004DD6D1D2E627A13C20 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				D2BBB04C40DED0A948A87798 /* HybridTrainer.app */,
+				69C8074B2BC7D96A7E508F3B /* HybridTrainerTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		24A6F7A9879F301F6E4496AA /* HybridTrainerTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 66E081D3B75493E981FD5EFD /* Build configuration list for PBXNativeTarget "HybridTrainerTests" */;
+			buildPhases = (
+				6C0AB550269C0B5CBC83908F /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				2D6F4F360B176A272E107BAC /* PBXTargetDependency */,
+			);
+			name = HybridTrainerTests;
+			productName = HybridTrainerTests;
+			productReference = 69C8074B2BC7D96A7E508F3B /* HybridTrainerTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		6FE0E45F0AF36E1D29F9041A /* HybridTrainer */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 41158F41B0BEA08E2F4955D9 /* Build configuration list for PBXNativeTarget "HybridTrainer" */;
+			buildPhases = (
+				884D34C64C23B187C36DAB49 /* Sources */,
+				8F2454D7149B5AC0367772FE /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = HybridTrainer;
+			productName = HybridTrainer;
+			productReference = D2BBB04C40DED0A948A87798 /* HybridTrainer.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		74C015D5E5F9A21C52153BCA /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1500;
+				TargetAttributes = {
+					24A6F7A9879F301F6E4496AA = {
+						DevelopmentTeam = YOUR_TEAM_ID;
+					};
+					6FE0E45F0AF36E1D29F9041A = {
+						DevelopmentTeam = YOUR_TEAM_ID;
+					};
+				};
+			};
+			buildConfigurationList = D8329A141D57D0FF4F45288D /* Build configuration list for PBXProject "HybridTrainer" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				en,
+			);
+			mainGroup = 11101AC6A5F84533762041DE;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				6FE0E45F0AF36E1D29F9041A /* HybridTrainer */,
+				24A6F7A9879F301F6E4496AA /* HybridTrainerTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		8F2454D7149B5AC0367772FE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				29186F7C56DBF4C390B76E78 /* training_plan.json in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		6C0AB550269C0B5CBC83908F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		884D34C64C23B187C36DAB49 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BA611140DCB4359FC5F6C706 /* AnalyticsView.swift in Sources */,
+				CE094E7B8B182D33A67124C9 /* DashboardView.swift in Sources */,
+				8184B462DDD928258BE0CA53 /* HybridTrainerApp.swift in Sources */,
+				E6E4FBFC802D8E5E29C9E92B /* MainTabView.swift in Sources */,
+				FE49209309E3A554E201CEE3 /* ProfileView.swift in Sources */,
+				910A075FB9431F84F8F3B408 /* TrainingPlan.swift in Sources */,
+				491EC57F6737A0C1F59525D0 /* TrainingPlanView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		2D6F4F360B176A272E107BAC /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 6FE0E45F0AF36E1D29F9041A /* HybridTrainer */;
+			targetProxy = 8CF1A44B45965C066F4E76C3 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		03F7FFEBDF280A5BD5E5B991 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.hybridtrainer.HybridTrainerTests;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/HybridTrainer.app/HybridTrainer";
+			};
+			name = Debug;
+		};
+		73CA33845585651180171E24 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				INFOPLIST_FILE = /Users/ngirmay/Documents/GitHub/HybridTrainer/HybridTrainer/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.hybridtrainer.app;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		89454428267A5430214E479F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = YOUR_TEAM_ID;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		BD6735314A1EC080BA938F99 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.hybridtrainer.HybridTrainerTests;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/HybridTrainer.app/HybridTrainer";
+			};
+			name = Release;
+		};
+		DEFFC29280236FE5A0751EB5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = YOUR_TEAM_ID;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"DEBUG=1",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		EC93A8F1BD1958C115833606 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				INFOPLIST_FILE = /Users/ngirmay/Documents/GitHub/HybridTrainer/HybridTrainer/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.hybridtrainer.app;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		41158F41B0BEA08E2F4955D9 /* Build configuration list for PBXNativeTarget "HybridTrainer" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EC93A8F1BD1958C115833606 /* Debug */,
+				73CA33845585651180171E24 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		66E081D3B75493E981FD5EFD /* Build configuration list for PBXNativeTarget "HybridTrainerTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				03F7FFEBDF280A5BD5E5B991 /* Debug */,
+				BD6735314A1EC080BA938F99 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		D8329A141D57D0FF4F45288D /* Build configuration list for PBXProject "HybridTrainer" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DEFFC29280236FE5A0751EB5 /* Debug */,
+				89454428267A5430214E479F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 74C015D5E5F9A21C52153BCA /* Project object */;
+}

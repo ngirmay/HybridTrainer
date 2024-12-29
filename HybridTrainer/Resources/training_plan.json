@@ -1,0 +1,676 @@
+{
+    "phases": [
+      {
+        "name": "Base",
+        "weeks": [
+          {
+            "startDate": "2022-11-28",
+            "workouts": [
+              { "dayOfWeek": "Monday",    "description": "Swim 2" },
+              { "dayOfWeek": "Tuesday",   "description": "Swim 2 - Strength" },
+              { "dayOfWeek": "Wednesday", "description": "Rest" },
+              { "dayOfWeek": "Thursday",  "description": "Swim 1" },
+              { "dayOfWeek": "Friday",    "description": "Run 2 (MAF test - 5 miles)" },
+              { "dayOfWeek": "Saturday",  "description": "Swim 2 - Strength" },
+              { "dayOfWeek": "Sunday",    "description": "Run 2" }
+            ],
+            "runMileage": 10,
+            "bikeMileage": 0,
+            "swimMileage": 5,
+            "cleanOrDirty": "Clean",
+            "block": "Swim (Adaption Strength)",
+            "bodyWeight": 166.4,
+            "bodyFat": 12.7
+          },
+          {
+            "startDate": "2022-12-05",
+            "workouts": [
+              { "dayOfWeek": "Monday",    "description": "Swim 2" },
+              { "dayOfWeek": "Tuesday",   "description": "Swim 2 - Strength" },
+              { "dayOfWeek": "Wednesday", "description": "Rest" },
+              { "dayOfWeek": "Thursday",  "description": "Swim 1" },
+              { "dayOfWeek": "Friday",    "description": "Run 2" },
+              { "dayOfWeek": "Saturday",  "description": "Rest/Yoga/Run/BW" },
+              { "dayOfWeek": "Sunday",    "description": "Rest/Yoga/Run/BW" }
+            ],
+            "runMileage": 0,
+            "bikeMileage": 0,
+            "swimMileage": 4,
+            "cleanOrDirty": "Clean",
+            "block": "",
+            "bodyWeight": 166.4,
+            "bodyFat": 12.7
+          },
+          {
+            "startDate": "2022-12-12",
+            "workouts": [
+              { "dayOfWeek": "Monday",    "description": "Swim 1" },
+              { "dayOfWeek": "Tuesday",   "description": "Swim 2 - Strength" },
+              { "dayOfWeek": "Wednesday", "description": "Swim 3" },
+              { "dayOfWeek": "Thursday",  "description": "Swim 1" },
+              { "dayOfWeek": "Friday",    "description": "Swim 3 (Long)" },
+              { "dayOfWeek": "Saturday",  "description": "Long run - Strength" },
+              { "dayOfWeek": "Sunday",    "description": "Yoga" }
+            ],
+            "runMileage": 0,
+            "bikeMileage": 0,
+            "swimMileage": 4,
+            "cleanOrDirty": "Clean",
+            "block": "Bike/Swim (Adaption Strength)",
+            "bodyWeight": null,
+            "bodyFat": null
+          },
+          {
+            "startDate": "2022-12-19",
+            "workouts": [
+              { "dayOfWeek": "Monday",    "description": "Run 1 - 3x1000 @ 7:40's (1 min rest)" },
+              { "dayOfWeek": "Tuesday",   "description": "Run 1 - Easy - 5m + Swim 1" },
+              { "dayOfWeek": "Wednesday", "description": "Run 1 - Easy - 5m" },
+              { "dayOfWeek": "Thursday",  "description": "Strength - Swim 2" },
+              { "dayOfWeek": "Friday",    "description": "Rest" },
+              { "dayOfWeek": "Saturday",  "description": "Bike 1" },
+              { "dayOfWeek": "Sunday",    "description": "Bike 1 - Easy - Strength" }
+            ],
+            "runMileage": 30,
+            "bikeMileage": 0,
+            "swimMileage": 3,
+            "cleanOrDirty": "Clean",
+            "block": "",
+            "bodyWeight": 165,
+            "bodyFat": 10.0
+          },
+          {
+            "startDate": "2022-12-26",
+            "workouts": [
+              { "dayOfWeek": "Monday",    "description": "Hill repeats - Strength" },
+              { "dayOfWeek": "Tuesday",   "description": "Swim 1" },
+              { "dayOfWeek": "Wednesday", "description": "Run 1 - Easy - 5m" },
+              { "dayOfWeek": "Thursday",  "description": "Run 1 - Easy - 5m - Strength" },
+              { "dayOfWeek": "Friday",    "description": "Run 1 - Easy - 5m" },
+              { "dayOfWeek": "Saturday",  "description": "REST" },
+              { "dayOfWeek": "Sunday",    "description": "Long run (15M)" }
+            ],
+            "runMileage": 35,
+            "bikeMileage": 0,
+            "swimMileage": 0,
+            "cleanOrDirty": "Dirty",
+            "block": "Run/Swim (Adaption Strength)",
+            "bodyWeight": null,
+            "bodyFat": null
+          },
+          {
+            "startDate": "2023-01-02",
+            "workouts": [
+              { "dayOfWeek": "Monday",    "description": "Yoga - Mobility Strength" },
+              { "dayOfWeek": "Tuesday",   "description": "Yoga - Mobility Strength" },
+              { "dayOfWeek": "Wednesday", "description": "Run 1 - Easy - 8m" },
+              { "dayOfWeek": "Thursday",  "description": "Bike 2 - hard + Swim 1" },
+              { "dayOfWeek": "Friday",    "description": "Bike 1 + Swim 2" },
+              { "dayOfWeek": "Saturday",  "description": "Long run (18M)" },
+              { "dayOfWeek": "Sunday",    "description": "Bike 1 - A dark place" }
+            ],
+            "runMileage": 35,
+            "bikeMileage": 0,
+            "swimMileage": 0,
+            "cleanOrDirty": "Clean",
+            "block": "",
+            "bodyWeight": null,
+            "bodyFat": null
+          },
+          {
+            "startDate": "2023-01-09",
+            "workouts": [
+              { "dayOfWeek": "Monday",    "description": "Bike 1 - 45min zone 2" },
+              { "dayOfWeek": "Tuesday",   "description": "" },
+              { "dayOfWeek": "Wednesday", "description": "Bike 1 - zone 2" },
+              { "dayOfWeek": "Thursday",  "description": "Bike 1 - zone 2" },
+              { "dayOfWeek": "Friday",    "description": "Bike 1" },
+              { "dayOfWeek": "Saturday",  "description": "Hoop (Flight)" },
+              { "dayOfWeek": "Sunday",    "description": "Run 1 - Easy - 8m" }
+            ],
+            "runMileage": 40,
+            "bikeMileage": 0,
+            "swimMileage": 0,
+            "cleanOrDirty": "Clean",
+            "block": "Bike/Run (Adaption Strength)",
+            "bodyWeight": null,
+            "bodyFat": null
+          },
+          {
+            "startDate": "2023-01-16",
+            "workouts": [
+              { "dayOfWeek": "Monday",    "description": "Run 1 - 6x1000 @ 7:10's (1 min rest)" },
+              { "dayOfWeek": "Tuesday",   "description": "Run 1 - Easy - 8m" },
+              { "dayOfWeek": "Wednesday", "description": "Run 1 - Easy - 8m" },
+              { "dayOfWeek": "Thursday",  "description": "Rest/Yoga/Run/BW" },
+              { "dayOfWeek": "Friday",    "description": "Rest/Yoga/Run/BW" },
+              { "dayOfWeek": "Saturday",  "description": "Rest/Yoga/Run/BW" },
+              { "dayOfWeek": "Sunday",    "description": "Run 1 - Easy - 8m" }
+            ],
+            "runMileage": 35,
+            "bikeMileage": 0,
+            "swimMileage": 0,
+            "cleanOrDirty": "Dirty",
+            "block": "",
+            "bodyWeight": 165,
+            "bodyFat": 10.0
+          }
+        ]
+      },
+      {
+        "name": "Build (Denver Month)",
+        "weeks": [
+          {
+            "startDate": "2023-01-23",
+            "workouts": [
+              { "dayOfWeek": "Monday",    "description": "4-6x1 mile repeats (Go to Max's)" },
+              { "dayOfWeek": "Tuesday",   "description": "Run 1 - Easy - 8m" },
+              { "dayOfWeek": "Wednesday", "description": "Run 1 - Easy - 8m" },
+              { "dayOfWeek": "Thursday",  "description": "Run 1 - Easy - 8m" },
+              { "dayOfWeek": "Friday",    "description": "Run 1 - Easy - 8m" },
+              { "dayOfWeek": "Saturday",  "description": "Long run - 22m" },
+              { "dayOfWeek": "Sunday",    "description": "Recovery Run - 10m" }
+            ],
+            "runMileage": 0,
+            "bikeMileage": 0,
+            "swimMileage": 0,
+            "cleanOrDirty": "Clean",
+            "block": "Bike/Swim (Max Strength)",
+            "bodyWeight": null,
+            "bodyFat": null
+          },
+          {
+            "startDate": "2023-01-30",
+            "workouts": [
+              { "dayOfWeek": "Monday",    "description": "Run 1 - Easy - 8m" },
+              { "dayOfWeek": "Tuesday",   "description": "Run 1 - Easy - 8m" },
+              { "dayOfWeek": "Wednesday", "description": "Run 1 - Easy - 8m" },
+              { "dayOfWeek": "Thursday",  "description": "Run 1 - Easy - 8m" },
+              { "dayOfWeek": "Friday",    "description": "Run 1 - Easy - 8m" },
+              { "dayOfWeek": "Saturday",  "description": "Long run 26 miles - Every other mile <7:45" },
+              { "dayOfWeek": "Sunday",    "description": "Recovery Run - 10m" }
+            ],
+            "runMileage": 0,
+            "bikeMileage": 0,
+            "swimMileage": 0,
+            "cleanOrDirty": "Clean",
+            "block": "",
+            "bodyWeight": null,
+            "bodyFat": null
+          },
+          {
+            "startDate": "2023-02-06",
+            "workouts": [
+              { "dayOfWeek": "Monday",    "description": "Run 1 - Easy - 8m (Nora link up)" },
+              { "dayOfWeek": "Tuesday",   "description": "Run 1 - Easy - 10-15m" },
+              { "dayOfWeek": "Wednesday", "description": "Swim 1 - Strength" },
+              { "dayOfWeek": "Thursday",  "description": "Rest/Yoga/Run/BW" },
+              { "dayOfWeek": "Friday",    "description": "Rest/Yoga/Run/BW" },
+              { "dayOfWeek": "Saturday",  "description": "Rest/Yoga/Run/BW" },
+              { "dayOfWeek": "Sunday",    "description": "Rest/Yoga/Run/BW" }
+            ],
+            "runMileage": 0,
+            "bikeMileage": 0,
+            "swimMileage": 0,
+            "cleanOrDirty": "Dirty",
+            "block": "Run (Max Strength)",
+            "bodyWeight": null,
+            "bodyFat": null
+          },
+          {
+            "startDate": "2023-02-13",
+            "workouts": [
+              { "dayOfWeek": "Monday",    "description": "Rest/Yoga/Run/BW" },
+              { "dayOfWeek": "Tuesday",   "description": "Return Home (Start 12w swim) - Swim 1 - Strength" },
+              { "dayOfWeek": "Wednesday", "description": "Swim 2" },
+              { "dayOfWeek": "Thursday",  "description": "Run 1 - Easy - 8m + Swim 3" },
+              { "dayOfWeek": "Friday",    "description": "Bike 2 + Run 2 (8m)" },
+              { "dayOfWeek": "Saturday",  "description": "Long run - 22m" },
+              { "dayOfWeek": "Sunday",    "description": "Long run - 22m" }
+            ],
+            "runMileage": 0,
+            "bikeMileage": 0,
+            "swimMileage": 0,
+            "cleanOrDirty": "Clean",
+            "block": "",
+            "bodyWeight": 160,
+            "bodyFat": 9.0
+          }
+        ]
+      },
+      {
+        "name": "Build",
+        "weeks": [
+          {
+            "startDate": "2023-02-20",
+            "workouts": [
+              { "dayOfWeek": "Monday",    "description": "(Start 12w swim) Swim 1 + run" },
+              { "dayOfWeek": "Tuesday",   "description": "Swim 2 + Run 8" },
+              { "dayOfWeek": "Wednesday", "description": "Bike 1 + Run 8" },
+              { "dayOfWeek": "Thursday",  "description": "Swim 3 + Run 8 - Strength" },
+              { "dayOfWeek": "Friday",    "description": "Bike 2 + Run 8" },
+              { "dayOfWeek": "Saturday",  "description": "Long run + Long Bike" },
+              { "dayOfWeek": "Sunday",    "description": "Swim 4 - strength" }
+            ],
+            "runMileage": 0,
+            "bikeMileage": 0,
+            "swimMileage": 0,
+            "cleanOrDirty": "Clean",
+            "block": "Run (Max Strength)",
+            "bodyWeight": null,
+            "bodyFat": null
+          },
+          {
+            "startDate": "2023-02-27",
+            "workouts": [
+              { "dayOfWeek": "Monday",    "description": "Swim 1 + Run 8" },
+              { "dayOfWeek": "Tuesday",   "description": "Swim 2 + Run 8" },
+              { "dayOfWeek": "Wednesday", "description": "Bike 1 + Run 8" },
+              { "dayOfWeek": "Thursday",  "description": "Swim 3 + Run 8" },
+              { "dayOfWeek": "Friday",    "description": "Bike 2 + Run 8" },
+              { "dayOfWeek": "Saturday",  "description": "Long run + Long Bike" },
+              { "dayOfWeek": "Sunday",    "description": "Swim 4 - strength" }
+            ],
+            "runMileage": 0,
+            "bikeMileage": 0,
+            "swimMileage": 0,
+            "cleanOrDirty": "Clean",
+            "block": "",
+            "bodyWeight": null,
+            "bodyFat": null
+          },
+          {
+            "startDate": "2023-03-06",
+            "workouts": [
+              { "dayOfWeek": "Monday",    "description": "Swim 1 + Run 8" },
+              { "dayOfWeek": "Tuesday",   "description": "Swim 2 + Run 8" },
+              { "dayOfWeek": "Wednesday", "description": "Rest" },
+              { "dayOfWeek": "Thursday",  "description": "Rest" },
+              { "dayOfWeek": "Friday",    "description": "Rest" },
+              { "dayOfWeek": "Saturday",  "description": "50k Run: ~3:38:00" },
+              { "dayOfWeek": "Sunday",    "description": "Recovery Run or Rest" }
+            ],
+            "runMileage": 0,
+            "bikeMileage": 0,
+            "swimMileage": 0,
+            "cleanOrDirty": "Clean",
+            "block": "Bike/Swim (Max Strength)",
+            "bodyWeight": null,
+            "bodyFat": null
+          },
+          {
+            "startDate": "2023-03-13",
+            "workouts": [
+              { "dayOfWeek": "Monday",    "description": "Bike 1 + Run 1 (Ramadan Trial)" },
+              { "dayOfWeek": "Tuesday",   "description": "Bike 2 - Strength" },
+              { "dayOfWeek": "Wednesday", "description": "Swim 1 + Bike 3" },
+              { "dayOfWeek": "Thursday",  "description": "Swim 2 - Strength" },
+              { "dayOfWeek": "Friday",    "description": "Bike 4 + Run 2" },
+              { "dayOfWeek": "Saturday",  "description": "Swim 3 + Long Run (3h?)" },
+              { "dayOfWeek": "Sunday",    "description": "Long bike" }
+            ],
+            "runMileage": 0,
+            "bikeMileage": 0,
+            "swimMileage": 0,
+            "cleanOrDirty": "Clean",
+            "block": "",
+            "bodyWeight": null,
+            "bodyFat": null
+          },
+          {
+            "startDate": "2023-03-20",
+            "workouts": [
+              { "dayOfWeek": "Monday",    "description": "Swim 1" },
+              { "dayOfWeek": "Tuesday",   "description": "Swim 2 - Strength" },
+              { "dayOfWeek": "Wednesday", "description": "Rest" },
+              { "dayOfWeek": "Thursday",  "description": "Run - Strength (Ramadan Start)" },
+              { "dayOfWeek": "Friday",    "description": "Bike 2 + Run 2 (MAF Test)" },
+              { "dayOfWeek": "Saturday",  "description": "Bike 1 + Run 1" },
+              { "dayOfWeek": "Sunday",    "description": "Bike 2 + Run 2" }
+            ],
+            "runMileage": 0,
+            "bikeMileage": 0,
+            "swimMileage": 0,
+            "cleanOrDirty": "Clean",
+            "block": "Bike/Run (Max Strength)",
+            "bodyWeight": null,
+            "bodyFat": null
+          },
+          {
+            "startDate": "2023-03-27",
+            "workouts": [
+              { "dayOfWeek": "Monday",    "description": "Swim 1" },
+              { "dayOfWeek": "Tuesday",   "description": "Swim 2 - Strength" },
+              { "dayOfWeek": "Wednesday", "description": "Rest" },
+              { "dayOfWeek": "Thursday",  "description": "Run 2 - Strength" },
+              { "dayOfWeek": "Friday",    "description": "Bike 2 + Run 2" },
+              { "dayOfWeek": "Saturday",  "description": "Bike 1 + Run 1" },
+              { "dayOfWeek": "Sunday",    "description": "Bike 2 + Run 2" }
+            ],
+            "runMileage": 0,
+            "bikeMileage": 0,
+            "swimMileage": 0,
+            "cleanOrDirty": "Clean",
+            "block": "",
+            "bodyWeight": null,
+            "bodyFat": null
+          },
+          {
+            "startDate": "2023-04-03",
+            "workouts": [
+              { "dayOfWeek": "Monday",    "description": "Swim 1" },
+              { "dayOfWeek": "Tuesday",   "description": "Swim 2 - Strength" },
+              { "dayOfWeek": "Wednesday", "description": "Rest" },
+              { "dayOfWeek": "Thursday",  "description": "Run 2 - Strength" },
+              { "dayOfWeek": "Friday",    "description": "Bike 2 + Run 2" },
+              { "dayOfWeek": "Saturday",  "description": "Bike 1 + Run 1" },
+              { "dayOfWeek": "Sunday",    "description": "Bike 2 + Run 2" }
+            ],
+            "runMileage": 0,
+            "bikeMileage": 0,
+            "swimMileage": 0,
+            "cleanOrDirty": "Clean",
+            "block": "Bike/Run (Max Strength)",
+            "bodyWeight": null,
+            "bodyFat": null
+          },
+          {
+            "startDate": "2023-04-10",
+            "workouts": [
+              { "dayOfWeek": "Monday",    "description": "Swim 1" },
+              { "dayOfWeek": "Tuesday",   "description": "Swim 2 - Strength" },
+              { "dayOfWeek": "Wednesday", "description": "Rest" },
+              { "dayOfWeek": "Thursday",  "description": "Run 2 - Strength" },
+              { "dayOfWeek": "Friday",    "description": "Bike 2 + Run 2" },
+              { "dayOfWeek": "Saturday",  "description": "Swim 2 - Strength" },
+              { "dayOfWeek": "Sunday",    "description": "Bike 1" }
+            ],
+            "runMileage": 0,
+            "bikeMileage": 0,
+            "swimMileage": 0,
+            "cleanOrDirty": "Clean",
+            "block": "",
+            "bodyWeight": null,
+            "bodyFat": null
+          },
+          {
+            "startDate": "2023-04-17",
+            "workouts": [
+              { "dayOfWeek": "Monday",    "description": "Swim 1" },
+              { "dayOfWeek": "Tuesday",   "description": "Swim 2 - Strength" },
+              { "dayOfWeek": "Wednesday", "description": "Rest" },
+              { "dayOfWeek": "Thursday",  "description": "Swim 2 + Run 2" },
+              { "dayOfWeek": "Friday",    "description": "Ramadan End" },
+              { "dayOfWeek": "Saturday",  "description": "Bike 2 - Strength" },
+              { "dayOfWeek": "Sunday",    "description": "Bike 2 + Run 2" }
+            ],
+            "runMileage": 0,
+            "bikeMileage": 0,
+            "swimMileage": 0,
+            "cleanOrDirty": "Clean",
+            "block": "Bike (Max Strength)",
+            "bodyWeight": null,
+            "bodyFat": null
+          },
+          {
+            "startDate": "2023-04-24",
+            "workouts": [
+              { "dayOfWeek": "Monday",    "description": "Swim 1" },
+              { "dayOfWeek": "Tuesday",   "description": "Swim 2 - Strength" },
+              { "dayOfWeek": "Wednesday", "description": "Rest" },
+              { "dayOfWeek": "Thursday",  "description": "Swim 2 + Run 2" },
+              { "dayOfWeek": "Friday",    "description": "Swim 2 + Run 2" },
+              { "dayOfWeek": "Saturday",  "description": "Bike 2 - Strength" },
+              { "dayOfWeek": "Sunday",    "description": "Bike 2 + Run 2" }
+            ],
+            "runMileage": 0,
+            "bikeMileage": 0,
+            "swimMileage": 0,
+            "cleanOrDirty": "Clean",
+            "block": "",
+            "bodyWeight": null,
+            "bodyFat": null
+          },
+          {
+            "startDate": "2023-05-01",
+            "workouts": [
+              { "dayOfWeek": "Monday",    "description": "Swim 1" },
+              { "dayOfWeek": "Tuesday",   "description": "Swim 2 - Strength" },
+              { "dayOfWeek": "Wednesday", "description": "Rest" },
+              { "dayOfWeek": "Thursday",  "description": "Swim 2 + Run 2" },
+              { "dayOfWeek": "Friday",    "description": "Swim 2 + Run 2" },
+              { "dayOfWeek": "Saturday",  "description": "Bike 2 - Strength" },
+              { "dayOfWeek": "Sunday",    "description": "Bike 1 - Run 1" }
+            ],
+            "runMileage": 0,
+            "bikeMileage": 0,
+            "swimMileage": 0,
+            "cleanOrDirty": "Clean",
+            "block": "Bike (Max Strength)",
+            "bodyWeight": null,
+            "bodyFat": null
+          },
+          {
+            "startDate": "2023-05-08",
+            "workouts": [
+              { "dayOfWeek": "Monday",    "description": "Swim 1" },
+              { "dayOfWeek": "Tuesday",   "description": "Swim 2 - Strength" },
+              { "dayOfWeek": "Wednesday", "description": "Rest" },
+              { "dayOfWeek": "Thursday",  "description": "Swim 2 + Run 2" },
+              { "dayOfWeek": "Friday",    "description": "Swim 2 + Run 2" },
+              { "dayOfWeek": "Saturday",  "description": "Skyline Drive: ~5:50:00" },
+              { "dayOfWeek": "Sunday",    "description": "Recovery Bike" }
+            ],
+            "runMileage": 0,
+            "bikeMileage": 0,
+            "swimMileage": 0,
+            "cleanOrDirty": "Clean",
+            "block": "",
+            "bodyWeight": 155,
+            "bodyFat": 8.0
+          }
+        ]
+      },
+      {
+        "name": "Speed",
+        "weeks": [
+          {
+            "startDate": "2023-05-15",
+            "workouts": [
+              { "dayOfWeek": "Monday",    "description": "Bike 1" },
+              { "dayOfWeek": "Tuesday",   "description": "Swim 2 - Swim 2" },
+              { "dayOfWeek": "Wednesday", "description": "Rest" },
+              { "dayOfWeek": "Thursday",  "description": "Swim 2 + Run 2" },
+              { "dayOfWeek": "Friday",    "description": "Run 1" },
+              { "dayOfWeek": "Saturday",  "description": "Swim 1 + Run 2" },
+              { "dayOfWeek": "Sunday",    "description": "Run 2 - Strength" }
+            ],
+            "runMileage": 0,
+            "bikeMileage": 0,
+            "swimMileage": 0,
+            "cleanOrDirty": "Clean",
+            "block": "Run/Swim (Maintain Strength)",
+            "bodyWeight": null,
+            "bodyFat": null
+          },
+          {
+            "startDate": "2023-05-22",
+            "workouts": [
+              { "dayOfWeek": "Monday",    "description": "Bike 1" },
+              { "dayOfWeek": "Tuesday",   "description": "Swim 2 - Swim 2" },
+              { "dayOfWeek": "Wednesday", "description": "Rest" },
+              { "dayOfWeek": "Thursday",  "description": "Swim 2 + Run 2" },
+              { "dayOfWeek": "Friday",    "description": "Run 1" },
+              { "dayOfWeek": "Saturday",  "description": "Swim 1 + Run 2" },
+              { "dayOfWeek": "Sunday",    "description": "Run 2 - Strength" }
+            ],
+            "runMileage": 0,
+            "bikeMileage": 0,
+            "swimMileage": 0,
+            "cleanOrDirty": "Clean",
+            "block": "",
+            "bodyWeight": null,
+            "bodyFat": null
+          },
+          {
+            "startDate": "2023-05-29",
+            "workouts": [
+              { "dayOfWeek": "Monday",    "description": "Bike 1" },
+              { "dayOfWeek": "Tuesday",   "description": "Bike 2 + Run 2" },
+              { "dayOfWeek": "Wednesday", "description": "Rest" },
+              { "dayOfWeek": "Thursday",  "description": "Swim 1 - Strength" },
+              { "dayOfWeek": "Friday",    "description": "Bike 2" },
+              { "dayOfWeek": "Saturday",  "description": "Run 1 - Strength" },
+              { "dayOfWeek": "Sunday",    "description": "Bike 2 + Run 2" }
+            ],
+            "runMileage": 0,
+            "bikeMileage": 0,
+            "swimMileage": 0,
+            "cleanOrDirty": "Clean",
+            "block": "Bike/Run (Maintain Strength)",
+            "bodyWeight": null,
+            "bodyFat": null
+          },
+          {
+            "startDate": "2023-06-05",
+            "workouts": [
+              { "dayOfWeek": "Monday",    "description": "Bike 1" },
+              { "dayOfWeek": "Tuesday",   "description": "Bike 2 + Run 2" },
+              { "dayOfWeek": "Wednesday", "description": "Rest" },
+              { "dayOfWeek": "Thursday",  "description": "Swim 1 - Strength" },
+              { "dayOfWeek": "Friday",    "description": "Bike 2" },
+              { "dayOfWeek": "Saturday",  "description": "10K swim" },
+              { "dayOfWeek": "Sunday",    "description": "Bike 2 + Run 2" }
+            ],
+            "runMileage": 0,
+            "bikeMileage": 0,
+            "swimMileage": 0,
+            "cleanOrDirty": "Clean",
+            "block": "",
+            "bodyWeight": null,
+            "bodyFat": null
+          },
+          {
+            "startDate": "2023-06-12",
+            "workouts": [
+              { "dayOfWeek": "Monday",    "description": "Bike 1" },
+              { "dayOfWeek": "Tuesday",   "description": "Swim 2 - Swim 2" },
+              { "dayOfWeek": "Wednesday", "description": "Rest" },
+              { "dayOfWeek": "Thursday",  "description": "Swim 2 + Run 2 (MAF Test)" },
+              { "dayOfWeek": "Friday",    "description": "Run 1" },
+              { "dayOfWeek": "Saturday",  "description": "Swim 1 + Run 2" },
+              { "dayOfWeek": "Sunday",    "description": "Run 2 - Strength" }
+            ],
+            "runMileage": 0,
+            "bikeMileage": 0,
+            "swimMileage": 0,
+            "cleanOrDirty": "Clean",
+            "block": "Run/Swim (Maintain Strength)",
+            "bodyWeight": null,
+            "bodyFat": null
+          },
+          {
+            "startDate": "2023-06-19",
+            "workouts": [
+              { "dayOfWeek": "Monday",    "description": "Bike 1" },
+              { "dayOfWeek": "Tuesday",   "description": "Swim 2 - Swim 2" },
+              { "dayOfWeek": "Wednesday", "description": "Rest" },
+              { "dayOfWeek": "Thursday",  "description": "Swim 2 + Run 2" },
+              { "dayOfWeek": "Friday",    "description": "Run 1" },
+              { "dayOfWeek": "Saturday",  "description": "Swim 1 + Run 2" },
+              { "dayOfWeek": "Sunday",    "description": "Run 2 - Strength" }
+            ],
+            "runMileage": 0,
+            "bikeMileage": 0,
+            "swimMileage": 0,
+            "cleanOrDirty": "Clean",
+            "block": "",
+            "bodyWeight": null,
+            "bodyFat": null
+          },
+          {
+            "startDate": "2023-06-26",
+            "workouts": [
+              { "dayOfWeek": "Monday",    "description": "Bike 1" },
+              { "dayOfWeek": "Tuesday",   "description": "Run 2 + Run 2" },
+              { "dayOfWeek": "Wednesday", "description": "Rest" },
+              { "dayOfWeek": "Thursday",  "description": "Swim 1 - Strength" },
+              { "dayOfWeek": "Friday",    "description": "Bike 2" },
+              { "dayOfWeek": "Saturday",  "description": "Skyline Drive - marathon?" },
+              { "dayOfWeek": "Sunday",    "description": "Recovery Bike/Run" }
+            ],
+            "runMileage": 0,
+            "bikeMileage": 0,
+            "swimMileage": 0,
+            "cleanOrDirty": "Clean",
+            "block": "Bike/Run (Maintain Strength)",
+            "bodyWeight": null,
+            "bodyFat": null
+          }
+        ]
+      },
+      {
+        "name": "Taper",
+        "weeks": [
+          {
+            "startDate": "2023-07-03",
+            "workouts": [
+              { "dayOfWeek": "Monday",    "description": "Bike 1" },
+              { "dayOfWeek": "Tuesday",   "description": "Swim 2 - Swim 2" },
+              { "dayOfWeek": "Wednesday", "description": "Rest" },
+              { "dayOfWeek": "Thursday",  "description": "Swim 2 + Run 2 (MAF Test)" },
+              { "dayOfWeek": "Friday",    "description": "Run 1" },
+              { "dayOfWeek": "Saturday",  "description": "Bike 2 + Run 2" },
+              { "dayOfWeek": "Sunday",    "description": "Run 2 - Strength" }
+            ],
+            "runMileage": 0,
+            "bikeMileage": 0,
+            "swimMileage": 0,
+            "cleanOrDirty": "Clean",
+            "block": "Taper Block",
+            "bodyWeight": null,
+            "bodyFat": null
+          },
+          {
+            "startDate": "2023-07-10",
+            "workouts": [
+              { "dayOfWeek": "Monday",    "description": "Bike 1" },
+              { "dayOfWeek": "Tuesday",   "description": "Swim 2 - Swim 2" },
+              { "dayOfWeek": "Wednesday", "description": "Rest" },
+              { "dayOfWeek": "Thursday",  "description": "Swim 2 + Run 2" },
+              { "dayOfWeek": "Friday",    "description": "Run 1" },
+              { "dayOfWeek": "Saturday",  "description": "Bike 2 + Run 2" },
+              { "dayOfWeek": "Sunday",    "description": "Run 2 - Strength" }
+            ],
+            "runMileage": 0,
+            "bikeMileage": 0,
+            "swimMileage": 0,
+            "cleanOrDirty": "Clean",
+            "block": "",
+            "bodyWeight": null,
+            "bodyFat": null
+          },
+          {
+            "startDate": "2023-07-17",
+            "workouts": [
+              { "dayOfWeek": "Monday",    "description": "Bike 1" },
+              { "dayOfWeek": "Tuesday",   "description": "Run 2 + Run 2" },
+              { "dayOfWeek": "Wednesday", "description": "Rest" },
+              { "dayOfWeek": "Thursday",  "description": "Rest" },
+              { "dayOfWeek": "Friday",    "description": "Rest" },
+              { "dayOfWeek": "Saturday",  "description": "Race Day" },
+              { "dayOfWeek": "Sunday",    "description": "" }
+            ],
+            "runMileage": 0,
+            "bikeMileage": 0,
+            "swimMileage": 0,
+            "cleanOrDirty": "Clean",
+            "block": "",
+            "bodyWeight": 150,
+            "bodyFat": 6.0
+          }
+        ]
+      }
+    ]
+  }
+  
