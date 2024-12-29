@@ -1,150 +1,100 @@
 import SwiftUI
 
 struct AnalyticsView: View {
+    let weeklyStats = sampleWeeklyStats
+    
     var body: some View {
         NavigationView {
             ScrollView {
                 VStack(spacing: 24) {
-                    // Weekly Summary Card
-                    StatsSummaryCard()
+                    // Weekly Summary
+                    VStack(alignment: .leading, spacing: 16) {
+                        Text("This Week")
+                            .font(.title)
+                        
+                        HStack(spacing: 24) {
+                            StatItem(
+                                value: weeklyStats.run.value,
+                                unit: weeklyStats.run.unit,
+                                label: weeklyStats.run.label
+                            )
+                            StatItem(
+                                value: weeklyStats.bike.value,
+                                unit: weeklyStats.bike.unit,
+                                label: weeklyStats.bike.label
+                            )
+                            StatItem(
+                                value: weeklyStats.swim.value,
+                                unit: weeklyStats.swim.unit,
+                                label: weeklyStats.swim.label
+                            )
+                        }
+                    }
+                    .padding()
+                    .background(Color.white)
+                    .cornerRadius(16)
                     
-                    // Training Distribution
-                    TrainingDistributionCard()
-                    
-                    // Progress Charts
-                    ProgressChartsCard()
+                    // Monthly Goal Progress
+                    VStack(alignment: .leading, spacing: 16) {
+                        Text("Monthly Goals")
+                            .font(.title)
+                        
+                        VStack(spacing: 12) {
+                            GoalProgressRow(activity: "Running", current: 85, goal: 100, unit: "mi")
+                            GoalProgressRow(activity: "Cycling", current: 320, goal: 400, unit: "mi")
+                            GoalProgressRow(activity: "Swimming", current: 12, goal: 20, unit: "mi")
+                        }
+                    }
+                    .padding()
+                    .background(Color.white)
+                    .cornerRadius(16)
                 }
                 .padding()
             }
             .navigationTitle("Analytics")
-            .navigationBarTitleDisplayMode(.inline)
-            .background(Color.white)
+            .background(Color(.systemGroupedBackground))
         }
     }
 }
 
-struct StatsSummaryCard: View {
-    var body: some View {
-        VStack(alignment: .leading, spacing: 16) {
-            Text("This Week")
-                .font(.system(size: 24, weight: .bold))
-            
-            HStack(spacing: 24) {
-                StatItem(value: "26.2", unit: "mi", label: "Run")
-                StatItem(value: "120", unit: "mi", label: "Bike")
-                StatItem(value: "4.5", unit: "mi", label: "Swim")
-            }
-        }
-        .padding(20)
-        .background(Color.white)
-        .cornerRadius(16)
-        .overlay(
-            RoundedRectangle(cornerRadius: 16)
-                .stroke(Color.gray.opacity(0.1), lineWidth: 1)
-        )
-        .shadow(color: Color.black.opacity(0.05), radius: 8, x: 0, y: 2)
-    }
-}
-
-struct TrainingDistributionCard: View {
-    var body: some View {
-        VStack(alignment: .leading, spacing: 16) {
-            Text("Training Distribution")
-                .font(.system(size: 20, weight: .bold))
-            
-            HStack(spacing: 8) {
-                ProgressBar(value: 0.4, color: .black)
-                ProgressBar(value: 0.35, color: .blue)
-                ProgressBar(value: 0.25, color: .gray)
-            }
-            .frame(height: 160)
-            
-            HStack(spacing: 16) {
-                LegendItem(color: .black, label: "Run")
-                LegendItem(color: .blue, label: "Bike")
-                LegendItem(color: .gray, label: "Swim")
-            }
-        }
-        .padding(20)
-        .background(Color.white)
-        .cornerRadius(16)
-        .overlay(
-            RoundedRectangle(cornerRadius: 16)
-                .stroke(Color.gray.opacity(0.1), lineWidth: 1)
-        )
-        .shadow(color: Color.black.opacity(0.05), radius: 8, x: 0, y: 2)
-    }
-}
-
-struct ProgressBar: View {
-    let value: Double
-    let color: Color
+struct GoalProgressRow: View {
+    let activity: String
+    let current: Double
+    let goal: Double
+    let unit: String
     
-    var body: some View {
-        GeometryReader { geometry in
-            RoundedRectangle(cornerRadius: 8)
-                .fill(color)
-                .frame(height: geometry.size.height * value)
-                .frame(maxHeight: .infinity, alignment: .bottom)
-        }
+    var progress: Double {
+        min(current / goal, 1.0)
     }
-}
-
-struct LegendItem: View {
-    let color: Color
-    let label: String
-    
-    var body: some View {
-        HStack(spacing: 8) {
-            Circle()
-                .fill(color)
-                .frame(width: 8, height: 8)
-            Text(label)
-                .font(.system(size: 14))
-                .foregroundColor(.gray)
-        }
-    }
-}
-
-struct ProgressChartsCard: View {
-    var body: some View {
-        VStack(alignment: .leading, spacing: 16) {
-            Text("Progress Charts")
-                .font(.system(size: 20, weight: .bold))
-            
-            // Placeholder charts
-            VStack(spacing: 20) {
-                ChartPlaceholder(title: "Weekly Distance")
-                ChartPlaceholder(title: "Training Load")
-                ChartPlaceholder(title: "Fitness Trend")
-            }
-        }
-        .padding(20)
-        .background(Color.white)
-        .cornerRadius(16)
-        .overlay(
-            RoundedRectangle(cornerRadius: 16)
-                .stroke(Color.gray.opacity(0.1), lineWidth: 1)
-        )
-        .shadow(color: Color.black.opacity(0.05), radius: 8, x: 0, y: 2)
-    }
-}
-
-struct ChartPlaceholder: View {
-    let title: String
     
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
-            Text(title)
-                .font(.system(size: 16, weight: .semibold))
+            HStack {
+                Text(activity)
+                Spacer()
+                Text("\(Int(current))/\(Int(goal)) \(unit)")
+                    .foregroundColor(.gray)
+            }
             
-            Rectangle()
-                .fill(Color.gray.opacity(0.1))
-                .frame(height: 100)
-                .overlay(
-                    Text("Chart Coming Soon")
-                        .foregroundColor(.gray)
-                )
+            GeometryReader { geometry in
+                ZStack(alignment: .leading) {
+                    Rectangle()
+                        .fill(Color.gray.opacity(0.2))
+                        .frame(height: 8)
+                        .cornerRadius(4)
+                    
+                    Rectangle()
+                        .fill(Color.black)
+                        .frame(width: geometry.size.width * progress, height: 8)
+                        .cornerRadius(4)
+                }
+            }
+            .frame(height: 8)
         }
     }
+}
+
+#Preview {
+    AnalyticsView()
+} 
 } 

@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		16347D0723DB8C631ECAE1CD /* CreateProgramView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FADFB9BF013D82CA2D450A4 /* CreateProgramView.swift */; };
 		29186F7C56DBF4C390B76E78 /* training_plan.json in Resources */ = {isa = PBXBuildFile; fileRef = FE336D9C278088591DE18B63 /* training_plan.json */; };
+		35D0628FCB46D98F971DD7EE /* AnalyticsData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2646DA502C901D8CE66E6FD8 /* AnalyticsData.swift */; };
 		49152CD2AB8042E04EAEBEAE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E7BB07413BA65FAEEEB59184 /* Assets.xcassets */; };
 		491EC57F6737A0C1F59525D0 /* TrainingPlanView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 490805A5DE769E0135FCDC90 /* TrainingPlanView.swift */; };
 		696A1B53EB9853FEA4989BC2 /* TrainingProgram.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6E0D84C6B421BE8C4F7BA5A /* TrainingProgram.swift */; };
@@ -35,6 +36,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2646DA502C901D8CE66E6FD8 /* AnalyticsData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsData.swift; sourceTree = "<group>"; };
 		34BA9EDE0EFA04D7C0504027 /* DashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardView.swift; sourceTree = "<group>"; };
 		39274DF692959AB51EC2C16B /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		490805A5DE769E0135FCDC90 /* TrainingPlanView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingPlanView.swift; sourceTree = "<group>"; };
@@ -101,6 +103,7 @@
 		3A8E310D4440160617A80C4C /* Analytics */ = {
 			isa = PBXGroup;
 			children = (
+				507674DFA9A5D880298C0443 /* Models */,
 				767EE0FB190B9641BDAB40D1 /* AnalyticsView.swift */,
 			);
 			path = Analytics;
@@ -129,6 +132,14 @@
 				8A98F65FD85FB9581A72F72F /* Views */,
 			);
 			path = Training;
+			sourceTree = "<group>";
+		};
+		507674DFA9A5D880298C0443 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				2646DA502C901D8CE66E6FD8 /* AnalyticsData.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 		84ED5CEE628D596B85E065B2 /* HybridTrainerTests */ = {
@@ -310,6 +321,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				35D0628FCB46D98F971DD7EE /* AnalyticsData.swift in Sources */,
 				BA611140DCB4359FC5F6C706 /* AnalyticsView.swift in Sources */,
 				16347D0723DB8C631ECAE1CD /* CreateProgramView.swift in Sources */,
 				E386DFA204B8DFF9902E15E1 /* CustomTabBar.swift in Sources */,
