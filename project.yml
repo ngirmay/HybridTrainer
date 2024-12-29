@@ -18,6 +18,7 @@ targets:
     sources:
       - path: /Users/ngirmay/Documents/GitHub/HybridTrainer/HybridTrainer
     resources:
+      - path: /Users/ngirmay/Documents/GitHub/HybridTrainer/HybridTrainer/Assets.xcassets
       - path: /Users/ngirmay/Documents/GitHub/HybridTrainer/HybridTrainer/Resources
     settings:
       base:

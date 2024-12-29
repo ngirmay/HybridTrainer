@@ -9,8 +9,9 @@ struct DashboardView: View {
                     Image("Logo")
                         .resizable()
                         .aspectRatio(contentMode: .fit)
-                        .frame(width: 120, height: 120)
+                        .frame(width: 150, height: 150)
                         .padding(.top, 32)
+                        .padding(.bottom, 16)
                     
                     // Hero Section
                     VStack(spacing: 16) {
