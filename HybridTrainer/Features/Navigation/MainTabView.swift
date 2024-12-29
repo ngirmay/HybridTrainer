@@ -9,7 +9,7 @@ struct MainTabView: View {
                 DashboardView()
                     .tag(0)
                 
-                TrainingPlanView()
+                TrainingProgramsView()
                     .tag(1)
                 
                 AnalyticsView()

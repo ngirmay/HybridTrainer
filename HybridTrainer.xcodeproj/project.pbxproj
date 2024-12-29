@@ -7,15 +7,19 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		16347D0723DB8C631ECAE1CD /* CreateProgramView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FADFB9BF013D82CA2D450A4 /* CreateProgramView.swift */; };
 		29186F7C56DBF4C390B76E78 /* training_plan.json in Resources */ = {isa = PBXBuildFile; fileRef = FE336D9C278088591DE18B63 /* training_plan.json */; };
 		49152CD2AB8042E04EAEBEAE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E7BB07413BA65FAEEEB59184 /* Assets.xcassets */; };
 		491EC57F6737A0C1F59525D0 /* TrainingPlanView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 490805A5DE769E0135FCDC90 /* TrainingPlanView.swift */; };
+		696A1B53EB9853FEA4989BC2 /* TrainingProgram.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6E0D84C6B421BE8C4F7BA5A /* TrainingProgram.swift */; };
 		8184B462DDD928258BE0CA53 /* HybridTrainerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BDA5EB0AAB4A5E82690D953 /* HybridTrainerApp.swift */; };
 		910A075FB9431F84F8F3B408 /* TrainingPlan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F0B86F7FF95ACBD279AAB80 /* TrainingPlan.swift */; };
 		BA611140DCB4359FC5F6C706 /* AnalyticsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 767EE0FB190B9641BDAB40D1 /* AnalyticsView.swift */; };
 		CE094E7B8B182D33A67124C9 /* DashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34BA9EDE0EFA04D7C0504027 /* DashboardView.swift */; };
+		DF2D514004434467E88D74FD /* TrainingProgramsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B56FA4DA227DC4C14F490B66 /* TrainingProgramsView.swift */; };
 		E386DFA204B8DFF9902E15E1 /* CustomTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 619D9F0CB9883ABDCF35596C /* CustomTabBar.swift */; };
 		E6E4FBFC802D8E5E29C9E92B /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77707524971C05E437EF42A7 /* MainTabView.swift */; };
+		E9F4AC393C2FC04CF5EE6E4A /* ProgramDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 804F3DE646005B9EAF94D510 /* ProgramDetailsView.swift */; };
 		FE49209309E3A554E201CEE3 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39274DF692959AB51EC2C16B /* ProfileView.swift */; };
 /* End PBXBuildFile section */
 
@@ -39,7 +43,11 @@
 		77707524971C05E437EF42A7 /* MainTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabView.swift; sourceTree = "<group>"; };
 		7BDA5EB0AAB4A5E82690D953 /* HybridTrainerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HybridTrainerApp.swift; sourceTree = "<group>"; };
 		7F0B86F7FF95ACBD279AAB80 /* TrainingPlan.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingPlan.swift; sourceTree = "<group>"; };
+		804F3DE646005B9EAF94D510 /* ProgramDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgramDetailsView.swift; sourceTree = "<group>"; };
 		84FE32F3D41CDE964BF94E39 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		8FADFB9BF013D82CA2D450A4 /* CreateProgramView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateProgramView.swift; sourceTree = "<group>"; };
+		B56FA4DA227DC4C14F490B66 /* TrainingProgramsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingProgramsView.swift; sourceTree = "<group>"; };
+		B6E0D84C6B421BE8C4F7BA5A /* TrainingProgram.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingProgram.swift; sourceTree = "<group>"; };
 		D2BBB04C40DED0A948A87798 /* HybridTrainer.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = HybridTrainer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E7BB07413BA65FAEEEB59184 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FE336D9C278088591DE18B63 /* training_plan.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = training_plan.json; sourceTree = "<group>"; };
@@ -70,6 +78,14 @@
 				77707524971C05E437EF42A7 /* MainTabView.swift */,
 			);
 			path = Navigation;
+			sourceTree = "<group>";
+		};
+		24DBEFD4F6C712600EB5CDF3 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				B6E0D84C6B421BE8C4F7BA5A /* TrainingProgram.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 		2E39901163BCBBCBAB23635E /* Dashboard */ = {
@@ -104,11 +120,30 @@
 			path = App;
 			sourceTree = "<group>";
 		};
+		497D046E936EF774712EB496 /* Training */ = {
+			isa = PBXGroup;
+			children = (
+				24DBEFD4F6C712600EB5CDF3 /* Models */,
+				8A98F65FD85FB9581A72F72F /* Views */,
+			);
+			path = Training;
+			sourceTree = "<group>";
+		};
 		84ED5CEE628D596B85E065B2 /* HybridTrainerTests */ = {
 			isa = PBXGroup;
 			children = (
 			);
 			path = HybridTrainerTests;
+			sourceTree = "<group>";
+		};
+		8A98F65FD85FB9581A72F72F /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				8FADFB9BF013D82CA2D450A4 /* CreateProgramView.swift */,
+				804F3DE646005B9EAF94D510 /* ProgramDetailsView.swift */,
+				B56FA4DA227DC4C14F490B66 /* TrainingProgramsView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		91D55D0342C5A6358AC498B0 /* Resources */ = {
@@ -148,6 +183,7 @@
 				2E39901163BCBBCBAB23635E /* Dashboard */,
 				2109EAB39D884A4A936F8CA4 /* Navigation */,
 				3CA1726F4D539D8417128B4E /* Profile */,
+				497D046E936EF774712EB496 /* Training */,
 			);
 			path = Features;
 			sourceTree = "<group>";
@@ -256,13 +292,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				BA611140DCB4359FC5F6C706 /* AnalyticsView.swift in Sources */,
+				16347D0723DB8C631ECAE1CD /* CreateProgramView.swift in Sources */,
 				E386DFA204B8DFF9902E15E1 /* CustomTabBar.swift in Sources */,
 				CE094E7B8B182D33A67124C9 /* DashboardView.swift in Sources */,
 				8184B462DDD928258BE0CA53 /* HybridTrainerApp.swift in Sources */,
 				E6E4FBFC802D8E5E29C9E92B /* MainTabView.swift in Sources */,
 				FE49209309E3A554E201CEE3 /* ProfileView.swift in Sources */,
+				E9F4AC393C2FC04CF5EE6E4A /* ProgramDetailsView.swift in Sources */,
 				910A075FB9431F84F8F3B408 /* TrainingPlan.swift in Sources */,
 				491EC57F6737A0C1F59525D0 /* TrainingPlanView.swift in Sources */,
+				696A1B53EB9853FEA4989BC2 /* TrainingProgram.swift in Sources */,
+				DF2D514004434467E88D74FD /* TrainingProgramsView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
