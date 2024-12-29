@@ -4,48 +4,44 @@ struct DashboardView: View {
     var body: some View {
         NavigationView {
             ScrollView {
-                VStack(spacing: 24) {
+                VStack(spacing: 32) {
                     // Logo Section
                     Image("Logo")
                         .resizable()
                         .aspectRatio(contentMode: .fit)
-                        .frame(width: 150, height: 150)
-                        .padding(.top, 32)
-                        .padding(.bottom, 16)
+                        .frame(width: 120, height: 120)
+                        .padding(.top, 16)
                     
                     // Hero Section
-                    VStack(spacing: 16) {
+                    VStack(spacing: 8) {
                         Text("Transform Your Training")
-                            .font(.system(size: 32, weight: .bold))
+                            .font(.system(size: 36, weight: .bold))
                             .foregroundColor(.black)
                         
                         Text("with HybridTrainer")
-                            .font(.system(size: 32, weight: .bold))
+                            .font(.system(size: 36, weight: .bold))
                             .foregroundColor(.black)
                         
-                        Text("Combine genetic insights, performance tracking, and advanced analytics")
-                            .font(.subheadline)
+                        Text("Combine genetic insights, performance tracking,\nand advanced analytics")
+                            .font(.system(size: 16))
                             .foregroundColor(.gray)
                             .multilineTextAlignment(.center)
-                            .padding(.horizontal)
+                            .padding(.top, 8)
                     }
+                    .padding(.horizontal, 24)
                     
-                    // Feature Icons (using your hexagonal design)
-                    HStack(spacing: 32) {
-                        FeatureIcon(icon: "waveform.path", title: "Genetics")
-                        FeatureIcon(icon: "figure.run", title: "Training")
-                        FeatureIcon(icon: "chart.line.uptrend.xyaxis", title: "Progress")
-                    }
-                    .padding()
-                    
-                    // Today's Training
+                    // Today's Training Card
                     TodayTrainingCard()
+                        .padding(.horizontal)
                     
                     // Quick Actions
                     QuickActionsGrid()
+                        .padding(.horizontal)
+                        .padding(.bottom, 32)
                 }
             }
             .navigationTitle("Dashboard")
+            .navigationBarTitleDisplayMode(.inline)
             .background(Color.white)
         }
     }
@@ -103,18 +99,17 @@ struct TodayTrainingCard: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 16) {
             Text("Today's Training")
-                .font(.headline)
+                .font(.system(size: 24, weight: .bold))
                 .foregroundColor(.black)
             
             HStack {
-                VStack(alignment: .leading) {
+                VStack(alignment: .leading, spacing: 4) {
                     Text("Swim 2 + Run 8")
-                        .font(.title3)
-                        .fontWeight(.semibold)
+                        .font(.system(size: 20, weight: .semibold))
                         .foregroundColor(.black)
                     
                     Text("Base Building • Week 4")
-                        .font(.subheadline)
+                        .font(.system(size: 14))
                         .foregroundColor(.gray)
                 }
                 
@@ -122,22 +117,22 @@ struct TodayTrainingCard: View {
                 
                 Button(action: {}) {
                     Text("Start")
-                        .fontWeight(.semibold)
+                        .font(.system(size: 16, weight: .semibold))
                         .foregroundColor(.white)
-                        .frame(width: 100, height: 40)
+                        .frame(width: 90, height: 36)
                         .background(Color.black)
-                        .cornerRadius(20)
+                        .cornerRadius(18)
                 }
             }
         }
-        .padding()
+        .padding(20)
         .background(Color.white)
         .cornerRadius(16)
         .overlay(
             RoundedRectangle(cornerRadius: 16)
-                .stroke(Color.gray.opacity(0.2), lineWidth: 1)
+                .stroke(Color.gray.opacity(0.1), lineWidth: 1)
         )
-        .padding(.horizontal)
+        .shadow(color: Color.black.opacity(0.05), radius: 8, x: 0, y: 2)
     }
 }
 
@@ -161,20 +156,22 @@ struct QuickActionButton: View {
     
     var body: some View {
         Button(action: {}) {
-            HStack {
+            HStack(spacing: 8) {
                 Image(systemName: icon)
+                    .font(.system(size: 16))
                 Text(title)
-                    .fontWeight(.semibold)
+                    .font(.system(size: 16, weight: .semibold))
             }
             .frame(maxWidth: .infinity)
-            .frame(height: 50)
+            .frame(height: 48)
             .background(isPrimary ? Color.black : Color.white)
             .foregroundColor(isPrimary ? .white : .black)
-            .cornerRadius(25)
+            .cornerRadius(24)
             .overlay(
-                RoundedRectangle(cornerRadius: 25)
+                RoundedRectangle(cornerRadius: 24)
                     .stroke(Color.gray.opacity(0.2), lineWidth: isPrimary ? 0 : 1)
             )
+            .shadow(color: isPrimary ? Color.black.opacity(0.1) : .clear, radius: 4, x: 0, y: 2)
         }
     }
 } 
