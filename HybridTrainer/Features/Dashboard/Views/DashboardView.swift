@@ -5,6 +5,13 @@ struct DashboardView: View {
         NavigationView {
             ScrollView {
                 VStack(spacing: 24) {
+                    // Logo Section
+                    Image("Logo")
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(width: 120, height: 120)
+                        .padding(.top, 32)
+                    
                     // Hero Section
                     VStack(spacing: 16) {
                         Text("Transform Your Training")
@@ -21,12 +28,11 @@ struct DashboardView: View {
                             .multilineTextAlignment(.center)
                             .padding(.horizontal)
                     }
-                    .padding(.top, 32)
                     
-                    // Feature Icons
+                    // Feature Icons (using your hexagonal design)
                     HStack(spacing: 32) {
+                        FeatureIcon(icon: "helix", title: "Genetics")
                         FeatureIcon(icon: "figure.run", title: "Training")
-                        FeatureIcon(icon: "chart.bar", title: "Analytics")
                         FeatureIcon(icon: "chart.line.uptrend.xyaxis", title: "Progress")
                     }
                     .padding()
@@ -50,7 +56,7 @@ struct FeatureIcon: View {
     
     var body: some View {
         VStack {
-            Circle()
+            HexagonShape()
                 .fill(Color.black)
                 .frame(width: 60, height: 60)
                 .overlay(
@@ -63,6 +69,32 @@ struct FeatureIcon: View {
                 .font(.caption)
                 .foregroundColor(.black)
         }
+    }
+}
+
+struct HexagonShape: Shape {
+    func path(in rect: CGRect) -> Path {
+        var path = Path()
+        let width = rect.width
+        let height = rect.height
+        let center = CGPoint(x: width / 2, y: height / 2)
+        let radius = min(width, height) / 2
+        
+        let points = (0...5).map { index -> CGPoint in
+            let angle = Double(index) * (Double.pi / 3) - Double.pi / 6
+            return CGPoint(
+                x: center.x + CGFloat(cos(angle)) * radius,
+                y: center.y + CGFloat(sin(angle)) * radius
+            )
+        }
+        
+        path.move(to: points[0])
+        points[1...].forEach { point in
+            path.addLine(to: point)
+        }
+        path.closeSubpath()
+        
+        return path
     }
 }
 
