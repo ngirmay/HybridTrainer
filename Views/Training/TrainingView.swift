@@ -224,5 +224,9 @@ struct WeeklyMetricsRow: View {
 
 #Preview {
     TrainingView()
-        .modelContainer(for: [TrainingSession.self], inMemory: true)
+        .modelContainer(for: [
+            TrainingSession.self,
+            PlannedWorkout.self,
+            TrainingBlock.self
+        ], inMemory: true)
 } 
