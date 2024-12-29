@@ -32,7 +32,7 @@ struct DashboardView: View {
                     
                     // Feature Icons (using your hexagonal design)
                     HStack(spacing: 32) {
-                        FeatureIcon(icon: "helix", title: "Genetics")
+                        FeatureIcon(icon: "dna.double.helix", title: "Genetics")
                         FeatureIcon(icon: "figure.run", title: "Training")
                         FeatureIcon(icon: "chart.line.uptrend.xyaxis", title: "Progress")
                     }
