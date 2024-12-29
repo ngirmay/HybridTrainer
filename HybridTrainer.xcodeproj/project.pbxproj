@@ -8,14 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		16347D0723DB8C631ECAE1CD /* CreateProgramView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FADFB9BF013D82CA2D450A4 /* CreateProgramView.swift */; };
-		29186F7C56DBF4C390B76E78 /* training_plan.json in Resources */ = {isa = PBXBuildFile; fileRef = FE336D9C278088591DE18B63 /* training_plan.json */; };
 		35D0628FCB46D98F971DD7EE /* AnalyticsData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2646DA502C901D8CE66E6FD8 /* AnalyticsData.swift */; };
 		49152CD2AB8042E04EAEBEAE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E7BB07413BA65FAEEEB59184 /* Assets.xcassets */; };
-		491EC57F6737A0C1F59525D0 /* TrainingPlanView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 490805A5DE769E0135FCDC90 /* TrainingPlanView.swift */; };
 		696A1B53EB9853FEA4989BC2 /* TrainingProgram.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6E0D84C6B421BE8C4F7BA5A /* TrainingProgram.swift */; };
 		7445EFE19E320E31BC6D3836 /* StatItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 833C7CE9D413BE69DAB76AA4 /* StatItem.swift */; };
 		8184B462DDD928258BE0CA53 /* HybridTrainerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BDA5EB0AAB4A5E82690D953 /* HybridTrainerApp.swift */; };
-		910A075FB9431F84F8F3B408 /* TrainingPlan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F0B86F7FF95ACBD279AAB80 /* TrainingPlan.swift */; };
 		BA611140DCB4359FC5F6C706 /* AnalyticsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 767EE0FB190B9641BDAB40D1 /* AnalyticsView.swift */; };
 		CE094E7B8B182D33A67124C9 /* DashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34BA9EDE0EFA04D7C0504027 /* DashboardView.swift */; };
 		DF2D514004434467E88D74FD /* TrainingProgramsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B56FA4DA227DC4C14F490B66 /* TrainingProgramsView.swift */; };
@@ -39,13 +36,11 @@
 		2646DA502C901D8CE66E6FD8 /* AnalyticsData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsData.swift; sourceTree = "<group>"; };
 		34BA9EDE0EFA04D7C0504027 /* DashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardView.swift; sourceTree = "<group>"; };
 		39274DF692959AB51EC2C16B /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
-		490805A5DE769E0135FCDC90 /* TrainingPlanView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingPlanView.swift; sourceTree = "<group>"; };
 		619D9F0CB9883ABDCF35596C /* CustomTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBar.swift; sourceTree = "<group>"; };
 		69C8074B2BC7D96A7E508F3B /* HybridTrainerTests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = HybridTrainerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		767EE0FB190B9641BDAB40D1 /* AnalyticsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsView.swift; sourceTree = "<group>"; };
 		77707524971C05E437EF42A7 /* MainTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabView.swift; sourceTree = "<group>"; };
 		7BDA5EB0AAB4A5E82690D953 /* HybridTrainerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HybridTrainerApp.swift; sourceTree = "<group>"; };
-		7F0B86F7FF95ACBD279AAB80 /* TrainingPlan.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingPlan.swift; sourceTree = "<group>"; };
 		804F3DE646005B9EAF94D510 /* ProgramDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgramDetailsView.swift; sourceTree = "<group>"; };
 		833C7CE9D413BE69DAB76AA4 /* StatItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatItem.swift; sourceTree = "<group>"; };
 		84FE32F3D41CDE964BF94E39 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
@@ -54,7 +49,6 @@
 		B6E0D84C6B421BE8C4F7BA5A /* TrainingProgram.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingProgram.swift; sourceTree = "<group>"; };
 		D2BBB04C40DED0A948A87798 /* HybridTrainer.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = HybridTrainer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E7BB07413BA65FAEEEB59184 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		FE336D9C278088591DE18B63 /* training_plan.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = training_plan.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
@@ -65,14 +59,6 @@
 				84ED5CEE628D596B85E065B2 /* HybridTrainerTests */,
 				F9C3004DD6D1D2E627A13C20 /* Products */,
 			);
-			sourceTree = "<group>";
-		};
-		14B40FB077856972A4967B8F /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				7F0B86F7FF95ACBD279AAB80 /* TrainingPlan.swift */,
-			);
-			path = Models;
 			sourceTree = "<group>";
 		};
 		2109EAB39D884A4A936F8CA4 /* Navigation */ = {
@@ -159,19 +145,10 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
-		91D55D0342C5A6358AC498B0 /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-				FE336D9C278088591DE18B63 /* training_plan.json */,
-			);
-			path = Resources;
-			sourceTree = "<group>";
-		};
 		B6E7EB444517BE25933E8ACD /* Views */ = {
 			isa = PBXGroup;
 			children = (
 				34BA9EDE0EFA04D7C0504027 /* DashboardView.swift */,
-				490805A5DE769E0135FCDC90 /* TrainingPlanView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -189,8 +166,6 @@
 			children = (
 				47D3B4B498CB2EE4FFF34D20 /* App */,
 				E6C1C95C74EAA93807BC4A4A /* Features */,
-				14B40FB077856972A4967B8F /* Models */,
-				91D55D0342C5A6358AC498B0 /* Resources */,
 				E7BB07413BA65FAEEEB59184 /* Assets.xcassets */,
 				84FE32F3D41CDE964BF94E39 /* Info.plist */,
 			);
@@ -303,7 +278,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				49152CD2AB8042E04EAEBEAE /* Assets.xcassets in Resources */,
-				29186F7C56DBF4C390B76E78 /* training_plan.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -331,8 +305,6 @@
 				FE49209309E3A554E201CEE3 /* ProfileView.swift in Sources */,
 				E9F4AC393C2FC04CF5EE6E4A /* ProgramDetailsView.swift in Sources */,
 				7445EFE19E320E31BC6D3836 /* StatItem.swift in Sources */,
-				910A075FB9431F84F8F3B408 /* TrainingPlan.swift in Sources */,
-				491EC57F6737A0C1F59525D0 /* TrainingPlanView.swift in Sources */,
 				696A1B53EB9853FEA4989BC2 /* TrainingProgram.swift in Sources */,
 				DF2D514004434467E88D74FD /* TrainingProgramsView.swift in Sources */,
 			);
