@@ -97,4 +97,3 @@ struct GoalProgressRow: View {
 #Preview {
     AnalyticsView()
 } 
-} 
