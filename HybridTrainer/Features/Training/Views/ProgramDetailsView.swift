@@ -137,4 +137,74 @@ struct WorkoutCard: View {
         .cornerRadius(12)
         .shadow(radius: 2)
     }
+}
+
+struct ExerciseRow: View {
+    let exercise: Exercise
+    
+    var body: some View {
+        HStack {
+            VStack(alignment: .leading, spacing: 4) {
+                Text(exercise.name)
+                    .font(.system(.body, design: .rounded))
+                
+                if let notes = exercise.notes {
+                    Text(notes)
+                        .font(.caption)
+                        .foregroundColor(.gray)
+                }
+            }
+            
+            Spacer()
+            
+            VStack(alignment: .trailing, spacing: 4) {
+                if exercise.sets > 0 && exercise.reps > 0 {
+                    Text("\(exercise.sets) × \(exercise.reps)")
+                        .font(.system(.body, design: .rounded))
+                }
+                
+                if let weight = exercise.weight {
+                    Text("\(Int(weight))kg")
+                        .font(.caption)
+                        .foregroundColor(.gray)
+                }
+                
+                if let duration = exercise.duration {
+                    Text("\(duration)min")
+                        .font(.caption)
+                        .foregroundColor(.gray)
+                }
+                
+                if let distance = exercise.distance {
+                    Text(String(format: "%.1fkm", distance))
+                        .font(.caption)
+                        .foregroundColor(.gray)
+                }
+            }
+        }
+        .padding(.vertical, 4)
+    }
+}
+
+struct StatItem: View {
+    let icon: String
+    let value: String
+    let unit: String
+    
+    var body: some View {
+        VStack(spacing: 4) {
+            Image(systemName: icon)
+                .font(.system(size: 20))
+            
+            HStack(alignment: .firstTextBaseline, spacing: 2) {
+                Text(value)
+                    .font(.system(.body, design: .rounded, weight: .semibold))
+                if !unit.isEmpty {
+                    Text(unit)
+                        .font(.caption2)
+                        .foregroundColor(.gray)
+                }
+            }
+        }
+    }
 } 

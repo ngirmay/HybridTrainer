@@ -127,6 +127,28 @@ struct CreateProgramButton: View {
     }
 }
 
+struct CategoryButton: View {
+    let category: ProgramCategory
+    let isSelected: Bool
+    let action: () -> Void
+    
+    var body: some View {
+        Button(action: action) {
+            Text(category.rawValue)
+                .font(.system(.subheadline, design: .rounded))
+                .padding(.horizontal, 16)
+                .padding(.vertical, 8)
+                .background(isSelected ? Color.black : Color.white)
+                .foregroundColor(isSelected ? .white : .black)
+                .cornerRadius(20)
+                .overlay(
+                    RoundedRectangle(cornerRadius: 20)
+                        .stroke(Color.gray.opacity(0.2), lineWidth: isSelected ? 0 : 1)
+                )
+        }
+    }
+}
+
 #Preview {
     TrainingProgramsView()
 } 
