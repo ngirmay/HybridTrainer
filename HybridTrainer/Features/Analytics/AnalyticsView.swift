@@ -125,4 +125,47 @@ struct LegendItem: View {
                 .foregroundColor(.gray)
         }
     }
+}
+
+struct ProgressChartsCard: View {
+    var body: some View {
+        VStack(alignment: .leading, spacing: 16) {
+            Text("Progress Charts")
+                .font(.system(size: 20, weight: .bold))
+            
+            // Placeholder charts
+            VStack(spacing: 20) {
+                ChartPlaceholder(title: "Weekly Distance")
+                ChartPlaceholder(title: "Training Load")
+                ChartPlaceholder(title: "Fitness Trend")
+            }
+        }
+        .padding(20)
+        .background(Color.white)
+        .cornerRadius(16)
+        .overlay(
+            RoundedRectangle(cornerRadius: 16)
+                .stroke(Color.gray.opacity(0.1), lineWidth: 1)
+        )
+        .shadow(color: Color.black.opacity(0.05), radius: 8, x: 0, y: 2)
+    }
+}
+
+struct ChartPlaceholder: View {
+    let title: String
+    
+    var body: some View {
+        VStack(alignment: .leading, spacing: 8) {
+            Text(title)
+                .font(.system(size: 16, weight: .semibold))
+            
+            Rectangle()
+                .fill(Color.gray.opacity(0.1))
+                .frame(height: 100)
+                .overlay(
+                    Text("Chart Coming Soon")
+                        .foregroundColor(.gray)
+                )
+        }
+    }
 } 
