@@ -1,0 +1,29 @@
+name: iOS CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build-and-test:
+    runs-on: macos-13
+    
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Install XcodeGen
+      run: brew install xcodegen
+      
+    - name: Generate Xcode Project
+      working-directory: /Users/ngirmay/Documents/GitHub/HybridTrainer
+      run: xcodegen generate
+      
+    - name: Build and Test
+      working-directory: /Users/ngirmay/Documents/GitHub/HybridTrainer
+      run: |
+        xcodebuild clean test \
+          -project HybridTrainer.xcodeproj \
+          -scheme HybridTrainer \
+          -destination 'platform=iOS Simulator,name=iPhone 15,OS=17.0' 

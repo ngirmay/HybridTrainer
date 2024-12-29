@@ -1,0 +1,41 @@
+name: HybridTrainer
+options:
+  bundleIdPrefix: com.hybridtrainer
+  deploymentTarget:
+    iOS: 17.0
+  xcodeVersion: "15.0"
+  groupSortPosition: top
+
+settings:
+  base:
+    DEVELOPMENT_TEAM: YOUR_TEAM_ID
+    SWIFT_VERSION: 5.0
+
+targets:
+  HybridTrainer:
+    type: application
+    platform: iOS
+    sources:
+      - path: /Users/ngirmay/Documents/GitHub/HybridTrainer/HybridTrainer
+    settings:
+      base:
+        INFOPLIST_FILE: /Users/ngirmay/Documents/GitHub/HybridTrainer/HybridTrainer/Info.plist
+        PRODUCT_BUNDLE_IDENTIFIER: com.hybridtrainer.app
+    info:
+      path: /Users/ngirmay/Documents/GitHub/HybridTrainer/HybridTrainer/Info.plist
+      properties:
+        UILaunchScreen: {}
+        UIApplicationSceneManifest:
+          UIApplicationSupportsMultipleScenes: false
+          UISceneConfigurations:
+            UIWindowSceneSessionRoleApplication:
+              - UISceneConfigurationName: Default Configuration
+                UISceneDelegateClassName: $(PRODUCT_MODULE_NAME).SceneDelegate
+    
+  HybridTrainerTests:
+    type: bundle.unit-test
+    platform: iOS
+    sources:
+      - path: /Users/ngirmay/Documents/GitHub/HybridTrainer/HybridTrainerTests
+    dependencies:
+      - target: HybridTrainer
