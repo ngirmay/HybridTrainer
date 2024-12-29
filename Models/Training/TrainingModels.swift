@@ -14,6 +14,7 @@ public enum WorkoutIntensity: String, Codable {
     case moderate
     case hard
     case race
+    case recovery
 }
 
 // MARK: - Core Models
