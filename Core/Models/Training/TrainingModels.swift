@@ -1,9 +1,34 @@
 import SwiftData
 import Foundation
+import SwiftUI
 
 /// Core training models and enums for the HybridTrainer app
 public enum WorkoutType: String, Codable {
-    case run, bike, swim, strength, yoga, other
+    case run, bike, swim, strength, yoga, other, triathlon
+    
+    public var icon: String {
+        switch self {
+        case .run: return "figure.run"
+        case .bike: return "bicycle"
+        case .swim: return "figure.pool.swim"
+        case .strength: return "dumbbell.fill"
+        case .yoga: return "figure.mind.and.body"
+        case .triathlon: return "figure.outdoor.cycle"
+        case .other: return "figure.mixed.cardio"
+        }
+    }
+    
+    public var displayColor: Color {
+        switch self {
+        case .run: return .blue
+        case .bike: return .green
+        case .swim: return .cyan
+        case .strength: return .orange
+        case .yoga: return .purple
+        case .triathlon: return .indigo
+        case .other: return .gray
+        }
+    }
 }
 
 public enum WorkoutIntensity: String, Codable {
@@ -61,7 +86,25 @@ public final class PlannedWorkout {
     public var targetPace: Double?
     public var isCompleted: Bool
     
-    // ... rest of implementation
+    public init(
+        id: UUID = UUID(),
+        type: WorkoutType,
+        workoutDescription: String,
+        intensity: WorkoutIntensity,
+        targetDistance: Double? = nil,
+        targetDuration: TimeInterval? = nil,
+        targetPace: Double? = nil,
+        isCompleted: Bool = false
+    ) {
+        self.id = id
+        self.type = type
+        self.workoutDescription = workoutDescription
+        self.intensity = intensity
+        self.targetDistance = targetDistance
+        self.targetDuration = targetDuration
+        self.targetPace = targetPace
+        self.isCompleted = isCompleted
+    }
 }
 
 // ... other models 
