@@ -1,5 +1,0 @@
-// Create a new Xcode project with:
-// - Project name: HybridTrainer
-// - Organization name: Your organization
-// - Interface: SwiftUI
-// - Language: Swift

@@ -1,5 +1,15 @@
-*.xcodeproj
-*.xcworkspace
-!*.xcodeproj/project.pbxproj
+# Xcode
 .DS_Store
 xcuserdata/
+*.xcodeproj/*
+!*.xcodeproj/project.pbxproj
+!*.xcodeproj/xcshareddata/
+!*.xcworkspace/contents.xcworkspacedata
+**/xcshareddata/WorkspaceSettings.xcsettings
+
+# Swift Package Manager
+.build/
+.swiftpm/
+
+# Other
+.env
