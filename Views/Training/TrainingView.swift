@@ -9,11 +9,15 @@ import Models
 
 public struct TrainingView: View {
     @Environment(\.modelContext) private var modelContext
-    @Query(sort: \TrainingSession.date, order: .reverse) private var sessions: [TrainingSession]
+    @Query(sort: \TrainingSession.date) private var sessions: [TrainingSession]
+    @StateObject private var viewModel: TrainingPlanViewModel
     @State private var selectedPlan: String? = nil
     @State private var showingPlanSelector = false
     
-    public init() {}
+    public init() {
+        _viewModel = StateObject(wrappedValue: TrainingPlanViewModel(
+            modelContext: DependencyContainer.shared.modelContainer.mainContext))
+    }
     
     public var body: some View {
         NavigationStack {

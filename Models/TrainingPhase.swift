@@ -1,18 +1,39 @@
-enum TrainingPhase: String, Codable {
+import SwiftData
+import Foundation
+
+@Model
+public final class TrainingBlock: Identifiable, Codable {
+    public let id: UUID
+    public var phase: TrainingPhase
+    public var startDate: Date
+    public var endDate: Date
+    public var focus: String
+    public var targetWeight: Double?
+    public var targetBodyFat: Double?
+    
+    public init(id: UUID = UUID(),
+         phase: TrainingPhase,
+         startDate: Date,
+         endDate: Date,
+         focus: String,
+         targetWeight: Double? = nil,
+         targetBodyFat: Double? = nil) {
+        self.id = id
+        self.phase = phase
+        self.startDate = startDate
+        self.endDate = endDate
+        self.focus = focus
+        self.targetWeight = targetWeight
+        self.targetBodyFat = targetBodyFat
+    }
+}
+
+// Keep as enum since it's just a type
+public enum TrainingPhase: String, Codable {
     case base
     case build
     case speed
     case taper
-}
-
-struct TrainingBlock: Identifiable, Codable {
-    let id: UUID
-    let phase: TrainingPhase
-    let startDate: Date
-    let endDate: Date
-    let focus: String // e.g., "Swim (Adaption Strength)"
-    let targetWeight: Double?
-    let targetBodyFat: Double?
 }
 
 struct TrainingWeek: Identifiable, Codable {
