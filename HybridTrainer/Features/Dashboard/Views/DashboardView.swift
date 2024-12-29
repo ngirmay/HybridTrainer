@@ -4,45 +4,40 @@ struct DashboardView: View {
     var body: some View {
         NavigationView {
             ScrollView {
-                VStack(spacing: 32) {
-                    // Logo Section
-                    Image("Logo")
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .frame(width: 120, height: 120)
-                        .padding(.top, 16)
-                    
-                    // Hero Section
-                    VStack(spacing: 8) {
-                        Text("Transform Your Training")
-                            .font(.system(size: 36, weight: .bold))
-                            .foregroundColor(.black)
+                VStack(spacing: 20) {
+                    // Today's Activity
+                    VStack(alignment: .leading, spacing: 16) {
+                        Text("Today's Activity")
+                            .font(.title)
                         
-                        Text("with HybridTrainer")
-                            .font(.system(size: 36, weight: .bold))
-                            .foregroundColor(.black)
-                        
-                        Text("Combine genetic insights, performance tracking,\nand advanced analytics")
-                            .font(.system(size: 16))
-                            .foregroundColor(.gray)
-                            .multilineTextAlignment(.center)
-                            .padding(.top, 8)
+                        HStack(spacing: 24) {
+                            StatItem(value: "5.2", unit: "mi", label: "Run")
+                            StatItem(value: "45", unit: "min", label: "Time")
+                        }
                     }
-                    .padding(.horizontal, 24)
+                    .padding()
+                    .background(Color.white)
+                    .cornerRadius(16)
                     
-                    // Today's Training Card
-                    TodayTrainingCard()
-                        .padding(.horizontal)
-                    
-                    // Quick Actions
-                    QuickActionsGrid()
-                        .padding(.horizontal)
-                        .padding(.bottom, 32)
+                    // Next Workout
+                    VStack(alignment: .leading, spacing: 12) {
+                        Text("Next Workout")
+                            .font(.title)
+                        
+                        Text("Long Run")
+                            .font(.headline)
+                        Text("Tomorrow at 7:00 AM")
+                            .foregroundColor(.gray)
+                    }
+                    .padding()
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .background(Color.white)
+                    .cornerRadius(16)
                 }
+                .padding()
             }
             .navigationTitle("Dashboard")
-            .navigationBarTitleDisplayMode(.inline)
-            .background(Color.white)
+            .background(Color(.systemGroupedBackground))
         }
     }
 }
