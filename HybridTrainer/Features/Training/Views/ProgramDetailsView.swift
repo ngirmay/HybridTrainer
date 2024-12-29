@@ -2,8 +2,6 @@ import SwiftUI
 
 struct ProgramDetailsView: View {
     let program: TrainingProgram
-    @Environment(\.presentationMode) var presentationMode
-    @State private var selectedWeek = 1
     
     var body: some View {
         ScrollView {
@@ -11,23 +9,23 @@ struct ProgramDetailsView: View {
                 // Header
                 ProgramHeader(program: program)
                 
-                // Week Selector
-                WeekSelector(selectedWeek: $selectedWeek, totalWeeks: 12)
-                
-                // Workouts List
-                WorkoutsList(workouts: program.workouts)
+                // Coming Soon Message
+                VStack(spacing: 16) {
+                    Image(systemName: "hammer.fill")
+                        .font(.system(size: 40))
+                        .foregroundColor(.gray)
+                    Text("Program details coming soon")
+                        .font(.headline)
+                    Text("We're working hard to bring you detailed workout plans")
+                        .font(.subheadline)
+                        .foregroundColor(.gray)
+                        .multilineTextAlignment(.center)
+                }
+                .padding(.top, 40)
             }
             .padding()
         }
         .navigationBarTitleDisplayMode(.inline)
-        .toolbar {
-            ToolbarItem(placement: .navigationBarTrailing) {
-                Button("Start Program") {
-                    // Handle program start
-                }
-                .buttonStyle(.borderedProminent)
-            }
-        }
     }
 }
 
@@ -63,126 +61,6 @@ struct ProgramHeader: View {
         .background(Color.white)
         .cornerRadius(16)
         .shadow(radius: 5)
-    }
-}
-
-struct WeekSelector: View {
-    @Binding var selectedWeek: Int
-    let totalWeeks: Int
-    
-    var body: some View {
-        ScrollView(.horizontal, showsIndicators: false) {
-            HStack(spacing: 12) {
-                ForEach(1...totalWeeks, id: \.self) { week in
-                    Button(action: { selectedWeek = week }) {
-                        Text("Week \(week)")
-                            .font(.system(.subheadline, design: .rounded))
-                            .padding(.horizontal, 16)
-                            .padding(.vertical, 8)
-                            .background(selectedWeek == week ? Color.black : Color.white)
-                            .foregroundColor(selectedWeek == week ? .white : .black)
-                            .cornerRadius(20)
-                            .overlay(
-                                RoundedRectangle(cornerRadius: 20)
-                                    .stroke(Color.gray.opacity(0.2), lineWidth: selectedWeek == week ? 0 : 1)
-                            )
-                    }
-                }
-            }
-            .padding(.horizontal)
-        }
-    }
-}
-
-struct WorkoutsList: View {
-    let workouts: [Workout]
-    
-    var body: some View {
-        VStack(spacing: 16) {
-            ForEach(workouts) { workout in
-                WorkoutCard(workout: workout)
-                    .transition(.scale.combined(with: .opacity))
-            }
-        }
-    }
-}
-
-struct WorkoutCard: View {
-    let workout: Workout
-    @State private var isExpanded = false
-    
-    var body: some View {
-        VStack(alignment: .leading, spacing: 12) {
-            Button(action: { withAnimation { isExpanded.toggle() }}) {
-                HStack {
-                    Text(workout.title)
-                        .font(.headline)
-                    Spacer()
-                    Image(systemName: "chevron.right")
-                        .rotationEffect(.degrees(isExpanded ? 90 : 0))
-                }
-            }
-            
-            if isExpanded {
-                VStack(alignment: .leading, spacing: 8) {
-                    ForEach(workout.exercises) { exercise in
-                        ExerciseRow(exercise: exercise)
-                    }
-                }
-                .transition(.move(edge: .top).combined(with: .opacity))
-            }
-        }
-        .padding()
-        .background(Color.white)
-        .cornerRadius(12)
-        .shadow(radius: 2)
-    }
-}
-
-struct ExerciseRow: View {
-    let exercise: Exercise
-    
-    var body: some View {
-        HStack {
-            VStack(alignment: .leading, spacing: 4) {
-                Text(exercise.name)
-                    .font(.system(.body, design: .rounded))
-                
-                if let notes = exercise.notes {
-                    Text(notes)
-                        .font(.caption)
-                        .foregroundColor(.gray)
-                }
-            }
-            
-            Spacer()
-            
-            VStack(alignment: .trailing, spacing: 4) {
-                if exercise.sets > 0 && exercise.reps > 0 {
-                    Text("\(exercise.sets) × \(exercise.reps)")
-                        .font(.system(.body, design: .rounded))
-                }
-                
-                if let weight = exercise.weight {
-                    Text("\(Int(weight))kg")
-                        .font(.caption)
-                        .foregroundColor(.gray)
-                }
-                
-                if let duration = exercise.duration {
-                    Text("\(duration)min")
-                        .font(.caption)
-                        .foregroundColor(.gray)
-                }
-                
-                if let distance = exercise.distance {
-                    Text(String(format: "%.1fkm", distance))
-                        .font(.caption)
-                        .foregroundColor(.gray)
-                }
-            }
-        }
-        .padding(.vertical, 4)
     }
 }
 
