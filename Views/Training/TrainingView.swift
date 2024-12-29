@@ -138,7 +138,22 @@ struct PlanSelectorView: View {
 struct TrainingPlanView: View {
     let planId: String
     @State private var currentPhase: TrainingPhase = .base
-    @State private var currentWeek: TrainingWeek?
+    @Query private var sessions: [TrainingSession]
+    
+    init(planId: String) {
+        self.planId = planId
+        // Filter for current week's sessions
+        let calendar = Calendar.current
+        let startOfWeek = calendar.startOfWeek(for: Date())
+        let endOfWeek = calendar.date(byAdding: .day, value: 7, to: startOfWeek)!
+        
+        _sessions = Query(
+            filter: #Predicate<TrainingSession> { session in
+                session.date >= startOfWeek && session.date < endOfWeek
+            },
+            sort: \TrainingSession.date
+        )
+    }
     
     var body: some View {
         List {
@@ -146,15 +161,9 @@ struct TrainingPlanView: View {
                 PhaseProgressView(phase: currentPhase)
             }
             
-            if let week = currentWeek {
-                Section("This Week") {
-                    ForEach(week.sessions) { day in
-                        DayScheduleRow(day: day)
-                    }
-                }
-                
-                Section("Weekly Goals") {
-                    WeeklyMetricsRow(metrics: week.metrics)
+            Section("This Week") {
+                ForEach(sessions) { session in
+                    TrainingSessionRow(session: session)
                 }
             }
         }
