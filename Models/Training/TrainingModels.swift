@@ -1,6 +1,20 @@
 import SwiftData
 import Foundation
 
+/// Core enums and models for the training system
+/// 
+/// Hierarchy:
+/// - TrainingBlock (contains multiple weeks)
+///   - TrainingWeek (contains multiple days)
+///     - TrainingDay (contains multiple workouts)
+///       - PlannedWorkout
+///     - WeeklyMetrics (attached to week)
+///
+/// Standalone models:
+/// - Goal (references WorkoutType)
+/// - Workout (references WorkoutType)
+/// - TrainingSession (references WorkoutType)
+
 // MARK: - Base Enums
 public enum TrainingPhase: String, Codable {
     case base
@@ -15,6 +29,15 @@ public enum WorkoutIntensity: String, Codable {
     case hard
     case race
     case recovery
+}
+
+public enum WorkoutType: String, Codable {
+    case run
+    case bike
+    case swim
+    case strength
+    case yoga
+    case other
 }
 
 // MARK: - Core Models

@@ -9,26 +9,26 @@ import HealthKit
 
 @Model
 public final class Workout: Codable {
-    public var id: UUID
+    @Attribute(.unique) public var id: UUID
     public var type: WorkoutType
-    public var startDate: Date
+    public var date: Date
+    public var distance: Double
     public var duration: TimeInterval
-    public var distance: Double? // in meters
-    public var calories: Double?
+    public var calories: Double
     
     public init(
         id: UUID = UUID(),
         type: WorkoutType,
-        startDate: Date,
+        date: Date,
+        distance: Double,
         duration: TimeInterval,
-        distance: Double? = nil,
-        calories: Double? = nil
+        calories: Double
     ) {
         self.id = id
         self.type = type
-        self.startDate = startDate
-        self.duration = duration
+        self.date = date
         self.distance = distance
+        self.duration = duration
         self.calories = calories
     }
     
@@ -37,24 +37,24 @@ public final class Workout: Codable {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         id = try container.decode(UUID.self, forKey: .id)
         type = try container.decode(WorkoutType.self, forKey: .type)
-        startDate = try container.decode(Date.self, forKey: .startDate)
+        date = try container.decode(Date.self, forKey: .date)
+        distance = try container.decode(Double.self, forKey: .distance)
         duration = try container.decode(TimeInterval.self, forKey: .duration)
-        distance = try container.decodeIfPresent(Double.self, forKey: .distance)
-        calories = try container.decodeIfPresent(Double.self, forKey: .calories)
+        calories = try container.decode(Double.self, forKey: .calories)
     }
     
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(id, forKey: .id)
         try container.encode(type, forKey: .type)
-        try container.encode(startDate, forKey: .startDate)
+        try container.encode(date, forKey: .date)
+        try container.encode(distance, forKey: .distance)
         try container.encode(duration, forKey: .duration)
-        try container.encodeIfPresent(distance, forKey: .distance)
-        try container.encodeIfPresent(calories, forKey: .calories)
+        try container.encode(calories, forKey: .calories)
     }
     
     private enum CodingKeys: String, CodingKey {
-        case id, type, startDate, duration, distance, calories
+        case id, type, date, distance, duration, calories
     }
 }
 
