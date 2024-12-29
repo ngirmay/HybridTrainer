@@ -1,7 +1,7 @@
 import SwiftData
 import Foundation
 
-// Base enums
+// MARK: - Base Enums
 public enum TrainingPhase: String, Codable {
     case base
     case build
@@ -9,17 +9,22 @@ public enum TrainingPhase: String, Codable {
     case taper
 }
 
-// Core models
+public enum WorkoutIntensity: String, Codable {
+    case easy
+    case moderate
+    case hard
+    case race
+}
+
+// MARK: - Core Models
 @Model
 public final class TrainingSession {
     @Attribute(.unique) public var id: UUID
     public var type: WorkoutType
     public var date: Date
+    @Relationship(deleteRule: .cascade) public var plannedWorkouts: [PlannedWorkout]
     public var notes: String?
     public var isCompleted: Bool
-    
-    // Relationships
-    @Relationship(deleteRule: .cascade) public var plannedWorkouts: [PlannedWorkout]
     public var weekNumber: Int?
     public var phase: TrainingPhase?
     
@@ -35,9 +40,9 @@ public final class TrainingSession {
         id: UUID = UUID(),
         type: WorkoutType,
         date: Date,
+        plannedWorkouts: [PlannedWorkout] = [],
         notes: String? = nil,
         isCompleted: Bool = false,
-        plannedWorkouts: [PlannedWorkout] = [],
         weekNumber: Int? = nil,
         phase: TrainingPhase? = nil,
         plannedDuration: TimeInterval? = nil,
@@ -46,9 +51,9 @@ public final class TrainingSession {
         self.id = id
         self.type = type
         self.date = date
+        self.plannedWorkouts = plannedWorkouts
         self.notes = notes
         self.isCompleted = isCompleted
-        self.plannedWorkouts = plannedWorkouts
         self.weekNumber = weekNumber
         self.phase = phase
         self.plannedDuration = plannedDuration
@@ -60,15 +65,14 @@ public final class TrainingSession {
 public final class PlannedWorkout {
     @Attribute(.unique) public var id: UUID
     public var type: WorkoutType
-    public var description: String
+    public var workoutDescription: String
     public var intensity: WorkoutIntensity
     public var targetDistance: Double?
     public var targetDuration: TimeInterval?
     public var targetPace: Double?
     public var isCompleted: Bool
     
-    // Relationship
-    @Relationship(inverse: \TrainingSession.plannedWorkouts) 
+    @Relationship(inverse: \TrainingSession.plannedWorkouts)
     public var session: TrainingSession?
     
     public init(
@@ -83,7 +87,7 @@ public final class PlannedWorkout {
     ) {
         self.id = id
         self.type = type
-        self.description = description
+        self.workoutDescription = description
         self.intensity = intensity
         self.targetDistance = targetDistance
         self.targetDuration = targetDuration
@@ -102,8 +106,8 @@ public final class TrainingBlock {
     public var targetWeight: Double?
     public var targetBodyFat: Double?
     
-    // Relationship
-    @Relationship(deleteRule: .cascade) public var weeks: [TrainingWeek]
+    @Relationship(deleteRule: .cascade) 
+    public var weeks: [TrainingWeek]
     
     public init(
         id: UUID = UUID(),
@@ -123,5 +127,77 @@ public final class TrainingBlock {
         self.targetWeight = targetWeight
         self.targetBodyFat = targetBodyFat
         self.weeks = weeks
+    }
+}
+
+@Model
+public final class TrainingWeek {
+    @Attribute(.unique) public var id: UUID
+    public var blockId: UUID
+    public var weekNumber: Int
+    public var startDate: Date
+    @Relationship(deleteRule: .cascade) public var sessions: [TrainingDay]
+    @Relationship public var metrics: WeeklyMetrics?
+    
+    public init(
+        id: UUID = UUID(),
+        blockId: UUID,
+        weekNumber: Int,
+        startDate: Date,
+        sessions: [TrainingDay] = [],
+        metrics: WeeklyMetrics? = nil
+    ) {
+        self.id = id
+        self.blockId = blockId
+        self.weekNumber = weekNumber
+        self.startDate = startDate
+        self.sessions = sessions
+        self.metrics = metrics
+    }
+}
+
+@Model
+public final class TrainingDay {
+    @Attribute(.unique) public var id: UUID
+    public var date: Date
+    @Relationship(deleteRule: .cascade) public var workouts: [PlannedWorkout]
+    public var notes: String?
+    
+    public init(
+        id: UUID = UUID(),
+        date: Date,
+        workouts: [PlannedWorkout] = [],
+        notes: String? = nil
+    ) {
+        self.id = id
+        self.date = date
+        self.workouts = workouts
+        self.notes = notes
+    }
+}
+
+@Model
+public final class WeeklyMetrics {
+    @Attribute(.unique) public var id: UUID
+    public var runMileage: Double?
+    public var bikeMileage: Double?
+    public var swimMileage: Double?
+    public var isClean: Bool
+    
+    @Relationship(inverse: \TrainingWeek.metrics)
+    public var week: TrainingWeek?
+    
+    public init(
+        id: UUID = UUID(),
+        runMileage: Double? = nil,
+        bikeMileage: Double? = nil,
+        swimMileage: Double? = nil,
+        isClean: Bool = true
+    ) {
+        self.id = id
+        self.runMileage = runMileage
+        self.bikeMileage = bikeMileage
+        self.swimMileage = swimMileage
+        self.isClean = isClean
     }
 } 

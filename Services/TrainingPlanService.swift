@@ -1,185 +1,157 @@
 import Foundation
 import SwiftData
-import Models
 
-class TrainingPlanService {
+public class TrainingPlanService {
     private let modelContext: ModelContext
     
     init(modelContext: ModelContext) {
         self.modelContext = modelContext
     }
     
+    // MARK: - Plan Creation
     func createPlan(_ planId: String) async throws {
         switch planId {
-        case "plan_a":
-            try await createIronmanPlan()
+        case "ironman_base":
+            try await createIronmanPlan(phase: .base)
+        case "ironman_build":
+            try await createIronmanPlan(phase: .build)
+        case "ironman_peak":
+            try await createIronmanPlan(phase: .speed)
+        case "ironman_taper":
+            try await createIronmanPlan(phase: .taper)
         default:
             throw TrainingError.planNotFound
         }
     }
     
-    private func createIronmanPlan() async throws {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "MM/dd/yyyy"
-        
-        guard let startDate = dateFormatter.date(from: "11/28/2022"),
-              let raceDate = dateFormatter.date(from: "07/23/2023") else {
-            throw TrainingError.invalidDates
-        }
-        
-        // Create training blocks
-        let blocks = try generateTrainingBlocks(startDate: startDate, raceDate: raceDate)
-        
-        // Generate all training sessions
-        var allSessions: [TrainingSession] = []
-        var currentDate = startDate
+    // MARK: - Plan Generation
+    private func createIronmanPlan(phase: TrainingPhase) async throws {
+        let block = try await generateTrainingBlock(phase: phase)
+        try await generateWeeks(for: block)
+        try modelContext.save()
+    }
+    
+    private func generateTrainingBlock(phase: TrainingPhase) async throws -> TrainingBlock {
+        let block = TrainingBlock(
+            phase: phase,
+            startDate: Date(),
+            endDate: Calendar.current.date(byAdding: .weekOfYear, value: 4, to: Date())!,
+            focus: getFocusForPhase(phase)
+        )
+        modelContext.insert(block)
+        return block
+    }
+    
+    private func generateWeeks(for block: TrainingBlock) async throws {
+        var currentDate = block.startDate
         var weekNumber = 1
         
-        while currentDate < raceDate {
-            let currentPhase = determinePhase(for: currentDate, in: blocks)
-            let weekSessions = try generateWeekSessions(
-                startDate: currentDate,
+        while currentDate < block.endDate {
+            let week = try await generateTrainingWeek(
+                blockId: block.id,
                 weekNumber: weekNumber,
-                phase: currentPhase
+                startDate: currentDate,
+                phase: block.phase
             )
-            allSessions.append(contentsOf: weekSessions)
+            
+            block.weeks.append(week)
             
             if let nextWeek = Calendar.current.date(byAdding: .weekOfYear, value: 1, to: currentDate) {
                 currentDate = nextWeek
                 weekNumber += 1
-            } else {
-                break
+            }
+        }
+    }
+    
+    private func generateTrainingWeek(
+        blockId: UUID,
+        weekNumber: Int,
+        startDate: Date,
+        phase: TrainingPhase
+    ) async throws -> TrainingWeek {
+        let week = TrainingWeek(
+            blockId: blockId,
+            weekNumber: weekNumber,
+            startDate: startDate
+        )
+        
+        // Generate training days
+        var currentDate = startDate
+        for dayOffset in 0..<7 {
+            if let date = Calendar.current.date(byAdding: .day, value: dayOffset, to: currentDate) {
+                let workouts = try generateWorkouts(for: date, phase: phase, weekNumber: weekNumber)
+                if !workouts.isEmpty {
+                    let day = TrainingDay(date: date, workouts: workouts)
+                    week.sessions.append(day)
+                }
             }
         }
         
-        // Save everything to the context
-        blocks.forEach { modelContext.insert($0) }
-        allSessions.forEach { modelContext.insert($0) }
+        // Create weekly metrics
+        let metrics = WeeklyMetrics(
+            runMileage: getTargetRunMileage(phase: phase, week: weekNumber),
+            bikeMileage: getTargetBikeMileage(phase: phase, week: weekNumber),
+            swimMileage: getTargetSwimMileage(phase: phase, week: weekNumber)
+        )
+        week.metrics = metrics
         
-        try modelContext.save()
+        modelContext.insert(week)
+        return week
     }
     
-    private func generateTrainingBlocks(startDate: Date, raceDate: Date) throws -> [TrainingBlock] {
-        let calendar = Calendar.current
-        let baseEnd = calendar.date(from: DateComponents(year: 2023, month: 1, day: 22))!
-        let build1End = calendar.date(from: DateComponents(year: 2023, month: 3, day: 19))!
-        let build2End = calendar.date(from: DateComponents(year: 2023, month: 5, day: 14))!
-        let speedEnd = calendar.date(from: DateComponents(year: 2023, month: 7, day: 2))!
-        
-        return [
-            TrainingBlock(
-                phase: .base,
-                startDate: startDate,
-                endDate: baseEnd,
-                focus: "Swim (Adaption Strength)",
-                targetWeight: 165,
-                targetBodyFat: 12
-            ),
-            TrainingBlock(
-                phase: .build,
-                startDate: baseEnd,
-                endDate: build2End,
-                focus: "Bike/Run (Max Strength)",
-                targetWeight: 160,
-                targetBodyFat: 10
-            ),
-            TrainingBlock(
-                phase: .speed,
-                startDate: build2End,
-                endDate: speedEnd,
-                focus: "Race Specific",
-                targetWeight: 155,
-                targetBodyFat: 8
-            ),
-            TrainingBlock(
-                phase: .taper,
-                startDate: speedEnd,
-                endDate: raceDate,
-                focus: "Race Preparation",
-                targetWeight: 155,
-                targetBodyFat: 7
-            )
-        ]
-    }
-    
-    private func generateWeekSessions(startDate: Date, weekNumber: Int, phase: TrainingPhase) throws -> [TrainingSession] {
-        let calendar = Calendar.current
-        var sessions: [TrainingSession] = []
-        
-        // Get the training schedule for this phase and week
+    // MARK: - Workout Generation
+    private func generateWorkouts(
+        for date: Date,
+        phase: TrainingPhase,
+        weekNumber: Int
+    ) throws -> [PlannedWorkout] {
+        let dayOfWeek = Calendar.current.component(.weekday, from: date)
         let schedule = getTrainingSchedule(for: phase, weekNumber: weekNumber)
         
-        // Create sessions for each day of the week
-        for dayOffset in 0...6 {
-            guard let date = calendar.date(byAdding: .day, value: dayOffset, to: startDate) else {
-                continue
-            }
-            
-            let dayOfWeek = calendar.component(.weekday, from: date) // 1 = Sunday, 2 = Monday, etc.
-            let workouts = schedule[dayOfWeek]?.map { workoutInfo in
-                PlannedWorkout(
-                    type: workoutInfo.type,
-                    description: workoutInfo.description,
-                    intensity: workoutInfo.intensity,
-                    targetDistance: workoutInfo.distance,
-                    targetDuration: workoutInfo.duration
-                )
-            } ?? []
-            
-            if !workouts.isEmpty {
-                let session = TrainingSession(
-                    type: workouts[0].type, // Primary workout type
-                    date: date,
-                    plannedWorkouts: workouts,
-                    weekNumber: weekNumber,
-                    phase: phase
-                )
-                sessions.append(session)
-            }
-        }
-        
-        return sessions
+        return schedule[dayOfWeek]?.map { workout in
+            PlannedWorkout(
+                type: workout.type,
+                description: workout.description,
+                intensity: workout.intensity,
+                targetDistance: workout.distance,
+                targetDuration: workout.duration
+            )
+        } ?? []
     }
     
-    private func determinePhase(for date: Date, in blocks: [TrainingBlock]) -> TrainingPhase {
-        for block in blocks {
-            if (block.startDate...block.endDate).contains(date) {
-                return block.phase
-            }
-        }
-        return .base // Default to base phase
-    }
-    
-    private func getTrainingSchedule(for phase: TrainingPhase, weekNumber: Int) -> [Int: [(type: WorkoutType, description: String, intensity: WorkoutIntensity, distance: Double?, duration: TimeInterval?)]] {
-        // 1 = Sunday, 2 = Monday, etc.
+    // MARK: - Helper Methods
+    private func getFocusForPhase(_ phase: TrainingPhase) -> String {
         switch phase {
-        case .base:
-            return [
-                2: [ // Monday
-                    (type: .swim, description: "Swim 2", intensity: .moderate, distance: 2000, duration: nil)
-                ],
-                3: [ // Tuesday
-                    (type: .swim, description: "Swim 2 - Strength", intensity: .moderate, distance: 2000, duration: nil)
-                ],
-                5: [ // Thursday
-                    (type: .swim, description: "Swim 1", intensity: .easy, distance: 1500, duration: nil)
-                ],
-                6: [ // Friday
-                    (type: .run, description: "Run 2 (MAF test - 5 miles)", intensity: .moderate, distance: 8046.72, duration: nil),
-                    (type: .bike, description: "Easy spin", intensity: .easy, distance: nil, duration: 3600)
-                ],
-                7: [ // Saturday
-                    (type: .swim, description: "Swim 2 - Strength", intensity: .moderate, distance: 2000, duration: nil)
-                ]
-            ]
-        // Add other phase schedules...
-        default:
-            return [:] // Empty schedule for other phases for now
+        case .base: return "Build aerobic base and technique"
+        case .build: return "Increase volume and intensity"
+        case .speed: return "Race-specific preparation"
+        case .taper: return "Recovery and race preparation"
         }
     }
+    
+    private func getTargetRunMileage(phase: TrainingPhase, week: Int) -> Double {
+        switch phase {
+        case .base: return Double(20 + (week * 2))
+        case .build: return Double(30 + (week * 3))
+        case .speed: return Double(40)
+        case .taper: return Double(20)
+        }
+    }
+    
+    // Similar methods for bike and swim mileage...
 }
 
+// MARK: - Supporting Types
 enum TrainingError: Error {
     case planNotFound
     case invalidDates
+    case failedToGenerateWorkouts
+}
+
+struct WorkoutTemplate {
+    let type: WorkoutType
+    let description: String
+    let intensity: WorkoutIntensity
+    let distance: Double?
+    let duration: TimeInterval?
 } 
