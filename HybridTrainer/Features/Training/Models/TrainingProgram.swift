@@ -3,7 +3,7 @@ import Foundation
 struct TrainingProgram: Identifiable {
     let id = UUID()
     let icon: String
-    let name: String
+    let title: String
     let category: ProgramCategory
     let duration: String
     let description: String
@@ -23,7 +23,7 @@ enum ProgramCategory: String, CaseIterable {
 let samplePrograms: [TrainingProgram] = [
     TrainingProgram(
         icon: "figure.run",
-        name: "Endurance Builder",
+        title: "Endurance Builder",
         category: .endurance,
         duration: "12-week program",
         description: "Build your endurance with this comprehensive program designed to improve your stamina and cardiovascular fitness.",
@@ -32,7 +32,7 @@ let samplePrograms: [TrainingProgram] = [
     ),
     TrainingProgram(
         icon: "dumbbell.fill",
-        name: "Strength Master",
+        title: "Strength Master",
         category: .strength,
         duration: "8-week program",
         description: "Focus on building strength and muscle mass with this intensive program designed for serious athletes.",
@@ -41,7 +41,7 @@ let samplePrograms: [TrainingProgram] = [
     ),
     TrainingProgram(
         icon: "timer",
-        name: "HIIT Challenge",
+        title: "HIIT Challenge",
         category: .hiit,
         duration: "6-week program",
         description: "Transform your fitness with high-intensity interval training designed to maximize calorie burn and improve conditioning.",

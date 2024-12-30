@@ -2,7 +2,7 @@ import SwiftUI
 
 struct CreateProgramView: View {
     @Environment(\.presentationMode) var presentationMode
-    @State private var programName = ""
+    @State private var programTitle = ""
     @State private var programCategory: ProgramCategory = .custom
     @State private var duration = ""
     @State private var description = ""
@@ -14,7 +14,7 @@ struct CreateProgramView: View {
         NavigationView {
             Form {
                 Section(header: Text("Program Details")) {
-                    TextField("Program Name", text: $programName)
+                    TextField("Program Title", text: $programTitle)
                     
                     Picker("Category", selection: $programCategory) {
                         ForEach(ProgramCategory.allCases, id: \.self) { category in
@@ -43,7 +43,7 @@ struct CreateProgramView: View {
                 trailing: Button("Save") {
                     let program = TrainingProgram(
                         icon: icon,
-                        name: programName,
+                        title: programTitle,
                         category: programCategory,
                         duration: duration,
                         description: description,
