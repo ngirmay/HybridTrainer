@@ -5,32 +5,28 @@ struct AnalyticsView: View {
     
     var body: some View {
         NavigationView {
-            ScrollView {
-                VStack(spacing: 24) {
-                    // Weekly Summary
-                    VStack(alignment: .leading, spacing: 16) {
-                        Text("This Week")
-                            .font(.title)
-                        
-                        HStack(spacing: 24) {
-                            StatItem(value: weeklyStats.run.value, unit: weeklyStats.run.unit, label: weeklyStats.run.label)
-                            StatItem(value: weeklyStats.bike.value, unit: weeklyStats.bike.unit, label: weeklyStats.bike.label)
-                            StatItem(value: weeklyStats.swim.value, unit: weeklyStats.swim.unit, label: weeklyStats.swim.label)
-                        }
+            List {
+                Section("This Week") {
+                    HStack(spacing: 24) {
+                        StatItem(value: weeklyStats.run.value, unit: weeklyStats.run.unit, label: weeklyStats.run.label)
+                        StatItem(value: weeklyStats.bike.value, unit: weeklyStats.bike.unit, label: weeklyStats.bike.label)
+                        StatItem(value: weeklyStats.swim.value, unit: weeklyStats.swim.unit, label: weeklyStats.swim.label)
                     }
-                    .padding()
-                    .background(Color.white)
-                    .cornerRadius(16)
+                    .padding(.vertical, 8)
                 }
-                .padding()
+                
+                Section("Monthly Goals") {
+                    GoalRow(activity: "Running", current: 85, goal: 100, unit: "mi")
+                    GoalRow(activity: "Cycling", current: 320, goal: 400, unit: "mi")
+                    GoalRow(activity: "Swimming", current: 12, goal: 20, unit: "mi")
+                }
             }
             .navigationTitle("Analytics")
-            .background(Color(.systemGroupedBackground))
         }
     }
 }
 
-struct GoalProgressRow: View {
+struct GoalRow: View {
     let activity: String
     let current: Double
     let goal: Double
@@ -49,20 +45,7 @@ struct GoalProgressRow: View {
                     .foregroundColor(.gray)
             }
             
-            GeometryReader { geometry in
-                ZStack(alignment: .leading) {
-                    Rectangle()
-                        .fill(Color.gray.opacity(0.2))
-                        .frame(height: 8)
-                        .cornerRadius(4)
-                    
-                    Rectangle()
-                        .fill(Color.black)
-                        .frame(width: geometry.size.width * progress, height: 8)
-                        .cornerRadius(4)
-                }
-            }
-            .frame(height: 8)
+            ProgressView(value: progress)
         }
     }
 }

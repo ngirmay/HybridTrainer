@@ -3,41 +3,32 @@ import SwiftUI
 struct DashboardView: View {
     var body: some View {
         NavigationView {
-            ScrollView {
-                VStack(spacing: 20) {
-                    // Today's Activity
-                    VStack(alignment: .leading, spacing: 16) {
-                        Text("Today's Activity")
-                            .font(.title)
-                        
-                        HStack(spacing: 24) {
-                            StatItem(value: "5.2", unit: "mi", label: "Run")
-                            StatItem(value: "45", unit: "min", label: "Time")
-                        }
+            List {
+                Section("Today's Activity") {
+                    HStack(spacing: 24) {
+                        StatItem(value: "5.2", unit: "mi", label: "Run")
+                        StatItem(value: "45", unit: "min", label: "Time")
                     }
-                    .padding()
-                    .background(Color.white)
-                    .cornerRadius(16)
-                    
-                    // Next Workout
-                    VStack(alignment: .leading, spacing: 12) {
-                        Text("Next Workout")
-                            .font(.title)
-                        
+                    .padding(.vertical, 8)
+                }
+                
+                Section("Next Workout") {
+                    VStack(alignment: .leading, spacing: 4) {
                         Text("Long Run")
                             .font(.headline)
                         Text("Tomorrow at 7:00 AM")
+                            .font(.subheadline)
                             .foregroundColor(.gray)
                     }
-                    .padding()
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                    .background(Color.white)
-                    .cornerRadius(16)
+                    .padding(.vertical, 4)
                 }
-                .padding()
+                
+                Section("Quick Actions") {
+                    Label("Start Workout", systemImage: "play.fill")
+                    Label("View Programs", systemImage: "list.bullet")
+                }
             }
             .navigationTitle("Dashboard")
-            .background(Color(.systemGroupedBackground))
         }
     }
 }
