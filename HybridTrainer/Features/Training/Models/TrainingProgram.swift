@@ -2,13 +2,11 @@ import Foundation
 
 struct TrainingProgram: Identifiable {
     let id = UUID()
-    let icon: String
-    let title: String
+    let name: String
+    let category: ProgramCategory
     let duration: String
     let description: String
-    let sessionDuration: String
     let level: String
-    let category: ProgramCategory
 }
 
 enum ProgramCategory: String, CaseIterable {
