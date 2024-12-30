@@ -6,7 +6,9 @@ struct CreateProgramView: View {
     @State private var programCategory: ProgramCategory = .custom
     @State private var duration = ""
     @State private var description = ""
+    @State private var sessionDuration = ""
     @State private var level = ""
+    @State private var icon = "figure.run"
     
     var body: some View {
         NavigationView {
@@ -20,9 +22,17 @@ struct CreateProgramView: View {
                         }
                     }
                     
-                    TextField("Duration (weeks)", text: $duration)
-                    TextField("Description", text: $description)
+                    TextField("Duration", text: $duration)
+                        .placeholder("e.g., 8-week program")
+                    
+                    TextField("Session Duration", text: $sessionDuration)
+                        .placeholder("e.g., 45-60 minutes")
+                    
                     TextField("Level", text: $level)
+                        .placeholder("e.g., Intermediate")
+                    
+                    TextField("Description", text: $description)
+                        .placeholder("Program description")
                 }
             }
             .navigationTitle("Create Program")
@@ -31,10 +41,38 @@ struct CreateProgramView: View {
                     presentationMode.wrappedValue.dismiss()
                 },
                 trailing: Button("Save") {
-                    // Save functionality will be added later
+                    let program = TrainingProgram(
+                        icon: icon,
+                        name: programName,
+                        category: programCategory,
+                        duration: duration,
+                        description: description,
+                        sessionDuration: sessionDuration,
+                        level: level
+                    )
+                    // TODO: Save program
                     presentationMode.wrappedValue.dismiss()
                 }
             )
+        }
+    }
+}
+
+extension View {
+    func placeholder(_ text: String) -> some View {
+        self.placeholder(when: self is TextField<Text>, placeholder: {
+            Text(text).foregroundColor(.gray)
+        })
+    }
+    
+    func placeholder<Content: View>(
+        when shouldShow: Bool,
+        alignment: Alignment = .leading,
+        @ViewBuilder placeholder: () -> Content) -> some View {
+        
+        ZStack(alignment: alignment) {
+            placeholder().opacity(shouldShow ? 1 : 0)
+            self
         }
     }
 }
