@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0">
+    <entity name="CachedWorkout" representedClassName="CachedWorkout" syncable="YES" codeGenerationType="class">
+        <attribute name="id" optional="NO" attributeType="String"/>
+        <attribute name="type" optional="NO" attributeType="String"/>
+        <attribute name="startDate" optional="NO" attributeType="Date"/>
+        <attribute name="endDate" optional="NO" attributeType="Date"/>
+        <attribute name="duration" optional="NO" attributeType="Double"/>
+        <attribute name="distance" optional="YES" attributeType="Double"/>
+        <attribute name="synced" optional="NO" attributeType="Boolean"/>
+    </entity>
+</model> 

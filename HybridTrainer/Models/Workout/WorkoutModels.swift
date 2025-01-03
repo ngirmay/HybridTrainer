@@ -4,20 +4,33 @@ import HealthKit
 
 // MARK: - Data Models
 struct HeartRateSample: Codable, Identifiable {
-    let id = UUID()
+    let id: UUID
     let timestamp: Date
     let value: Double
+    
+    init(id: UUID, timestamp: Date, value: Double) {
+        self.id = id
+        self.timestamp = timestamp
+        self.value = value
+    }
 }
 
 struct Split: Codable, Identifiable {
-    let id = UUID()
+    let id: UUID
     let distance: Double
     let duration: TimeInterval
     let pace: Double
+    
+    init(id: UUID, distance: Double, duration: TimeInterval, pace: Double) {
+        self.id = id
+        self.distance = distance
+        self.duration = duration
+        self.pace = pace
+    }
 }
 
 struct LocationSample: Codable, Identifiable, Equatable {
-    let id = UUID()
+    let id: UUID
     let timestamp: Date
     private let latitude: Double
     private let longitude: Double
@@ -27,7 +40,8 @@ struct LocationSample: Codable, Identifiable, Equatable {
         CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
     }
     
-    init(timestamp: Date, coordinate: CLLocationCoordinate2D, altitude: Double?) {
+    init(id: UUID, timestamp: Date, coordinate: CLLocationCoordinate2D, altitude: Double?) {
+        self.id = id
         self.timestamp = timestamp
         self.latitude = coordinate.latitude
         self.longitude = coordinate.longitude

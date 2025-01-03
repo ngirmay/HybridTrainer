@@ -22,6 +22,7 @@
 		7445EFE19E320E31BC6D3836 /* StatItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 833C7CE9D413BE69DAB76AA4 /* StatItem.swift */; };
 		8184B462DDD928258BE0CA53 /* HybridTrainerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BDA5EB0AAB4A5E82690D953 /* HybridTrainerApp.swift */; };
 		8C046A7CD94F7D2196F17A98 /* HealthKit+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14FA98336DF47CE8ECB22EC3 /* HealthKit+Extensions.swift */; };
+		8F109096ACF65B97847008AE /* CachedWorkout.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D508632CF4E535BC220745E7 /* CachedWorkout.xcdatamodeld */; };
 		97B9E90A3C24294366529E76 /* WorkoutDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C3720067850F35023BE6E97 /* WorkoutDetails.swift */; };
 		AB2E30ADE0CE1C890BCC7AFB /* WorkoutData.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC72951E5EC27C460F814F32 /* WorkoutData.swift */; };
 		AD028B4833BDC66842ADDB39 /* WorkoutSummaryCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = E394EC20FDA164EDFCC0B209 /* WorkoutSummaryCard.swift */; };
@@ -106,6 +107,7 @@
 		14B40FB077856972A4967B8F /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				EC8F54CBE07D1C1F01AF24A0 /* CoreData */,
 				F509098F557F9419DFF9827E /* Workout */,
 				8D85F77C93A0BA8851B6E551 /* HealthData.swift */,
 			);
@@ -283,6 +285,14 @@
 			path = Features;
 			sourceTree = "<group>";
 		};
+		EC8F54CBE07D1C1F01AF24A0 /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				D508632CF4E535BC220745E7 /* CachedWorkout.xcdatamodeld */,
+			);
+			path = CoreData;
+			sourceTree = "<group>";
+		};
 		ECE62FDC21176BB1D628CC22 /* Workout */ = {
 			isa = PBXGroup;
 			children = (
@@ -416,6 +426,7 @@
 				BA611140DCB4359FC5F6C706 /* AnalyticsView.swift in Sources */,
 				B9A8601A6595EE08E055E72F /* AuthService.swift in Sources */,
 				0DECA21ED5DCB90ECD4D96FD /* CacheService.swift in Sources */,
+				8F109096ACF65B97847008AE /* CachedWorkout.xcdatamodeld in Sources */,
 				16347D0723DB8C631ECAE1CD /* CreateProgramView.swift in Sources */,
 				E386DFA204B8DFF9902E15E1 /* CustomTabBar.swift in Sources */,
 				CE094E7B8B182D33A67124C9 /* DashboardView.swift in Sources */,
@@ -671,6 +682,17 @@
 			defaultConfigurationName = Debug;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		D508632CF4E535BC220745E7 /* CachedWorkout.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+			);
+			path = CachedWorkout.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 74C015D5E5F9A21C52153BCA /* Project object */;
 }

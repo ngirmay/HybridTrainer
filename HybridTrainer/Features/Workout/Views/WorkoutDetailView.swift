@@ -1,6 +1,8 @@
 import SwiftUI
 import Charts
 import UIKit
+import HealthKit
+import Foundation
 
 struct WorkoutDetailView: View {
     let workoutDetails: WorkoutDetails
