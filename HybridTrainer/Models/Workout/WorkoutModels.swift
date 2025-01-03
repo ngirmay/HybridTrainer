@@ -1,17 +1,23 @@
+import Foundation
 import CoreLocation
+import HealthKit
 
-struct HeartRateSample: Codable {
+// MARK: - Data Models
+struct HeartRateSample: Codable, Identifiable {
+    let id = UUID()
     let timestamp: Date
     let value: Double
 }
 
-struct Split: Codable {
+struct Split: Codable, Identifiable {
+    let id = UUID()
     let distance: Double
     let duration: TimeInterval
     let pace: Double
 }
 
-struct LocationSample: Codable {
+struct LocationSample: Codable, Identifiable, Equatable {
+    let id = UUID()
     let timestamp: Date
     private let latitude: Double
     private let longitude: Double
@@ -27,14 +33,22 @@ struct LocationSample: Codable {
         self.longitude = coordinate.longitude
         self.altitude = altitude
     }
+    
+    static func == (lhs: LocationSample, rhs: LocationSample) -> Bool {
+        lhs.id == rhs.id
+    }
 }
 
-struct CachedWorkout: Codable {
-    let id: String
-    let type: String
-    let startDate: Date
-    let endDate: Date
-    let duration: TimeInterval
-    let distance: Double?
-    var synced: Bool
+struct WorkoutDetails {
+    let workout: HKWorkout
+    let heartRateData: [HeartRateSample]
+    let splits: [Split]
+    let route: [LocationSample]?
+}
+
+struct DailyHealthData: Codable {
+    let date: Date
+    let stepCount: Int
+    let heartRateSamples: [HeartRateSample]
+    let averageHeartRate: Double
 } 

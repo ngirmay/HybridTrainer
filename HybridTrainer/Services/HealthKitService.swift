@@ -1,12 +1,6 @@
 import HealthKit
 import CoreLocation
 
-enum HealthKitError: Error {
-    case notAvailable
-    case notAuthorized
-    case failedToFetch
-}
-
 class HealthKitService {
     static let shared = HealthKitService()
     private let healthStore = HKHealthStore()
@@ -18,98 +12,64 @@ class HealthKitService {
         HKObjectType.quantityType(forIdentifier: .distanceWalkingRunning)!
     ]
     
-    func fetchDailyHealthData(for date: Date) async throws -> DailyHealthData {
-        // TODO: Replace with real HealthKit queries
-        // For now, return dummy data
-        return DailyHealthData(
-            date: date,
-            stepCount: 8432,
-            heartRateSamples: generateDummyHeartRateData(for: date),
-            averageHeartRate: 72.5
-        )
-    }
-    
-    // MARK: - Real HealthKit Implementation (TODO)
-    
-    private func authorizeHealthKit() async throws {
-        guard HKHealthStore.isHealthDataAvailable() else {
-            throw HealthKitError.notAvailable
-        }
-        
+    func requestAuthorization() async throws {
         try await healthStore.requestAuthorization(toShare: [], read: typesToRead)
     }
     
-    private func fetchSteps(for date: Date) async throws -> Int {
-        let stepsType = HKQuantityType(.stepCount)
-        let predicate = createDayPredicate(for: date)
-        
-        return try await withCheckedThrowingContinuation { continuation in
-            let query = HKStatisticsQuery(
-                quantityType: stepsType,
-                quantitySamplePredicate: predicate,
-                options: .cumulativeSum
-            ) { _, statistics, error in
-                if let error = error {
-                    continuation.resume(throwing: error)
-                    return
-                }
-                
-                let steps = statistics?.sumQuantity()?.doubleValue(for: .count()) ?? 0
-                continuation.resume(returning: Int(steps))
-            }
-            
-            healthStore.execute(query)
-        }
-    }
-    
-    // MARK: - Helper Methods
-    
-    private func createDayPredicate(for date: Date) -> NSPredicate {
+    func fetchDailyHealthData(for date: Date) async throws -> DailyHealthData {
         let calendar = Calendar.current
         let startOfDay = calendar.startOfDay(for: date)
         let endOfDay = calendar.date(byAdding: .day, value: 1, to: startOfDay)!
         
-        return HKQuery.predicateForSamples(
-            withStart: startOfDay,
-            end: endOfDay,
-            options: .strictStartDate
+        let heartRateSamples = try await fetchHeartRateSamples(start: startOfDay, end: endOfDay)
+        let stepCount = try await fetchStepCount(start: startOfDay, end: endOfDay)
+        
+        return DailyHealthData(
+            date: date,
+            stepCount: stepCount,
+            heartRateSamples: heartRateSamples,
+            averageHeartRate: heartRateSamples.map(\.value).reduce(0, +) / Double(heartRateSamples.count)
         )
     }
     
-    // MARK: - Dummy Data Generation
-    
-    private func generateDummyHeartRateData(for date: Date) -> [HeartRateSample] {
-        let calendar = Calendar.current
-        let startOfDay = calendar.startOfDay(for: date)
-        
-        return stride(from: 0, to: 24, by: 2).map { hour in
-            let timestamp = calendar.date(byAdding: .hour, value: hour, to: startOfDay)!
-            let bpm = Double.random(in: 60...120)
-            return HeartRateSample(timestamp: timestamp, beatsPerMinute: bpm)
+    private func fetchHeartRateSamples(start: Date, end: Date) async throws -> [HeartRateSample] {
+        guard let heartRateType = HKObjectType.quantityType(forIdentifier: .heartRate) else {
+            throw HealthKitError.notAvailable
         }
+        
+        let predicate = HKQuery.predicateForSamples(withStart: start, end: end)
+        let descriptor = HKSampleQueryDescriptor(
+            predicates: [.quantitySample(predicate)],
+            sortDescriptors: [SortDescriptor(\.startDate, order: .forward)]
+        )
+        
+        let samples = try await descriptor.result(for: healthStore)
+        return samples.map { sample in
+            HeartRateSample(
+                timestamp: sample.startDate,
+                value: sample.quantity.doubleValue(for: .count().unitDivided(by: .minute()))
+            )
+        }
+    }
+    
+    private func fetchStepCount(start: Date, end: Date) async throws -> Int {
+        guard let stepCountType = HKObjectType.quantityType(forIdentifier: .stepCount) else {
+            throw HealthKitError.notAvailable
+        }
+        
+        let predicate = HKQuery.predicateForSamples(withStart: start, end: end)
+        let descriptor = HKStatisticsQueryDescriptor(
+            predicate: predicate,
+            options: .cumulativeSum
+        )
+        
+        let statistics = try await descriptor.result(for: healthStore)
+        return Int(statistics.sumQuantity()?.doubleValue(for: .count()) ?? 0)
     }
 }
 
-struct WorkoutDetails {
-    let workout: HKWorkout
-    let heartRateData: [HeartRateSample]
-    let splits: [Split]
-    let route: [LocationSample]?
-}
-
-struct HeartRateSample {
-    let timestamp: Date
-    let value: Double
-}
-
-struct Split {
-    let distance: Double
-    let duration: TimeInterval
-    let pace: Double
-}
-
-struct LocationSample {
-    let timestamp: Date
-    let coordinate: CLLocationCoordinate2D
-    let altitude: Double?
+enum HealthKitError: Error {
+    case notAvailable
+    case notAuthorized
+    case failedToFetch
 } 
