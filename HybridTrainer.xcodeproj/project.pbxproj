@@ -18,6 +18,7 @@
 		60E123EAC0989A5895E0BEB1 /* ThemeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A266E8062C42CBD8DFF3053 /* ThemeManager.swift */; };
 		611A0F10286E8CB6F95D00F9 /* HealthKitService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 381ABF32A7A1B38508513856 /* HealthKitService.swift */; };
 		6939307B1E8D37029DBFCE58 /* WorkoutMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A57F9D136A22200BBF3C61F /* WorkoutMapView.swift */; };
+		705A71446B5E4394A235484F /* HybridTrainer.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2A406CCEB7FA73ECA36DBE98 /* HybridTrainer.xcdatamodeld */; };
 		7445EFE19E320E31BC6D3836 /* StatItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 833C7CE9D413BE69DAB76AA4 /* StatItem.swift */; };
 		8184B462DDD928258BE0CA53 /* HybridTrainerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BDA5EB0AAB4A5E82690D953 /* HybridTrainerApp.swift */; };
 		8C046A7CD94F7D2196F17A98 /* HealthKit+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14FA98336DF47CE8ECB22EC3 /* HealthKit+Extensions.swift */; };
@@ -68,6 +69,7 @@
 		767EE0FB190B9641BDAB40D1 /* AnalyticsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsView.swift; sourceTree = "<group>"; };
 		77707524971C05E437EF42A7 /* MainTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabView.swift; sourceTree = "<group>"; };
 		779B82EE3714DFBFE8C6863A /* UserProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfile.swift; sourceTree = "<group>"; };
+		78CEEC7FE4942DB1ACD5D550 /* HybridTrainer.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = HybridTrainer.xcdatamodel; sourceTree = "<group>"; };
 		7BDA5EB0AAB4A5E82690D953 /* HybridTrainerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HybridTrainerApp.swift; sourceTree = "<group>"; };
 		804F3DE646005B9EAF94D510 /* ProgramDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgramDetailsView.swift; sourceTree = "<group>"; };
 		833C7CE9D413BE69DAB76AA4 /* StatItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatItem.swift; sourceTree = "<group>"; };
@@ -289,6 +291,7 @@
 			isa = PBXGroup;
 			children = (
 				D508632CF4E535BC220745E7 /* CachedWorkout.xcdatamodeld */,
+				2A406CCEB7FA73ECA36DBE98 /* HybridTrainer.xcdatamodeld */,
 			);
 			path = CoreData;
 			sourceTree = "<group>";
@@ -433,6 +436,7 @@
 				426A63E298A5988705A8D84D /* HealthData.swift in Sources */,
 				8C046A7CD94F7D2196F17A98 /* HealthKit+Extensions.swift in Sources */,
 				611A0F10286E8CB6F95D00F9 /* HealthKitService.swift in Sources */,
+				705A71446B5E4394A235484F /* HybridTrainer.xcdatamodeld in Sources */,
 				8184B462DDD928258BE0CA53 /* HybridTrainerApp.swift in Sources */,
 				E6E4FBFC802D8E5E29C9E92B /* MainTabView.swift in Sources */,
 				FE49209309E3A554E201CEE3 /* ProfileView.swift in Sources */,
@@ -684,6 +688,16 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
+		2A406CCEB7FA73ECA36DBE98 /* HybridTrainer.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				78CEEC7FE4942DB1ACD5D550 /* HybridTrainer.xcdatamodel */,
+			);
+			currentVersion = 78CEEC7FE4942DB1ACD5D550 /* HybridTrainer.xcdatamodel */;
+			path = HybridTrainer.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
 		D508632CF4E535BC220745E7 /* CachedWorkout.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (

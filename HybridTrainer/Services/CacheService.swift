@@ -7,7 +7,7 @@ class CacheService {
     
     init() {
         container = NSPersistentContainer(name: "HybridTrainer")
-        container.loadPersistentStores { _, error in
+        container.loadPersistentStores { description, error in
             if let error = error {
                 fatalError("Failed to load Core Data stack: \(error)")
             }
@@ -18,7 +18,7 @@ class CacheService {
         let context = container.viewContext
         
         for workout in workouts {
-            let cachedWorkout = CachedWorkout(context: context)
+            let cachedWorkout = NSEntityDescription.insertNewObject(forEntityName: "CachedWorkout", into: context) as! CachedWorkout
             cachedWorkout.id = workout.id
             cachedWorkout.type = workout.type
             cachedWorkout.startDate = workout.startDate
@@ -33,10 +33,10 @@ class CacheService {
     
     func getUnsyncedWorkouts() throws -> [WorkoutData] {
         let context = container.viewContext
-        let request: NSFetchRequest<CachedWorkout> = CachedWorkout.fetchRequest()
-        request.predicate = NSPredicate(format: "synced == NO")
+        let fetchRequest = NSFetchRequest<CachedWorkout>(entityName: "CachedWorkout")
+        fetchRequest.predicate = NSPredicate(format: "synced == %@", NSNumber(value: false))
         
-        let cachedWorkouts = try context.fetch(request)
+        let cachedWorkouts = try context.fetch(fetchRequest)
         return cachedWorkouts.map { cached in
             WorkoutData(
                 id: cached.id ?? "",
@@ -53,10 +53,10 @@ class CacheService {
     
     func markAsSynced(workoutId: String) throws {
         let context = container.viewContext
-        let request: NSFetchRequest<CachedWorkout> = CachedWorkout.fetchRequest()
-        request.predicate = NSPredicate(format: "id == %@", workoutId)
+        let fetchRequest = NSFetchRequest<CachedWorkout>(entityName: "CachedWorkout")
+        fetchRequest.predicate = NSPredicate(format: "id == %@", workoutId)
         
-        if let workout = try context.fetch(request).first {
+        if let workout = try context.fetch(fetchRequest).first {
             workout.synced = true
             try context.save()
         }

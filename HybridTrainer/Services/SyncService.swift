@@ -25,22 +25,27 @@ public class SyncService {
         }
     }
     
-    public func syncHealthData(_ healthData: DailyHealthData) async throws {
+    public func syncHealthData(_ healthData: HealthKitService.DailyHealthData) async throws {
+        let body: [String: Any] = [
+            "date": healthData.date.ISO8601Format(),
+            "stepCount": healthData.stepCount,
+            "heartRateSamples": healthData.heartRateSamples.map { sample in
+                [
+                    "timestamp": sample.timestamp.ISO8601Format(),
+                    "value": sample.value
+                ]
+            },
+            "averageHeartRate": healthData.averageHeartRate
+        ]
+        
         _ = try await APIService.shared.post(
             endpoint: "health/sync",
-            body: [
-                "date": healthData.date.ISO8601Format(),
-                "stepCount": healthData.stepCount,
-                "heartRateSamples": healthData.heartRateSamples.map { [
-                    "timestamp": $0.timestamp.ISO8601Format(),
-                    "value": $0.value
-                ]},
-                "averageHeartRate": healthData.averageHeartRate
-            ]
+            body: body
         )
     }
 }
 
+// MARK: - Helper Extensions
 private extension WorkoutData {
     var dictionary: [String: Any] {
         [
@@ -53,5 +58,13 @@ private extension WorkoutData {
             "energyBurned": energyBurned as Any,
             "heartRate": heartRate as Any
         ]
+    }
+}
+
+private extension Date {
+    func ISO8601Format() -> String {
+        let formatter = ISO8601DateFormatter()
+        formatter.formatOptions = [.withInternetDateTime, .withFractionalSeconds]
+        return formatter.string(from: self)
     }
 } 
