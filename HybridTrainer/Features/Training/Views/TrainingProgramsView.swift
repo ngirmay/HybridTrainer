@@ -1,5 +1,4 @@
 import SwiftUI
-import Models.Training
 
 // Sample data for preview
 private let samplePrograms = [
