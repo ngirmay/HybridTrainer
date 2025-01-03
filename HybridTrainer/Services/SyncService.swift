@@ -16,11 +16,28 @@ public class SyncService {
                     body: workout.dictionary
                 )
                 
-                try await cacheService.markAsSynced(workoutId: workout.id)
+                try await Task { @MainActor in
+                    try cacheService.markAsSynced(workoutId: workout.id)
+                }
             } catch {
                 print("Failed to sync workout: \(error)")
             }
         }
+    }
+    
+    public func syncHealthData(_ healthData: DailyHealthData) async throws {
+        _ = try await APIService.shared.post(
+            endpoint: "health/sync",
+            body: [
+                "date": healthData.date.ISO8601Format(),
+                "stepCount": healthData.stepCount,
+                "heartRateSamples": healthData.heartRateSamples.map { [
+                    "timestamp": $0.timestamp.ISO8601Format(),
+                    "value": $0.value
+                ]},
+                "averageHeartRate": healthData.averageHeartRate
+            ]
+        )
     }
 }
 

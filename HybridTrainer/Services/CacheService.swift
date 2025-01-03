@@ -39,15 +39,37 @@ class CacheService {
         let cachedWorkouts = try context.fetch(request)
         return cachedWorkouts.map { cached in
             WorkoutData(
-                id: cached.id,
-                type: cached.type,
-                startDate: cached.startDate,
-                endDate: cached.endDate,
+                id: cached.id ?? "",
+                type: cached.type ?? "",
+                startDate: cached.startDate ?? Date(),
+                endDate: cached.endDate ?? Date(),
                 duration: cached.duration,
                 distance: cached.distance,
                 energyBurned: nil,
                 heartRate: nil
             )
         }
+    }
+    
+    func markAsSynced(workoutId: String) throws {
+        let context = container.viewContext
+        let request: NSFetchRequest<CachedWorkout> = CachedWorkout.fetchRequest()
+        request.predicate = NSPredicate(format: "id == %@", workoutId)
+        
+        if let workout = try context.fetch(request).first {
+            workout.synced = true
+            try context.save()
+        }
+    }
+    
+    func markAllAsSynced(workoutIds: [String]) throws {
+        let context = container.viewContext
+        let request: NSFetchRequest<CachedWorkout> = CachedWorkout.fetchRequest()
+        request.predicate = NSPredicate(format: "id IN %@", workoutIds)
+        
+        let workouts = try context.fetch(request)
+        workouts.forEach { $0.synced = true }
+        
+        try context.save()
     }
 } 
