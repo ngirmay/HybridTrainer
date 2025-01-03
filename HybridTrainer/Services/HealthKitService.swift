@@ -1,4 +1,5 @@
 import HealthKit
+import CoreLocation
 
 enum HealthKitError: Error {
     case notAvailable

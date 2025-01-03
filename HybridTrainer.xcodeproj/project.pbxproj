@@ -45,6 +45,7 @@
 		1BC113AEBC09D74E1D5B3222 /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
 		2646DA502C901D8CE66E6FD8 /* AnalyticsData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsData.swift; sourceTree = "<group>"; };
 		34BA9EDE0EFA04D7C0504027 /* DashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardView.swift; sourceTree = "<group>"; };
+		35007F171EAF9E8CCF25612A /* HybridTrainer-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "HybridTrainer-Bridging-Header.h"; sourceTree = "<group>"; };
 		381ABF32A7A1B38508513856 /* HealthKitService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthKitService.swift; sourceTree = "<group>"; };
 		39274DF692959AB51EC2C16B /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		3D675CC6B874A24DE6CA7851 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
@@ -222,6 +223,7 @@
 				14B40FB077856972A4967B8F /* Models */,
 				A0421D0892E61D3C44CE15FD /* Services */,
 				E7BB07413BA65FAEEEB59184 /* Assets.xcassets */,
+				35007F171EAF9E8CCF25612A /* HybridTrainer-Bridging-Header.h */,
 				84FE32F3D41CDE964BF94E39 /* Info.plist */,
 			);
 			path = HybridTrainer;

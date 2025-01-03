@@ -4,16 +4,28 @@ import Reachability
 
 class SyncService {
     static let shared = SyncService()
-    private let reachability = try! Reachability()
+    private var reachability: Reachability?
+    
+    init() {
+        do {
+            reachability = try Reachability()
+        } catch {
+            print("Unable to start Reachability: \(error)")
+        }
+    }
     
     func startMonitoring() {
-        reachability.whenReachable = { _ in
+        reachability?.whenReachable = { _ in
             Task {
                 await self.syncPendingData()
             }
         }
         
-        try? reachability.startNotifier()
+        do {
+            try reachability?.startNotifier()
+        } catch {
+            print("Unable to start Reachability notifier: \(error)")
+        }
     }
     
     private func syncPendingData() async {
@@ -31,7 +43,7 @@ class SyncService {
             let workoutData = WorkoutData(from: workout)
             try CacheService.shared.cacheWorkouts([workoutData])
             
-            if reachability.connection != .unavailable {
+            if reachability?.connection != .unavailable {
                 try await APIService.shared.syncWorkouts([workout])
                 try CacheService.shared.markAsSynced(workouts: [workoutData])
             }
