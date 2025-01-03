@@ -51,7 +51,12 @@ struct WorkoutSummaryCard: View {
         case .running: return "figure.run"
         case .cycling: return "figure.outdoor.cycle"
         case .swimming: return "figure.pool.swim"
-        default: return "figure.walk"
+        case .walking: return "figure.walk"
+        case .hiking: return "figure.hiking"
+        case .yoga: return "figure.yoga"
+        case .functionalStrengthTraining, .traditionalStrengthTraining:
+            return "figure.strengthtraining.traditional"
+        default: return "figure.mixed.cardio"
         }
     }
     
