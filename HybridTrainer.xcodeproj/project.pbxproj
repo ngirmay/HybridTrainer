@@ -27,7 +27,6 @@
 		E6E4FBFC802D8E5E29C9E92B /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77707524971C05E437EF42A7 /* MainTabView.swift */; };
 		E9F4AC393C2FC04CF5EE6E4A /* ProgramDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 804F3DE646005B9EAF94D510 /* ProgramDetailsView.swift */; };
 		EF3889778308278017875921 /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BC113AEBC09D74E1D5B3222 /* APIService.swift */; };
-		F045B41B91D8605075F3DF59 /* Package.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39ACD3268DFFFE84A0C19024 /* Package.swift */; };
 		FE49209309E3A554E201CEE3 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39274DF692959AB51EC2C16B /* ProfileView.swift */; };
 /* End PBXBuildFile section */
 
@@ -49,7 +48,6 @@
 		35007F171EAF9E8CCF25612A /* HybridTrainer-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "HybridTrainer-Bridging-Header.h"; sourceTree = "<group>"; };
 		381ABF32A7A1B38508513856 /* HealthKitService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthKitService.swift; sourceTree = "<group>"; };
 		39274DF692959AB51EC2C16B /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
-		39ACD3268DFFFE84A0C19024 /* Package.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
 		3D675CC6B874A24DE6CA7851 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
 		50AC765AFDEB6A0465087195 /* Environment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Environment.swift; sourceTree = "<group>"; };
 		619D9F0CB9883ABDCF35596C /* CustomTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBar.swift; sourceTree = "<group>"; };
@@ -229,7 +227,6 @@
 				35007F171EAF9E8CCF25612A /* HybridTrainer-Bridging-Header.h */,
 				F03A22331E2E9A73D024B911 /* HybridTrainer.entitlements */,
 				84FE32F3D41CDE964BF94E39 /* Info.plist */,
-				39ACD3268DFFFE84A0C19024 /* Package.swift */,
 			);
 			path = HybridTrainer;
 			sourceTree = "<group>";
@@ -379,7 +376,6 @@
 				611A0F10286E8CB6F95D00F9 /* HealthKitService.swift in Sources */,
 				8184B462DDD928258BE0CA53 /* HybridTrainerApp.swift in Sources */,
 				E6E4FBFC802D8E5E29C9E92B /* MainTabView.swift in Sources */,
-				F045B41B91D8605075F3DF59 /* Package.swift in Sources */,
 				FE49209309E3A554E201CEE3 /* ProfileView.swift in Sources */,
 				E9F4AC393C2FC04CF5EE6E4A /* ProgramDetailsView.swift in Sources */,
 				7445EFE19E320E31BC6D3836 /* StatItem.swift in Sources */,
