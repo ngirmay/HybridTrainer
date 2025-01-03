@@ -1,31 +1,25 @@
 import Foundation
-import BackgroundTasks
-import Reachability
+import Network
 
 class SyncService {
     static let shared = SyncService()
-    private var reachability: Reachability?
+    private let monitor = NWPathMonitor()
+    private var isConnected: Bool = false
     
     init() {
-        do {
-            reachability = try Reachability()
-        } catch {
-            print("Unable to start Reachability: \(error)")
-        }
+        setupNetworkMonitoring()
     }
     
-    func startMonitoring() {
-        reachability?.whenReachable = { _ in
-            Task {
-                await self.syncPendingData()
+    private func setupNetworkMonitoring() {
+        monitor.pathUpdateHandler = { [weak self] path in
+            self?.isConnected = path.status == .satisfied
+            if path.status == .satisfied {
+                Task {
+                    await self?.syncPendingData()
+                }
             }
         }
-        
-        do {
-            try reachability?.startNotifier()
-        } catch {
-            print("Unable to start Reachability notifier: \(error)")
-        }
+        monitor.start(queue: DispatchQueue.global())
     }
     
     private func syncPendingData() async {
@@ -38,28 +32,14 @@ class SyncService {
         }
     }
     
-    func handleWorkoutCompletion(_ workout: HKWorkout) async {
-        do {
-            let workoutData = WorkoutData(from: workout)
-            try CacheService.shared.cacheWorkouts([workoutData])
-            
-            if reachability?.connection != .unavailable {
-                try await APIService.shared.syncWorkouts([workout])
-                try CacheService.shared.markAsSynced(workouts: [workoutData])
-            }
-        } catch {
-            print("Failed to handle workout completion: \(error)")
-        }
-    }
-    
     func syncHealthData(_ healthData: DailyHealthData) async throws {
-        // Convert to API format
-        let data = try JSONEncoder().encode(healthData)
+        guard isConnected else {
+            // Cache for later sync if offline
+            try CacheService.shared.cacheHealthData(healthData)
+            return
+        }
         
-        // Send to API
-        try await APIService.shared.post(
-            endpoint: "workouts/sync",
-            body: data
-        )
+        let data = try JSONEncoder().encode(healthData)
+        try await APIService.shared.post(endpoint: "workouts/sync", body: data)
     }
 } 

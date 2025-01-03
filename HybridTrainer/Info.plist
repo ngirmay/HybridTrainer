@@ -37,9 +37,5 @@
 	</dict>
 	<key>UILaunchScreen</key>
 	<dict/>
-	<key>NSHealthShareUsageDescription</key>
-	<string>HybridTrainer needs access to your health data to track your workouts and provide personalized training recommendations.</string>
-	<key>NSHealthUpdateUsageDescription</key>
-	<string>HybridTrainer needs permission to save your workouts to Health.</string>
 </dict>
 </plist>
