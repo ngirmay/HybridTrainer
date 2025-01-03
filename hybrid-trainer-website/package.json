@@ -1,0 +1,13 @@
+{
+  "scripts": {
+    "v0:init": "ts-node scripts/init-v0.ts",
+    "v0:sync": "v0 sync",
+    "v0:pull": "v0 pull",
+    "v0:push": "v0 push"
+  },
+  "dependencies": {
+    "@v0/cli": "latest",
+    "dotenv": "^16.0.3",
+    "ts-node": "^10.9.1"
+  }
+} 

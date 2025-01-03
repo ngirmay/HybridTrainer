@@ -1,0 +1,16 @@
+{
+  "name": "hybrid-trainer",
+  "version": "1.0.0",
+  "v0": {
+    "projectId": "${V0_PROJECT_ID}",
+    "sourceRepo": "https://github.com/yourusername/hybrid-trainer",
+    "components": {
+      "source": "./components",
+      "output": "./v0-components"
+    },
+    "auth": {
+      "v0Token": "${V0_ACCESS_TOKEN}",
+      "githubToken": "${GITHUB_ACCESS_TOKEN}"
+    }
+  }
+} 

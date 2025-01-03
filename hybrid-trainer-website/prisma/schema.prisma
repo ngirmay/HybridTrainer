@@ -1,0 +1,61 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id            String    @id @default(cuid())
+  email         String    @unique
+  name          String?
+  membershipType String   @default("Free")
+  workouts      Workout[]
+  programs      Program[]
+}
+
+model Workout {
+  id              String   @id @default(cuid())
+  userId          String
+  type            String
+  startDate       DateTime
+  endDate         DateTime
+  duration        Float
+  distance        Float?
+  energyBurned    Float?
+  heartRate       Float?
+  user           User     @relation(fields: [userId], references: [id])
+}
+
+model Program {
+  id              String   @id @default(cuid())
+  title           String
+  icon            String
+  category        String
+  duration        String
+  description     String
+  sessionDuration String
+  level           String
+  userId          String
+  user           User     @relation(fields: [userId], references: [id])
+}
+
+model HealthData {
+    id               String            @id @default(cuid())
+    date             DateTime
+    stepCount        Int
+    averageHeartRate Float
+    heartRateSamples HeartRateSample[]
+    userId           String
+    user            User              @relation(fields: [userId], references: [id])
+}
+
+model HeartRateSample {
+    id              String     @id @default(cuid())
+    timestamp       DateTime
+    beatsPerMinute  Float
+    healthDataId    String
+    healthData      HealthData @relation(fields: [healthDataId], references: [id])
+} 

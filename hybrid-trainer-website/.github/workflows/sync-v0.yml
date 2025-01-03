@@ -1,0 +1,48 @@
+name: Sync with V0
+
+on:
+  schedule:
+    - cron: '0 0 * * *'  # Daily
+  workflow_dispatch:  # Manual trigger
+  push:
+    branches: [ main ]
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+      
+      - name: Install dependencies
+        run: npm install
+      
+      - name: Install V0 CLI
+        run: npm install -g @v0/cli
+      
+      - name: Configure V0
+        env:
+          V0_ACCESS_TOKEN: ${{ secrets.V0_ACCESS_TOKEN }}
+        run: v0 login $V0_ACCESS_TOKEN
+      
+      - name: Sync with V0
+        env:
+          V0_PROJECT_ID: ${{ secrets.V0_PROJECT_ID }}
+        run: |
+          v0 link $V0_PROJECT_ID
+          v0 pull
+          v0 push
+      
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v5
+        with:
+          title: 'Sync with V0'
+          body: 'Automated sync with V0 repository'
+          branch: sync-v0
+          commit-message: 'chore: sync with V0' 
