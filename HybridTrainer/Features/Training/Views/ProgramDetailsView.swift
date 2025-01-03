@@ -5,21 +5,38 @@ struct ProgramDetailsView: View {
     
     var body: some View {
         ScrollView {
-            VStack(spacing: 16) {
-                Text(program.title)
-                    .font(.title)
-                    .bold()
+            VStack(alignment: .leading, spacing: 16) {
+                // Header
+                HStack {
+                    Image(systemName: program.icon)
+                        .font(.system(size: 40))
+                        .frame(width: 60, height: 60)
+                        .background(Color.gray.opacity(0.1))
+                        .cornerRadius(12)
+                    
+                    VStack(alignment: .leading) {
+                        Text(program.title)
+                            .font(.title2)
+                            .fontWeight(.bold)
+                        Text(program.duration)
+                            .foregroundColor(.secondary)
+                    }
+                }
+                .padding()
                 
+                // Description
                 Text(program.description)
-                    .foregroundColor(.gray)
+                    .padding(.horizontal)
                 
-                HStack(spacing: 24) {
-                    StatItem(icon: "clock", value: program.sessionDuration, unit: "min")
-                    StatItem(icon: "calendar", value: program.duration, unit: "")
-                    StatItem(icon: "chart.bar.fill", value: program.level, unit: "")
+                // Workouts
+                if !program.workouts.isEmpty {
+                    Section(header: Text("Workouts").font(.headline).padding()) {
+                        ForEach(program.workouts) { workout in
+                            WorkoutRow(workout: workout)
+                        }
+                    }
                 }
             }
-            .padding()
         }
         .navigationBarTitleDisplayMode(.inline)
     }

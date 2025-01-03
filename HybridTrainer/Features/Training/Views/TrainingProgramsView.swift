@@ -1,4 +1,21 @@
 import SwiftUI
+import Models.Training
+
+// Sample data for preview
+private let samplePrograms = [
+    TrainingProgram(
+        title: "5K Training",
+        description: "8-week program to prepare for a 5K race",
+        duration: "8 weeks",
+        icon: "figure.run"
+    ),
+    TrainingProgram(
+        title: "Strength Basics",
+        description: "Foundation strength training program",
+        duration: "12 weeks",
+        icon: "dumbbell.fill"
+    )
+]
 
 struct TrainingProgramsView: View {
     @State private var showingCreateProgram = false
