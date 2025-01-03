@@ -1,45 +1,40 @@
 import Foundation
-import Network
+import HealthKit
 
-class SyncService {
-    static let shared = SyncService()
-    private let monitor = NWPathMonitor()
-    private var isConnected: Bool = false
+public class SyncService {
+    public static let shared = SyncService()
+    private let healthKitService = HealthKitService.shared
+    private let cacheService = CacheService.shared
     
-    init() {
-        setupNetworkMonitoring()
-    }
-    
-    private func setupNetworkMonitoring() {
-        monitor.pathUpdateHandler = { [weak self] path in
-            self?.isConnected = path.status == .satisfied
-            if path.status == .satisfied {
-                Task {
-                    await self?.syncPendingData()
-                }
+    public func syncWorkouts() async throws {
+        let unsyncedWorkouts = try cacheService.getUnsyncedWorkouts()
+        
+        for workout in unsyncedWorkouts {
+            do {
+                _ = try await APIService.shared.post(
+                    endpoint: "workouts/sync",
+                    body: workout.dictionary
+                )
+                
+                try await cacheService.markAsSynced(workoutId: workout.id)
+            } catch {
+                print("Failed to sync workout: \(error)")
             }
         }
-        monitor.start(queue: DispatchQueue.global())
     }
-    
-    private func syncPendingData() async {
-        do {
-            let unsyncedWorkouts = try CacheService.shared.getUnsyncedWorkouts()
-            try await APIService.shared.syncWorkouts(unsyncedWorkouts)
-            try CacheService.shared.markAsSynced(workouts: unsyncedWorkouts)
-        } catch {
-            print("Failed to sync pending data: \(error)")
-        }
-    }
-    
-    func syncHealthData(_ healthData: DailyHealthData) async throws {
-        guard isConnected else {
-            // Cache for later sync if offline
-            try CacheService.shared.cacheHealthData(healthData)
-            return
-        }
-        
-        let data = try JSONEncoder().encode(healthData)
-        try await APIService.shared.post(endpoint: "workouts/sync", body: data)
+}
+
+private extension WorkoutData {
+    var dictionary: [String: Any] {
+        [
+            "id": id,
+            "type": type,
+            "startDate": startDate.ISO8601Format(),
+            "endDate": endDate.ISO8601Format(),
+            "duration": duration,
+            "distance": distance as Any,
+            "energyBurned": energyBurned as Any,
+            "heartRate": heartRate as Any
+        ]
     }
 } 

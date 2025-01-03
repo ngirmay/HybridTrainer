@@ -1,69 +1,64 @@
 import Foundation
+import HealthKit
 
-enum APIError: Error {
-    case invalidURL
-    case invalidResponse
-    case decodingError
-    case networkError(Error)
-}
-
-class APIService {
-    static let shared = APIService()
-    private let baseURL = "https://your-domain.com/api" // Update with your domain
+public class APIService {
+    public static let shared = APIService()
     
-    func fetchPrograms() async throws -> [TrainingProgram] {
-        guard let url = URL(string: "\(baseURL)/programs") else {
-            throw APIError.invalidURL
-        }
+    private let baseURL = URL(string: "https://api.hybridtrainer.app/v1")!
+    private let session = URLSession.shared
+    
+    public func get(endpoint: String) async throws -> Any {
+        var request = URLRequest(url: baseURL.appendingPathComponent(endpoint))
+        request.httpMethod = "GET"
+        addAuthHeader(to: &request)
         
-        let (data, response) = try await URLSession.shared.data(from: url)
+        let (data, response) = try await session.data(for: request)
+        try validateResponse(response)
         
-        guard let httpResponse = response as? HTTPURLResponse,
-              httpResponse.statusCode == 200 else {
-            throw APIError.invalidResponse
-        }
-        
-        let decoder = JSONDecoder()
-        do {
-            let result = try decoder.decode(ProgramsResponse.self, from: data)
-            return result.programs
-        } catch {
-            throw APIError.decodingError
-        }
+        return try JSONSerialization.jsonObject(with: data)
     }
     
-    func syncWorkouts(_ workouts: [HKWorkout]) async throws {
-        guard let url = URL(string: "\(baseURL)/workouts/sync") else {
-            throw APIError.invalidURL
-        }
-        
-        let workoutData = workouts.map { workout in
-            return WorkoutData(
-                id: workout.uuid.uuidString,
-                type: workout.workoutActivityType.name,
-                startDate: workout.startDate.ISO8601Format(),
-                endDate: workout.endDate.ISO8601Format(),
-                duration: workout.duration,
-                distance: workout.totalDistance?.doubleValue(for: .meter()),
-                energyBurned: workout.totalEnergyBurned?.doubleValue(for: .kilocalorie()),
-                userId: AuthService.shared.getCurrentUser()?.id ?? ""
-            )
-        }
-        
-        var request = URLRequest(url: url)
+    public func post(endpoint: String, body: [String: Any]) async throws -> [String: Any] {
+        var request = URLRequest(url: baseURL.appendingPathComponent(endpoint))
         request.httpMethod = "POST"
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        request.httpBody = try JSONEncoder().encode(workoutData)
+        addAuthHeader(to: &request)
         
-        let (_, response) = try await URLSession.shared.data(for: request)
+        let jsonData = try JSONSerialization.data(withJSONObject: body)
+        request.httpBody = jsonData
         
-        guard let httpResponse = response as? HTTPURLResponse,
-              httpResponse.statusCode == 200 else {
+        let (data, response) = try await session.data(for: request)
+        try validateResponse(response)
+        
+        return try JSONSerialization.jsonObject(with: data) as! [String: Any]
+    }
+    
+    private func addAuthHeader(to request: inout URLRequest) {
+        if let token = UserDefaults.standard.string(forKey: "authToken") {
+            request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
+        }
+    }
+    
+    private func validateResponse(_ response: URLResponse) throws {
+        guard let httpResponse = response as? HTTPURLResponse else {
             throw APIError.invalidResponse
+        }
+        
+        guard (200...299).contains(httpResponse.statusCode) else {
+            throw APIError.httpError(httpResponse.statusCode)
         }
     }
 }
 
-struct ProgramsResponse: Codable {
-    let programs: [TrainingProgram]
+public enum APIError: Error {
+    case invalidResponse
+    case httpError(Int)
+    case decodingError
+    case encodingError
+}
+
+// MARK: - API Response Types
+public struct ProgramsResponse: Codable {
+    public let programs: [TrainingProgram]
+    public let total: Int
 } 
