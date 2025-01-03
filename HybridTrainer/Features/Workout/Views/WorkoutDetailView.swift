@@ -3,6 +3,7 @@ import Charts
 import UIKit
 import HealthKit
 import Foundation
+import CoreLocation
 
 struct WorkoutDetailView: View {
     let workoutDetails: WorkoutDetails

@@ -1,5 +1,6 @@
 import HealthKit
 import CoreLocation
+import Foundation
 
 class HealthKitService {
     static let shared = HealthKitService()
