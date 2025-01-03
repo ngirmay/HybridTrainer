@@ -1,11 +1,11 @@
+import Foundation
 import CoreData
 
 class CacheService {
     static let shared = CacheService()
-    
     private let container: NSPersistentContainer
     
-    private init() {
+    init() {
         container = NSPersistentContainer(name: "HybridTrainer")
         container.loadPersistentStores { _, error in
             if let error = error {
@@ -14,7 +14,6 @@ class CacheService {
         }
     }
     
-    // Cache workouts locally
     func cacheWorkouts(_ workouts: [WorkoutData]) throws {
         let context = container.viewContext
         
@@ -22,8 +21,8 @@ class CacheService {
             let cachedWorkout = CachedWorkout(context: context)
             cachedWorkout.id = workout.id
             cachedWorkout.type = workout.type
-            cachedWorkout.startDate = ISO8601DateFormatter().date(from: workout.startDate)
-            cachedWorkout.endDate = ISO8601DateFormatter().date(from: workout.endDate)
+            cachedWorkout.startDate = workout.startDate
+            cachedWorkout.endDate = workout.endDate
             cachedWorkout.duration = workout.duration
             cachedWorkout.distance = workout.distance ?? 0
             cachedWorkout.synced = false
@@ -32,7 +31,6 @@ class CacheService {
         try context.save()
     }
     
-    // Get unsynced workouts
     func getUnsyncedWorkouts() throws -> [WorkoutData] {
         let context = container.viewContext
         let request: NSFetchRequest<CachedWorkout> = CachedWorkout.fetchRequest()
@@ -41,14 +39,14 @@ class CacheService {
         let cachedWorkouts = try context.fetch(request)
         return cachedWorkouts.map { cached in
             WorkoutData(
-                id: cached.id ?? "",
-                type: cached.type ?? "",
-                startDate: cached.startDate?.ISO8601Format() ?? "",
-                endDate: cached.endDate?.ISO8601Format() ?? "",
+                id: cached.id,
+                type: cached.type,
+                startDate: cached.startDate,
+                endDate: cached.endDate,
                 duration: cached.duration,
                 distance: cached.distance,
-                energyBurned: cached.energyBurned,
-                userId: cached.userId ?? ""
+                energyBurned: nil,
+                heartRate: nil
             )
         }
     }
