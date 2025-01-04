@@ -29,7 +29,7 @@ class HealthKitService {
         try await healthStore.requestAuthorization(toShare: [], read: typesToRead)
     }
     
-    func fetchDailyHealthData(for date: Date) async throws -> DailyHealthData {
+    func fetchDailyHealthData(for date: Date) async throws -> HealthData {
         let calendar = Calendar.current
         let startOfDay = calendar.startOfDay(for: date)
         let endOfDay = calendar.date(byAdding: .day, value: 1, to: startOfDay)!
@@ -40,7 +40,7 @@ class HealthKitService {
         let averageHeartRate = heartRateSamples.isEmpty ? 0 : 
             heartRateSamples.map(\.value).reduce(0, +) / Double(heartRateSamples.count)
         
-        return DailyHealthData(
+        return HealthData(
             date: date,
             stepCount: stepCount,
             heartRateSamples: heartRateSamples,

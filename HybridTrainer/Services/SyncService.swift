@@ -25,7 +25,7 @@ public class SyncService {
         }
     }
     
-    public func syncHealthData(_ healthData: HealthKitService.DailyHealthData) async throws {
+    public func syncHealthData(_ healthData: HealthData) async throws {
         let body: [String: Any] = [
             "date": healthData.date.ISO8601Format(),
             "stepCount": healthData.stepCount,
@@ -42,6 +42,21 @@ public class SyncService {
             endpoint: "health/sync",
             body: body
         )
+    }
+}
+
+// MARK: - Health Data Models
+public struct HealthData: Codable {
+    public let date: Date
+    public let stepCount: Int
+    public let heartRateSamples: [HeartRateSample]
+    public let averageHeartRate: Double
+    
+    public init(date: Date, stepCount: Int, heartRateSamples: [HeartRateSample], averageHeartRate: Double) {
+        self.date = date
+        self.stepCount = stepCount
+        self.heartRateSamples = heartRateSamples
+        self.averageHeartRate = averageHeartRate
     }
 }
 
