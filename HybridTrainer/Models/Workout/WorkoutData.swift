@@ -1,17 +1,18 @@
+import Foundation
 import HealthKit
 
-struct WorkoutData: Codable {
-    let id: String
-    let type: String
-    let startDate: Date
-    let endDate: Date
-    let duration: TimeInterval
-    let distance: Double?
-    let energyBurned: Double?
-    let heartRate: Double?
-    var synced: Bool = false
+public struct WorkoutData: Codable, Identifiable {
+    public let id: String
+    public let type: String
+    public let startDate: Date
+    public let endDate: Date
+    public let duration: TimeInterval
+    public let distance: Double?
+    public let energyBurned: Double?
+    public let heartRate: Double?
+    public var synced: Bool = false
     
-    init(from workout: HKWorkout) {
+    public init(from workout: HKWorkout) {
         self.id = workout.uuid.uuidString
         self.type = workout.workoutActivityType.name
         self.startDate = workout.startDate
@@ -20,5 +21,27 @@ struct WorkoutData: Codable {
         self.distance = workout.totalDistance?.doubleValue(for: .mile())
         self.energyBurned = workout.totalEnergyBurned?.doubleValue(for: .kilocalorie())
         self.heartRate = nil // This would come from samples
+    }
+    
+    public init(
+        id: String,
+        type: String,
+        startDate: Date,
+        endDate: Date,
+        duration: TimeInterval,
+        distance: Double?,
+        energyBurned: Double?,
+        heartRate: Double?,
+        synced: Bool = false
+    ) {
+        self.id = id
+        self.type = type
+        self.startDate = startDate
+        self.endDate = endDate
+        self.duration = duration
+        self.distance = distance
+        self.energyBurned = energyBurned
+        self.heartRate = heartRate
+        self.synced = synced
     }
 } 

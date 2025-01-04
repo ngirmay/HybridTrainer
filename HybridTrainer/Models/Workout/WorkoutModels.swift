@@ -2,19 +2,6 @@ import Foundation
 import CoreLocation
 import HealthKit
 
-// MARK: - Data Models
-public struct WorkoutData: Codable, Identifiable {
-    public let id: String
-    public let type: String
-    public let startDate: Date
-    public let endDate: Date
-    public let duration: TimeInterval
-    public let distance: Double?
-    public let energyBurned: Double?
-    public let heartRate: Double?
-    public var synced: Bool = false
-}
-
 public struct WorkoutDetails: Identifiable {
     public let id: String
     public let workout: HKWorkout
@@ -60,6 +47,7 @@ public struct LocationSample: Codable, Identifiable {
 // MARK: - Sample Data
 public extension WorkoutDetails {
     static let sampleData = WorkoutDetails(
+        id: UUID().uuidString,
         workout: HKWorkout(
             activityType: .running,
             start: Date().addingTimeInterval(-3600),
