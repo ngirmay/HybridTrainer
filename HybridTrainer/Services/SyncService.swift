@@ -1,6 +1,5 @@
 import Foundation
 import HealthKit
-import Health
 
 public class SyncService {
     public static let shared = SyncService()

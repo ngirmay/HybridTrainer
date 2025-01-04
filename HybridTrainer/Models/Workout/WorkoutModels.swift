@@ -1,7 +1,6 @@
 import Foundation
 import CoreLocation
 import HealthKit
-import Health
 
 // MARK: - Data Models
 public struct WorkoutData: Codable, Identifiable {
