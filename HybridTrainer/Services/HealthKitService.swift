@@ -2,18 +2,6 @@ import HealthKit
 import CoreLocation
 import Foundation
 
-public struct DailyHealthData {
-    let date: Date
-    let stepCount: Int
-    let heartRateSamples: [HeartRateSample]
-    let averageHeartRate: Double
-}
-
-public struct HeartRateSample {
-    let timestamp: Date
-    let value: Double
-}
-
 class HealthKitService {
     static let shared = HealthKitService()
     private let healthStore = HKHealthStore()

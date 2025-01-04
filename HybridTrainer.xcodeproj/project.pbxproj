@@ -13,6 +13,7 @@
 		16347D0723DB8C631ECAE1CD /* CreateProgramView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FADFB9BF013D82CA2D450A4 /* CreateProgramView.swift */; };
 		24C6E9E42C00A7C2F2DE5088 /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50AC765AFDEB6A0465087195 /* Environment.swift */; };
 		2581403A595F0751276F217D /* TrainingProgram.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057AF620663C7088667452C8 /* TrainingProgram.swift */; };
+		408C75762B2E5F0FF51E64BB /* HealthData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10D6E6C89CFC0C6B6B202377 /* HealthData.swift */; };
 		426A63E298A5988705A8D84D /* HealthData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D85F77C93A0BA8851B6E551 /* HealthData.swift */; };
 		49152CD2AB8042E04EAEBEAE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E7BB07413BA65FAEEEB59184 /* Assets.xcassets */; };
 		60E123EAC0989A5895E0BEB1 /* ThemeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A266E8062C42CBD8DFF3053 /* ThemeManager.swift */; };
@@ -53,6 +54,7 @@
 /* Begin PBXFileReference section */
 		05732AD7297703D255AD7393 /* WorkoutDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutDetailView.swift; sourceTree = "<group>"; };
 		057AF620663C7088667452C8 /* TrainingProgram.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingProgram.swift; sourceTree = "<group>"; };
+		10D6E6C89CFC0C6B6B202377 /* HealthData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthData.swift; sourceTree = "<group>"; };
 		14FA98336DF47CE8ECB22EC3 /* HealthKit+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HealthKit+Extensions.swift"; sourceTree = "<group>"; };
 		1BC113AEBC09D74E1D5B3222 /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
 		1C3720067850F35023BE6E97 /* WorkoutDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutDetails.swift; sourceTree = "<group>"; };
@@ -110,6 +112,7 @@
 			isa = PBXGroup;
 			children = (
 				EC8F54CBE07D1C1F01AF24A0 /* CoreData */,
+				6D3D825EEBE544FB990FD0D2 /* Health */,
 				DADB321D1714850983C82543 /* Training */,
 				8F94E202CF2863A34EEF1225 /* User */,
 				F509098F557F9419DFF9827E /* Workout */,
@@ -181,6 +184,14 @@
 				14FA98336DF47CE8ECB22EC3 /* HealthKit+Extensions.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		6D3D825EEBE544FB990FD0D2 /* Health */ = {
+			isa = PBXGroup;
+			children = (
+				10D6E6C89CFC0C6B6B202377 /* HealthData.swift */,
+			);
+			path = Health;
 			sourceTree = "<group>";
 		};
 		6E78EF53E74C45020A63808B /* Views */ = {
@@ -434,6 +445,7 @@
 				CE094E7B8B182D33A67124C9 /* DashboardView.swift in Sources */,
 				24C6E9E42C00A7C2F2DE5088 /* Environment.swift in Sources */,
 				426A63E298A5988705A8D84D /* HealthData.swift in Sources */,
+				408C75762B2E5F0FF51E64BB /* HealthData.swift in Sources */,
 				8C046A7CD94F7D2196F17A98 /* HealthKit+Extensions.swift in Sources */,
 				611A0F10286E8CB6F95D00F9 /* HealthKitService.swift in Sources */,
 				705A71446B5E4394A235484F /* HybridTrainer.xcdatamodeld in Sources */,

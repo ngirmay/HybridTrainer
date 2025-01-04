@@ -13,26 +13,6 @@ public struct WorkoutData: Codable, Identifiable {
     public let energyBurned: Double?
     public let heartRate: Double?
     public var synced: Bool = false
-    
-    public init(
-        id: String,
-        type: String,
-        startDate: Date,
-        endDate: Date,
-        duration: TimeInterval,
-        distance: Double?,
-        energyBurned: Double?,
-        heartRate: Double?
-    ) {
-        self.id = id
-        self.type = type
-        self.startDate = startDate
-        self.endDate = endDate
-        self.duration = duration
-        self.distance = distance
-        self.energyBurned = energyBurned
-        self.heartRate = heartRate
-    }
 }
 
 public struct WorkoutDetails: Identifiable {
@@ -41,20 +21,6 @@ public struct WorkoutDetails: Identifiable {
     public let heartRateData: [HeartRateSample]
     public let splits: [Split]
     public let route: [LocationSample]?
-    
-    public init(
-        id: String = UUID().uuidString,
-        workout: HKWorkout,
-        heartRateData: [HeartRateSample],
-        splits: [Split],
-        route: [LocationSample]?
-    ) {
-        self.id = id
-        self.workout = workout
-        self.heartRateData = heartRateData
-        self.splits = splits
-        self.route = route
-    }
 }
 
 public struct HeartRateSample: Codable, Identifiable {
@@ -83,7 +49,7 @@ public struct Split: Codable, Identifiable {
     }
 }
 
-public struct LocationSample: Codable, Identifiable, Equatable {
+public struct LocationSample: Codable, Identifiable {
     public let id: UUID
     public let timestamp: Date
     private let latitude: Double
@@ -92,18 +58,6 @@ public struct LocationSample: Codable, Identifiable, Equatable {
     
     public var coordinate: CLLocationCoordinate2D {
         CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
-    }
-    
-    public init(id: UUID = UUID(), timestamp: Date, coordinate: CLLocationCoordinate2D, altitude: Double?) {
-        self.id = id
-        self.timestamp = timestamp
-        self.latitude = coordinate.latitude
-        self.longitude = coordinate.longitude
-        self.altitude = altitude
-    }
-    
-    public static func == (lhs: LocationSample, rhs: LocationSample) -> Bool {
-        lhs.id == rhs.id
     }
 }
 
