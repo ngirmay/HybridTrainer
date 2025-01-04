@@ -7,25 +7,25 @@ struct SplitsView: View {
     
     var body: some View {
         VStack(spacing: 0) {
-            ForEach(splits.indices, id: \.self) { index in
+            ForEach(splits) { split in
                 Button(action: { 
-                    selectedSplit = splits[index]
+                    selectedSplit = split
                     showingDetails = true
                 }) {
                     HStack {
-                        Text("Mile \(index + 1)")
+                        Text("Mile \(split.distance, specifier: "%.1f")")
                             .font(.subheadline)
                             .foregroundColor(Theme.textSecondary)
                         
                         Spacer()
                         
                         VStack(alignment: .trailing) {
-                            Text(formatPace(splits[index].pace))
+                            Text(formatPace(split.pace))
                                 .font(.system(.body, design: .rounded))
                                 .fontWeight(.medium)
                                 .foregroundColor(Theme.text)
                             
-                            Text(formatTime(splits[index].duration))
+                            Text(formatTime(split.duration))
                                 .font(.caption)
                                 .foregroundColor(Theme.textSecondary)
                         }
@@ -33,15 +33,13 @@ struct SplitsView: View {
                     .padding(.vertical, 12)
                 }
                 
-                if index < splits.count - 1 {
+                if split.id != splits.last?.id {
                     Divider()
                 }
             }
         }
-        .sheet(isPresented: $showingDetails) {
-            if let split = selectedSplit {
-                SplitDetailView(split: split)
-            }
+        .sheet(item: $selectedSplit) { split in
+            SplitDetailView(split: split)
         }
     }
     
@@ -57,4 +55,53 @@ struct SplitsView: View {
         let seconds = Int(duration) % 60
         return String(format: "%d:%02d:%02d", hours, minutes, seconds)
     }
+}
+
+struct SplitDetailView: View {
+    let split: Split
+    
+    var body: some View {
+        VStack(spacing: 16) {
+            Text("Split Details")
+                .font(.title)
+            
+            VStack(alignment: .leading, spacing: 8) {
+                DetailRow(label: "Distance", value: "\(split.distance, specifier: "%.2f") mi")
+                DetailRow(label: "Duration", value: formatTime(split.duration))
+                DetailRow(label: "Pace", value: formatPace(split.pace))
+            }
+            .padding()
+        }
+    }
+    
+    private func formatTime(_ duration: Double) -> String {
+        let minutes = Int(duration) / 60
+        let seconds = Int(duration) % 60
+        return String(format: "%d:%02d", minutes, seconds)
+    }
+    
+    private func formatPace(_ pace: Double) -> String {
+        let minutes = Int(pace)
+        let seconds = Int((pace - Double(minutes)) * 60)
+        return String(format: "%d:%02d /mi", minutes, seconds)
+    }
+}
+
+struct DetailRow: View {
+    let label: String
+    let value: String
+    
+    var body: some View {
+        HStack {
+            Text(label)
+                .foregroundColor(.secondary)
+            Spacer()
+            Text(value)
+                .fontWeight(.medium)
+        }
+    }
+}
+
+#Preview {
+    SplitsView(splits: WorkoutDetails.sampleData.splits)
 } 
