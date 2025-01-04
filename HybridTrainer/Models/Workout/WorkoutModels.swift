@@ -1,6 +1,7 @@
 import Foundation
 import CoreLocation
 import HealthKit
+import Health
 
 // MARK: - Data Models
 public struct WorkoutData: Codable, Identifiable {
@@ -21,18 +22,6 @@ public struct WorkoutDetails: Identifiable {
     public let heartRateData: [HeartRateSample]
     public let splits: [Split]
     public let route: [LocationSample]?
-}
-
-public struct HeartRateSample: Codable, Identifiable {
-    public let id: UUID
-    public let timestamp: Date
-    public let value: Double
-    
-    public init(id: UUID = UUID(), timestamp: Date, value: Double) {
-        self.id = id
-        self.timestamp = timestamp
-        self.value = value
-    }
 }
 
 public struct Split: Codable, Identifiable {
@@ -58,6 +47,14 @@ public struct LocationSample: Codable, Identifiable {
     
     public var coordinate: CLLocationCoordinate2D {
         CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
+    }
+    
+    public init(id: UUID = UUID(), timestamp: Date, coordinate: CLLocationCoordinate2D, altitude: Double?) {
+        self.id = id
+        self.timestamp = timestamp
+        self.latitude = coordinate.latitude
+        self.longitude = coordinate.longitude
+        self.altitude = altitude
     }
 }
 
