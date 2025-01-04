@@ -45,21 +45,6 @@ public class SyncService {
     }
 }
 
-// MARK: - Health Data Models
-public struct HealthData: Codable {
-    public let date: Date
-    public let stepCount: Int
-    public let heartRateSamples: [HeartRateSample]
-    public let averageHeartRate: Double
-    
-    public init(date: Date, stepCount: Int, heartRateSamples: [HeartRateSample], averageHeartRate: Double) {
-        self.date = date
-        self.stepCount = stepCount
-        self.heartRateSamples = heartRateSamples
-        self.averageHeartRate = averageHeartRate
-    }
-}
-
 // MARK: - Helper Extensions
 private extension WorkoutData {
     var dictionary: [String: Any] {

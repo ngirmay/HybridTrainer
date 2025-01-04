@@ -2,48 +2,74 @@ import SwiftUI
 
 struct ProgramDetailsView: View {
     let program: TrainingProgram
+    @State private var workouts: [WorkoutData] = []
     
     var body: some View {
-        ScrollView {
-            VStack(alignment: .leading, spacing: 16) {
-                // Header
-                HStack {
-                    Image(systemName: program.icon)
-                        .font(.system(size: 40))
-                        .frame(width: 60, height: 60)
-                        .background(Color.gray.opacity(0.1))
-                        .cornerRadius(12)
+        List {
+            Section(header: Text("Program Details")) {
+                VStack(alignment: .leading, spacing: 8) {
+                    Text(program.name)
+                        .font(.title2)
+                        .fontWeight(.bold)
                     
-                    VStack(alignment: .leading) {
-                        Text(program.title)
-                            .font(.title2)
-                            .fontWeight(.bold)
-                        Text(program.duration)
-                            .foregroundColor(.secondary)
+                    Text(program.description)
+                        .font(.body)
+                        .foregroundColor(.secondary)
+                    
+                    HStack {
+                        Label("\(program.duration) weeks", systemImage: "calendar")
+                        Spacer()
+                        Label("\(program.workoutsPerWeek)x/week", systemImage: "figure.run")
                     }
+                    .font(.subheadline)
+                    .foregroundColor(.secondary)
                 }
-                .padding()
-                
-                // Description
-                Text(program.description)
-                    .padding(.horizontal)
-                
-                // Workouts
-                if !program.workouts.isEmpty {
-                    Section(header: Text("Workouts").font(.headline).padding()) {
-                        ForEach(program.workouts) { workout in
-                            WorkoutRow(workout: workout)
-                        }
+                .padding(.vertical, 8)
+            }
+            
+            Section(header: Text("Upcoming Workouts")) {
+                if workouts.isEmpty {
+                    Text("No workouts scheduled")
+                        .foregroundColor(.secondary)
+                } else {
+                    ForEach(workouts) { workout in
+                        WorkoutRow(workout: workout)
                     }
                 }
             }
         }
-        .navigationBarTitleDisplayMode(.inline)
+        .navigationTitle("Program Details")
+        .onAppear {
+            // Load workouts for this program
+            loadWorkouts()
+        }
+    }
+    
+    private func loadWorkouts() {
+        // TODO: Implement workout loading logic
+        // This would typically fetch workouts from your data store
+        workouts = []
     }
 }
 
-#Preview {
-    NavigationView {
-        ProgramDetailsView(program: samplePrograms[0])
+// MARK: - Preview
+struct ProgramDetailsView_Previews: PreviewProvider {
+    static var previews: some View {
+        NavigationView {
+            ProgramDetailsView(program: .sampleProgram)
+        }
     }
+}
+
+// MARK: - Sample Data
+extension TrainingProgram {
+    static let sampleProgram = TrainingProgram(
+        id: UUID().uuidString,
+        name: "5K Training Plan",
+        description: "A 12-week program designed to help you run your first 5K or improve your current time.",
+        duration: 12,
+        workoutsPerWeek: 3,
+        difficulty: "Beginner",
+        type: "Running"
+    )
 } 

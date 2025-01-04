@@ -24,6 +24,7 @@
 		8C046A7CD94F7D2196F17A98 /* HealthKit+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14FA98336DF47CE8ECB22EC3 /* HealthKit+Extensions.swift */; };
 		8F109096ACF65B97847008AE /* CachedWorkout.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D508632CF4E535BC220745E7 /* CachedWorkout.xcdatamodeld */; };
 		97B9E90A3C24294366529E76 /* WorkoutDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C3720067850F35023BE6E97 /* WorkoutDetails.swift */; };
+		A1F04C74243BC9837182ABC5 /* WorkoutRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56313B1ED238086097F8986B /* WorkoutRow.swift */; };
 		AB2E30ADE0CE1C890BCC7AFB /* WorkoutData.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC72951E5EC27C460F814F32 /* WorkoutData.swift */; };
 		AD028B4833BDC66842ADDB39 /* WorkoutSummaryCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = E394EC20FDA164EDFCC0B209 /* WorkoutSummaryCard.swift */; };
 		B9A8601A6595EE08E055E72F /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D675CC6B874A24DE6CA7851 /* AuthService.swift */; };
@@ -65,6 +66,7 @@
 		39274DF692959AB51EC2C16B /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		3D675CC6B874A24DE6CA7851 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
 		50AC765AFDEB6A0465087195 /* Environment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Environment.swift; sourceTree = "<group>"; };
+		56313B1ED238086097F8986B /* WorkoutRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutRow.swift; sourceTree = "<group>"; };
 		619D9F0CB9883ABDCF35596C /* CustomTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBar.swift; sourceTree = "<group>"; };
 		69C8074B2BC7D96A7E508F3B /* HybridTrainerTests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = HybridTrainerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		767EE0FB190B9641BDAB40D1 /* AnalyticsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsView.swift; sourceTree = "<group>"; };
@@ -159,6 +161,14 @@
 			path = Profile;
 			sourceTree = "<group>";
 		};
+		416CE44E251EB299C71D44DE /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				56313B1ED238086097F8986B /* WorkoutRow.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
 		47D3B4B498CB2EE4FFF34D20 /* App */ = {
 			isa = PBXGroup;
 			children = (
@@ -170,6 +180,7 @@
 		497D046E936EF774712EB496 /* Training */ = {
 			isa = PBXGroup;
 			children = (
+				416CE44E251EB299C71D44DE /* Components */,
 				8A98F65FD85FB9581A72F72F /* Views */,
 			);
 			path = Training;
@@ -461,6 +472,7 @@
 				97B9E90A3C24294366529E76 /* WorkoutDetails.swift in Sources */,
 				6939307B1E8D37029DBFCE58 /* WorkoutMapView.swift in Sources */,
 				F9124215643FAA33A52CEC4E /* WorkoutModels.swift in Sources */,
+				A1F04C74243BC9837182ABC5 /* WorkoutRow.swift in Sources */,
 				AD028B4833BDC66842ADDB39 /* WorkoutSummaryCard.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
